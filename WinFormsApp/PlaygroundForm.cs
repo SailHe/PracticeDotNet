@@ -58,6 +58,11 @@ namespace WinFormsApp
             lhsBigNumHasSet = true;
         }
 
+        private void button_to_10_24_Click(object sender, EventArgs e)
+        {
+            new Form10_24().Show();
+        }
+
         private void rhsNum_TextChanged(object sender, EventArgs e)
         {
             rhsBigNumHasSet = true;
