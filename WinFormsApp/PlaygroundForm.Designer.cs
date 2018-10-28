@@ -30,15 +30,15 @@
         {
             this.bigNumPlushbutton = new System.Windows.Forms.Button();
             this.lhsBigNum_textBox = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.rhsBigNum_textBox = new System.Windows.Forms.TextBox();
             this.bigNumSum_textBox = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.bigNumRadix_textBox = new System.Windows.Forms.TextBox();
             this.APItestButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bigNumPlushbutton
             // 
-            this.bigNumPlushbutton.Location = new System.Drawing.Point(334, 36);
+            this.bigNumPlushbutton.Location = new System.Drawing.Point(211, 50);
             this.bigNumPlushbutton.Name = "bigNumPlushbutton";
             this.bigNumPlushbutton.Size = new System.Drawing.Size(103, 23);
             this.bigNumPlushbutton.TabIndex = 0;
@@ -46,35 +46,36 @@
             this.bigNumPlushbutton.UseVisualStyleBackColor = true;
             this.bigNumPlushbutton.Click += new System.EventHandler(this.bigNumPlushbutton_Click);
             // 
-            // textBox1
+            // lhsBigNum_textBox
             // 
-            this.lhsBigNum_textBox.Location = new System.Drawing.Point(67, 34);
-            this.lhsBigNum_textBox.Name = "textBox1";
-            this.lhsBigNum_textBox.Size = new System.Drawing.Size(100, 25);
+            this.lhsBigNum_textBox.Location = new System.Drawing.Point(12, 34);
+            this.lhsBigNum_textBox.Name = "lhsBigNum_textBox";
+            this.lhsBigNum_textBox.Size = new System.Drawing.Size(179, 25);
             this.lhsBigNum_textBox.TabIndex = 1;
             this.lhsBigNum_textBox.TextChanged += new System.EventHandler(this.lhsNum_TextChanged);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(201, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 25);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.TextChanged += new System.EventHandler(this.rhsNum_TextChanged);
+            this.rhsBigNum_textBox.Location = new System.Drawing.Point(13, 65);
+            this.rhsBigNum_textBox.Name = "textBox2";
+            this.rhsBigNum_textBox.Size = new System.Drawing.Size(178, 25);
+            this.rhsBigNum_textBox.TabIndex = 2;
+            this.rhsBigNum_textBox.TextChanged += new System.EventHandler(this.rhsNum_TextChanged);
             // 
             // bigNumSum_textBox
             // 
-            this.bigNumSum_textBox.Location = new System.Drawing.Point(472, 34);
+            this.bigNumSum_textBox.Location = new System.Drawing.Point(343, 48);
             this.bigNumSum_textBox.Name = "bigNumSum_textBox";
-            this.bigNumSum_textBox.Size = new System.Drawing.Size(100, 25);
+            this.bigNumSum_textBox.Size = new System.Drawing.Size(445, 25);
             this.bigNumSum_textBox.TabIndex = 3;
             // 
-            // textBox4
+            // bigNumRadix_textBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(67, 105);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 25);
-            this.textBox4.TabIndex = 5;
+            this.bigNumRadix_textBox.Location = new System.Drawing.Point(127, 4);
+            this.bigNumRadix_textBox.Name = "bigNumRadix_textBox";
+            this.bigNumRadix_textBox.Size = new System.Drawing.Size(64, 25);
+            this.bigNumRadix_textBox.TabIndex = 5;
+            this.bigNumRadix_textBox.Text = "10";
             // 
             // APItestButton
             // 
@@ -90,11 +91,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(803, 450);
             this.Controls.Add(this.APItestButton);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.bigNumRadix_textBox);
             this.Controls.Add(this.bigNumSum_textBox);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.rhsBigNum_textBox);
             this.Controls.Add(this.lhsBigNum_textBox);
             this.Controls.Add(this.bigNumPlushbutton);
             this.Name = "PlaygroundForm";
@@ -108,9 +109,9 @@
 
         private System.Windows.Forms.Button bigNumPlushbutton;
         private System.Windows.Forms.TextBox lhsBigNum_textBox;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox rhsBigNum_textBox;
         private System.Windows.Forms.TextBox bigNumSum_textBox;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox bigNumRadix_textBox;
         private System.Windows.Forms.Button APItestButton;
     }
 }

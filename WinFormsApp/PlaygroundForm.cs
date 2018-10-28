@@ -28,7 +28,19 @@ namespace WinFormsApp
         {
             if(lhsBigNumHasSet && rhsBigNumHasSet)
             {
-                bigNumSum_textBox.Text = UtilityApi.bigPlush(lhsBigNum_textBox.Text, textBox2.Text);
+                int radix = int.Parse(bigNumRadix_textBox.Text);
+                if(radix < 2 || radix > 36)
+                {
+                    Win32API.MessageBox(IntPtr.Zero, "进制输入错误!", "警告", 0);
+                }
+                else
+                {
+                    bigNumSum_textBox.Text = UtilityApi.bigPlush(
+                        lhsBigNum_textBox.Text
+                        , rhsBigNum_textBox.Text
+                        , radix
+                        );
+                }
             }
             else
             {
