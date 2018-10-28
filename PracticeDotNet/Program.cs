@@ -703,7 +703,7 @@ namespace LearnDotNet
             });
         }
 
-        static void Main(string[] args){
+        static void MainForHomeWork(string[] args){
             string num;
             Random rnd = new Random(System.DateTime.Now.Millisecond);
             Console.WriteLine("输入题目号码确定查阅题目: ");
