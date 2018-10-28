@@ -28,34 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.bigNumPlushbutton = new System.Windows.Forms.Button();
+            this.lhsBigNum_textBox = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.bigNumSum_textBox = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.APItestButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // bigNumPlushbutton
             // 
-            this.button1.Location = new System.Drawing.Point(346, 144);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bigNumPlushbutton.Location = new System.Drawing.Point(334, 36);
+            this.bigNumPlushbutton.Name = "bigNumPlushbutton";
+            this.bigNumPlushbutton.Size = new System.Drawing.Size(103, 23);
+            this.bigNumPlushbutton.TabIndex = 0;
+            this.bigNumPlushbutton.Text = "大数加法";
+            this.bigNumPlushbutton.UseVisualStyleBackColor = true;
+            this.bigNumPlushbutton.Click += new System.EventHandler(this.bigNumPlushbutton_Click);
+            // 
+            // textBox1
+            // 
+            this.lhsBigNum_textBox.Location = new System.Drawing.Point(67, 34);
+            this.lhsBigNum_textBox.Name = "textBox1";
+            this.lhsBigNum_textBox.Size = new System.Drawing.Size(100, 25);
+            this.lhsBigNum_textBox.TabIndex = 1;
+            this.lhsBigNum_textBox.TextChanged += new System.EventHandler(this.lhsNum_TextChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(201, 33);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 25);
+            this.textBox2.TabIndex = 2;
+            this.textBox2.TextChanged += new System.EventHandler(this.rhsNum_TextChanged);
+            // 
+            // bigNumSum_textBox
+            // 
+            this.bigNumSum_textBox.Location = new System.Drawing.Point(472, 34);
+            this.bigNumSum_textBox.Name = "bigNumSum_textBox";
+            this.bigNumSum_textBox.Size = new System.Drawing.Size(100, 25);
+            this.bigNumSum_textBox.TabIndex = 3;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(67, 105);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 25);
+            this.textBox4.TabIndex = 5;
+            // 
+            // APItestButton
+            // 
+            this.APItestButton.Location = new System.Drawing.Point(13, 3);
+            this.APItestButton.Name = "APItestButton";
+            this.APItestButton.Size = new System.Drawing.Size(106, 23);
+            this.APItestButton.TabIndex = 6;
+            this.APItestButton.Text = "API test";
+            this.APItestButton.UseVisualStyleBackColor = true;
+            this.APItestButton.Click += new System.EventHandler(this.APItestButton_Click);
             // 
             // PlaygroundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Controls.Add(this.APItestButton);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.bigNumSum_textBox);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.lhsBigNum_textBox);
+            this.Controls.Add(this.bigNumPlushbutton);
+            this.Name = "PlaygroundForm";
+            this.Text = "ShellForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bigNumPlushbutton;
+        private System.Windows.Forms.TextBox lhsBigNum_textBox;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox bigNumSum_textBox;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button APItestButton;
     }
 }
 

@@ -56,7 +56,7 @@ namespace SailHeCSharpClassLib
         }
     }
 
-    public class SailHeCsharpApi
+    public class UtilityApi
     {
         public static string Test()
         {

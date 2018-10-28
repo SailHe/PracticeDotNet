@@ -9,21 +9,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using SailHeCSharpClassLib;
+
 namespace WinFormsApp
 {
     using WinFormsApp.src;
 
     public partial class PlaygroundForm : Form
     {
+        private bool lhsBigNumHasSet = false, rhsBigNumHasSet = false;
+
         public PlaygroundForm()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bigNumPlushbutton_Click(object sender, EventArgs e)
         {
-            string[] args = { "2" };
-            Debug.WriteLine(SolveHomeworkProblem.SellApiForHomeWork());
+            if(lhsBigNumHasSet && rhsBigNumHasSet)
+            {
+                bigNumSum_textBox.Text = UtilityApi.bigPlush(lhsBigNum_textBox.Text, textBox2.Text);
+            }
+            else
+            {
+                bigNumSum_textBox.Text = "请在左侧输入框 输入数字!";
+            }
+        }
+
+        private void APItestButton_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine(SolveHomeworkProblem.SailHeApiTest());
+        }
+
+        private void lhsNum_TextChanged(object sender, EventArgs e)
+        {
+            lhsBigNumHasSet = true;
+        }
+
+        private void rhsNum_TextChanged(object sender, EventArgs e)
+        {
+            rhsBigNumHasSet = true;
         }
     }
 }

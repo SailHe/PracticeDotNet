@@ -161,13 +161,13 @@ namespace LearnDotNet
         static void solve2_10_3(int n)
         {
             double r = Math.Pow(n, 2) + n + 41;
-            if (SailHeCsharpApi.isPrime((int)r))
+            if (UtilityApi.isPrime((int)r))
             {
                 Shell.Write("N={0}, R={1}", n, r);
             }
             else
             {
-                List<int> temp = SailHeCsharpApi.calcFactorList((int)r);
+                List<int> temp = UtilityApi.calcFactorList((int)r);
                 Shell.Write("N={0}, R={1}, R的因数:", n, r);
                 /*
                  * foreach (int it in temp) {
@@ -200,15 +200,15 @@ namespace LearnDotNet
         {
             List<int> nUsedIndexList = new List<int>();
             List<Award> awardList = new List<Award>();
-            int index1 = SailHeCsharpApi.randomSelectNonUsedIndex(nUsedIndexList, rnd, 20)
-                , index2_1 = SailHeCsharpApi.randomSelectNonUsedIndex(nUsedIndexList, rnd, 20)
-                , index2_2 = SailHeCsharpApi.randomSelectNonUsedIndex(nUsedIndexList, rnd, 20);
+            int index1 = UtilityApi.randomSelectNonUsedIndex(nUsedIndexList, rnd, 20)
+                , index2_1 = UtilityApi.randomSelectNonUsedIndex(nUsedIndexList, rnd, 20)
+                , index2_2 = UtilityApi.randomSelectNonUsedIndex(nUsedIndexList, rnd, 20);
             awardList.Add(new Award(index1, "一等奖"));
             awardList.Add(new Award(index2_1, "二等奖"));
             awardList.Add(new Award(index2_2, "二等奖"));
             for (int i = 0; i < 20; ++i)
             {
-                string PIN = SailHeCsharpApi.generateRandomIdCard(rnd);
+                string PIN = UtilityApi.generateRandomIdCard(rnd);
                 //使用校验码校验
                 //Shell.WriteLine("校验" + (isValidIdCard(PIN.ToCharArray()) ? "成功" : "失败"));
                 Award findAward = awardList.Find(ele => ele.getIndex() == i);
@@ -216,7 +216,7 @@ namespace LearnDotNet
                 {
                     Shell.Write("奖项: " + findAward.getName());
                     Shell.Write(" 身份证号码: " + PIN);
-                    Shell.Write(" 性别: " + SailHeCsharpApi.idSex(PIN));
+                    Shell.Write(" 性别: " + UtilityApi.idSex(PIN));
                     Shell.WriteLine();
                 }
             }
@@ -229,7 +229,7 @@ namespace LearnDotNet
             while ((lhsS = Shell.ReadLine()) != string.Empty)
             {
                 //1.36进制大数加1
-                string outString = SailHeCsharpApi.bigPlush(lhsS, rhsS, 36);
+                string outString = UtilityApi.bigPlush(lhsS, rhsS, 36);
                 //Shell.WriteLine(outString);
 
                 //2.如题
@@ -251,7 +251,7 @@ namespace LearnDotNet
             List<int> randomList2 = new List<int>();
             for (int i = 0; i < maxCount; ++i)
             {
-                int num = SailHeCsharpApi.randomNum(rnd, 2);
+                int num = UtilityApi.randomNum(rnd, 2);
                 if (randomList.Find(ele => ele == num) == 0)
                 {
                     randomList.Add(num);
@@ -274,7 +274,7 @@ namespace LearnDotNet
                 }
             }*/
             randomList.ForEach(ele => {
-                if (SailHeCsharpApi.isPrime((int)ele) || (int)ele % 2 == 0)
+                if (UtilityApi.isPrime((int)ele) || (int)ele % 2 == 0)
                 {
                     //
                 }
@@ -314,7 +314,7 @@ namespace LearnDotNet
             int weekCount = 0;
             dtBegin = DateTime.Parse(Shell.ReadLine());
             dtEnd = DateTime.Parse(Shell.ReadLine());
-            while ((temp = SailHeCsharpApi.nearlyWeekend(dtBegin)) <= dtEnd)
+            while ((temp = UtilityApi.nearlyWeekend(dtBegin)) <= dtEnd)
             {
                 Shell.WriteLine("第" + ++weekCount + "周" + dtBegin.ToString("yyyy-MM-d") + " " + temp.ToString("yyyy-MM-d"));
                 dtBegin = temp.AddDays(1);

@@ -15,11 +15,11 @@ namespace WinFormsApp.src
 
     class SolveHomeworkProblem
     {
-        public static string SellApiForHomeWork()
+        public static string SailHeApiTest()
         {
             Win32API.MainForTest();
             CInterFace.MainForTest();
-            return SailHeCsharpApi.bigPlush("2147483647", "10");
+            return UtilityApi.bigPlush("2147483647", "10");
         }
     }
 }
