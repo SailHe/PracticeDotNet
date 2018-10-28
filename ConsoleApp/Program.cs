@@ -259,22 +259,31 @@ namespace LearnDotNet
             System.Console.ReadKey();
         }
         
-        static void solve1_10_24()
+        static void generStu()
         {
             LinkedList<ClassStudent> studentList = new LinkedList<ClassStudent>();
             for (int i = 0; i < 10; ++i)
             {
-                ClassStudent student = new ClassStudent("学生" + i.ToString(), EnumGender.UNKNOWN, DateTime.Now, "161", "12345678910");
+                ClassStudent student = new ClassStudent("学生" + i.ToString(), EnumGender.UNKNOWN, DateTime.Now, "161", "15258989411");
                 studentList.AddLast(student);
                 Console.WriteLine(student);
             }
             //ArrayList studentS = new ArrayList(studentList);
             List<ClassStudent> studentS = new List<ClassStudent>(studentList);
-            int[] sss = new int[10];
-            var tempResult = ByteConvertHelper.Test(studentS.ToArray());
-            //ByteConvertHelper.Object2Bytes(studentS.ToArray());
+            //var tempResult = ByteConvertHelper.Test(studentS.ToArray());
+            var seriResult = ByteConvertHelper.Object2Bytes(studentS.ToArray());
+            FileBinaryConvertHelper.Bytes2File(seriResult, "Student.txt");
             //ByteConvertHelperNoneSerializable.Object2Bytes(studentS.ToArray());
-            byte[] buff = new byte[Marshal.SizeOf(sss)];
+        }
+
+        static void solve1_10_24()
+        {
+            var seriResult = FileBinaryConvertHelper.File2Bytes("Student.txt");
+            List<ClassStudent> studentS
+                = new List<ClassStudent>((ClassStudent[])ByteConvertHelper.Bytes2Object(seriResult));
+            studentS.ForEach(ele => Console.WriteLine(ele));
+            seriResult = ByteConvertHelper.Object2Bytes(studentS.ToArray());
+            FileBinaryConvertHelper.Bytes2File(seriResult, "Student.txt");
         }
 
         static ClassStudent readAStudent()
@@ -300,17 +309,13 @@ namespace LearnDotNet
             return new ClassStudent(stuNameBuffer, enumGender, DateTime.Now, className, phone);
         }
 
-        static void Test()
+        static void Demo()
         {
             ClassStudent student = readAStudent();
             ByteConvertHelper.Test(student);
             ByteConvertHelperNoneSerializable.Test(student, student.GetType());
             FileBinaryConvertHelper.Test(student);
-        }
 
-        static void Main(string[] args)
-        {
-            solve1_10_24();
 
             string fileName = "test.txt";
             string sourcePath = @"TestFolder";
@@ -326,6 +331,11 @@ namespace LearnDotNet
             //FileProgress(sourcePath + "\\SubDir2", targetPath);
             //WriteTextFile(targetPath, fileName, lines);
             WriteTextFileByStreamWriter(targetPath, "test2.txt", lines);
+        }
+
+        static void Main(string[] args)
+        {
+            solve1_10_24();
         }
     }
 }

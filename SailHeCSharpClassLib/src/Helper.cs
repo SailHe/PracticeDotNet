@@ -158,4 +158,42 @@ namespace SailHeCSharpClassLib
         }
     }
 
+
+    public class VV
+    {
+        ///1.验证电话号码  正则
+        public static bool IsTelephone(string str_telephone)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_telephone, @"^(\d{3,4}-)?\d{6,8}$");
+        }
+        
+        ///2.验证手机号码  正则
+        public bool IsHandset(string str_handset)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_handset, @"^[1]+[3,4,5,8]+\d{9}");
+        }
+        
+        ///3.验证身份证号  正则
+        public bool IsIDcard(string str_idcard)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_idcard, @"(^\d{18}$)|(^\d{15}$)");
+        }
+
+        ///4.验证输入为数字  正则
+        public bool IsNumber(string str_number)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_number, @"^[0-9]*$");
+        }
+        
+        ///5.验证邮编  正则
+        public bool IsPostalcode(string str_postalcode)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_postalcode, @"^\d{6}$");
+        }
+        ///6.验证邮箱  正则
+        public bool IsEmail(string str_Email)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_Email, @"\\w{1,}@\\w{1,}\\.\\w{1,}");
+        }
+    }
 }
