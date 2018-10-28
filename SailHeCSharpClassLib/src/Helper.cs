@@ -145,9 +145,10 @@ namespace SailHeCSharpClassLib
         }
 
         //读入文件将其转换为Byte后写出到另一个文件
-        public static void Test()
+        public static void Test<T>(T obj)
         {
-            byte[] bytTemp = File2Bytes("test.txt");
+            Bytes2File(ByteConvertHelperNoneSerializable.Object2Bytes(obj), "tempInput.txt");
+            byte[] bytTemp = File2Bytes("tempInput.txt");
             Console.WriteLine("数组长度：" + bytTemp.Length);
             Bytes2File(bytTemp, "tempOutput.txt");
             Console.ReadKey();

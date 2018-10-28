@@ -219,6 +219,7 @@ namespace LearnDotNet
 
             ByteConvertHelper.Test(student);
             ByteConvertHelperNoneSerializable.Test(student, student.GetType());
+            FileBinaryConvertHelper.Test(student);
             
             string fileName = "test.txt";
             string sourcePath = @"F:\Temper\TestFolder";
