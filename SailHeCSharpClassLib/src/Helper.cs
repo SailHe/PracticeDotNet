@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace SailHeCSharpClassLib
 {
     ///  ====== @see https://my.oschina.net/Tsybius2014/blog/352409
-
+    ///  ====== @see https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/generics/
     /// <summary>
     /// 工具类：对象与二进制流间的转换
     /// </summary>
@@ -46,13 +46,15 @@ namespace SailHeCSharpClassLib
             return obj;
         }
 
-        public static void Test<T>(T obj)
+        // 用于测试参数是否支持此序列化方法 返回反序列化后的结果
+        public static T Test<T>(T obj)
         {
-            byte[] bytTemp = ByteConvertHelper.Object2Bytes(obj);
-            Console.WriteLine("Byte数组长度：" + bytTemp.Length);
-            T tsB = (T)ByteConvertHelper.Bytes2Object(bytTemp);
-            Console.WriteLine(tsB.ToString());
+            byte[] serializeObj = ByteConvertHelper.Object2Bytes(obj);
+            Console.WriteLine("Byte数组长度：" + serializeObj.Length);
+            T dserializeObj = (T)ByteConvertHelper.Bytes2Object(serializeObj);
+            Console.WriteLine(dserializeObj.ToString());
             Console.ReadKey();
+            return dserializeObj;
         }
     }
 
@@ -85,16 +87,17 @@ namespace SailHeCSharpClassLib
             IntPtr ptr = Marshal.UnsafeAddrOfPinnedArrayElement(buff, 0);
             return Marshal.PtrToStructure(ptr, typ);
         }
-
-        //https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/generics/
-        public static void Test<T>(T obj, Type type)
+        
+        // 用于测试参数是否支持此序列化方法 返回反序列化后的结果
+        public static T Test<T>(T obj, Type type)
         {
-            byte[] bytTemp = Object2Bytes(obj);
-            Console.WriteLine("数组长度：" + bytTemp.Length);
+            byte[] serializeObj = Object2Bytes(obj);
+            Console.WriteLine("数组长度：" + serializeObj.Length);
             //Type.GetType(type.ToString())
-            T tsB = (T)Bytes2Object(bytTemp, type);
-            Console.WriteLine(tsB.ToString());
+            T dserializeObj = (T)Bytes2Object(serializeObj, type);
+            Console.WriteLine(dserializeObj.ToString());
             Console.ReadKey();
+            return dserializeObj;
         }
     }
 
@@ -144,13 +147,13 @@ namespace SailHeCSharpClassLib
             fs.Close();
         }
 
-        //读入文件将其转换为Byte后写出到另一个文件
+        // 用于测试参数是否支持此序列化方法 读入文件将其转换为Byte后写出到另一个文件
         public static void Test<T>(T obj)
         {
             Bytes2File(ByteConvertHelperNoneSerializable.Object2Bytes(obj), "tempInput.txt");
-            byte[] bytTemp = File2Bytes("tempInput.txt");
-            Console.WriteLine("数组长度：" + bytTemp.Length);
-            Bytes2File(bytTemp, "tempOutput.txt");
+            byte[] serializeObj = File2Bytes("tempInput.txt");
+            Console.WriteLine("数组长度：" + serializeObj.Length);
+            Bytes2File(serializeObj, "tempOutput.txt");
             Console.ReadKey();
         }
     }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using SailHeCSharpClassLib;
 using System.Runtime.InteropServices;
+using System.Collections;
 
 namespace LearnDotNet
 {
@@ -258,38 +259,72 @@ namespace LearnDotNet
             System.Console.ReadKey();
         }
         
-        static void Main(string[] args)
+        static void solve1_10_24()
+        {
+            LinkedList<ClassStudent> studentList = new LinkedList<ClassStudent>();
+            for (int i = 0; i < 10; ++i)
+            {
+                ClassStudent student = new ClassStudent("学生" + i.ToString(), EnumGender.UNKNOWN, DateTime.Now, "161", "12345678910");
+                studentList.AddLast(student);
+                Console.WriteLine(student);
+            }
+            //ArrayList studentS = new ArrayList(studentList);
+            List<ClassStudent> studentS = new List<ClassStudent>(studentList);
+            int[] sss = new int[10];
+            var tempResult = ByteConvertHelper.Test(studentS.ToArray());
+            //ByteConvertHelper.Object2Bytes(studentS.ToArray());
+            //ByteConvertHelperNoneSerializable.Object2Bytes(studentS.ToArray());
+            byte[] buff = new byte[Marshal.SizeOf(sss)];
+        }
+
+        static ClassStudent readAStudent()
         {
             EnumGender enumGender;
             DateTime birthDay;
-            string className;
-            string phone;
+            string className, phone, stuNameBuffer;
             Console.WriteLine("输入学生姓名:");
-            string stuNameBuffer = Console.ReadLine();
-            ClassStudent student = new ClassStudent(stuNameBuffer, EnumGender.UNKNOWN, DateTime.Now, "161", "12345678910");
-            Console.WriteLine(student);
-            Console.WriteLine(student.writeString());
+            stuNameBuffer = Console.ReadLine();
+            Console.WriteLine("输入班级姓名:");
+            className = Console.ReadLine();
+            Console.WriteLine("输入性别: '男' '女' 其余视为'未知'");
+            switch (Console.ReadLine())
+            {
+                case "男": enumGender = EnumGender.MALE; break;
+                case "女": enumGender = EnumGender.WOMAN; break;
+                default: enumGender = EnumGender.UNKNOWN; break;
+            }
+            //Console.WriteLine("输入生日:");
+            //birthDay = Console.ReadLine();
+            Console.WriteLine("输入电话:");
+            phone = Console.ReadLine();
+            return new ClassStudent(stuNameBuffer, enumGender, DateTime.Now, className, phone);
+        }
 
+        static void Test()
+        {
+            ClassStudent student = readAStudent();
             ByteConvertHelper.Test(student);
             ByteConvertHelperNoneSerializable.Test(student, student.GetType());
             FileBinaryConvertHelper.Test(student);
-            
+        }
 
+        static void Main(string[] args)
+        {
+            solve1_10_24();
 
             string fileName = "test.txt";
             string sourcePath = @"TestFolder";
             string targetPath = @"TestFolder\SubDir";
-            // Example #1: Write an array of strings to a file.
-            // Create a string array that consists of three lines.
             string[] lines = { "First line", "Second line", "Third line" };
-            //System.IO.Directory.CreateDirectory(System.IO.Path.Combine(sourcePath, fileName));
+
             System.IO.Directory.CreateDirectory(sourcePath);
             CreateFile(sourcePath, fileName);
             System.IO.Directory.CreateDirectory(targetPath);
+
             ReadFromFile(sourcePath, fileName);
-            //SimpleFileCopy(sourcePath, targetPath, fileName);
-            //FileProgress(@"F:\Temper\TestFolder\SubDir", @"F:\Temper\TestFolder\SubDir2");
-            WriteTextFile(targetPath, fileName, lines);
+            SimpleFileCopy(sourcePath, targetPath, fileName);
+            //FileProgress(sourcePath + "\\SubDir2", targetPath);
+            //WriteTextFile(targetPath, fileName, lines);
             WriteTextFileByStreamWriter(targetPath, "test2.txt", lines);
         }
     }
