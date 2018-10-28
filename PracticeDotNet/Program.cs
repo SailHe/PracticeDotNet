@@ -10,7 +10,8 @@ namespace LearnDotNet
 
     //using Shell = Debug;
     using Shell = Console;
-    
+
+    //学生类 姓名, 学号, 分数统计
     public class Student : BaseStudent
     {
         static StringMapDouble sumScoreMap = new StringMapDouble();
