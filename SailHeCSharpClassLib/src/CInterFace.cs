@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
-namespace WinFormsApp
+namespace SailHeCSharpClassLib
 {
     public struct SystemTime
     {
@@ -37,30 +37,6 @@ namespace WinFormsApp
         }
     };
     
-    class CInterFace
-    {
-        const string path = "E:/Projects/Source/Repos/archives-algorithm/Debug/";
-
-        [DllImport(path + "InterfaceForDotNet.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
-        public extern static int add(int x, int y);
-
-        [DllImport(path + "InterfaceForDotNet.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
-        public extern static int sub(int x, int y);
-
-        [DllImport(path + "InterfaceForDotNet.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
-        public extern static int testChar(ref byte src, ref byte res, int nCount);
-
-        [DllImport(path + "InterfaceForDotNet.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
-        public extern static int testStruct(ref SystemTime stSrc, ref SystemTime stRes);
-
-        [DllImport(path + "InterfaceForDotNet.dll", EntryPoint = "SubInDll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
-        public extern static int Sub(int x, int y);
-
-        [DllImport(path + "InterfaceForDotNet.dll", EntryPoint = "A", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
-        public extern static int A(int n, int m);
-    }
-
-
     [StructLayout(LayoutKind.Sequential)]
     public struct Point
     {
@@ -89,7 +65,8 @@ namespace WinFormsApp
         public ushort wSecond;
         public ushort wMilliseconds;
     }
-    class Win32API
+
+    public class Win32API
     {
         [DllImport("User32.dll")]
         public static extern bool PtInRect(ref Rect r, Point p);
@@ -100,11 +77,52 @@ namespace WinFormsApp
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int MessageBox(IntPtr hWnd,
              string text, string caption, int options);
+
+        public static void MainForTest()
+        {
+            MySystemTime sysTime = new MySystemTime();
+            Win32API.GetSystemTime(sysTime);
+
+            string dt;
+            dt = "System time is: \n" +
+                  "Year: " + sysTime.wYear + "\n" +
+                  "Month: " + sysTime.wMonth + "\n" +
+                  "DayOfWeek: " + sysTime.wDayOfWeek + "\n" +
+                  "Day: " + sysTime.wDay;
+            Win32API.MessageBox(IntPtr.Zero, dt, "Platform Invoke Sample", 0);
+
+            Rect rect = new Rect();
+            rect.bottom = 30;
+            rect.right = 30;
+            Win32API.PtInRect(ref rect, new Point());
+        }
     }
 
-    class DllTest
+
+    //注意 目前InterfaceForDotNet正处于开发阶段 因此使用绝对路径以避免重复引入(其依赖于DSAUtilityExtension.dll)
+    public class CInterFace
     {
-        public static void mainForCinterface()
+        const string path = "E:/Projects/Source/Repos/archives-algorithm/Debug/";
+
+        [DllImport(path + "InterfaceForDotNet.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        public extern static int add(int x, int y);
+
+        [DllImport(path + "InterfaceForDotNet.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        public extern static int sub(int x, int y);
+
+        [DllImport(path + "InterfaceForDotNet.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        public extern static int testChar(ref byte src, ref byte res, int nCount);
+
+        [DllImport(path + "InterfaceForDotNet.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        public extern static int testStruct(ref SystemTime stSrc, ref SystemTime stRes);
+
+        [DllImport(path + "InterfaceForDotNet.dll", EntryPoint = "SubInDll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        public extern static int Sub(int x, int y);
+
+        [DllImport(path + "InterfaceForDotNet.dll", EntryPoint = "A", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        public extern static int A(int n, int m);
+
+        public static void MainForTest()
         {
             char[] s = new char[10];
             //直接使用
@@ -137,28 +155,6 @@ namespace WinFormsApp
             a = CInterFace.testStruct(ref stSrc, ref stRes);
             Debug.WriteLine(stRes.ToString());
             Debug.WriteLine("\r\n");
-        }
-
-        public static void MainForTest()
-        {
-            mainForCinterface();
-
-
-            MySystemTime sysTime = new MySystemTime();
-            Win32API.GetSystemTime(sysTime);
-
-            string dt;
-            dt = "System time is: \n" +
-                  "Year: " + sysTime.wYear + "\n" +
-                  "Month: " + sysTime.wMonth + "\n" +
-                  "DayOfWeek: " + sysTime.wDayOfWeek + "\n" +
-                  "Day: " + sysTime.wDay;
-            Win32API.MessageBox(IntPtr.Zero, dt, "Platform Invoke Sample", 0);
-
-            Rect rect = new Rect();
-            rect.bottom = 30;
-            rect.right = 30;
-            Win32API.PtInRect(ref rect, new Point());
         }
     }
 

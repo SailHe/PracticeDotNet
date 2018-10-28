@@ -11,19 +11,19 @@ using System.Windows.Forms;
 
 namespace WinFormsApp
 {
+    using WinFormsApp.src;
+
     public partial class PlaygroundForm : Form
     {
         public PlaygroundForm()
         {
             InitializeComponent();
-
-            DllTest.MainForTest();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string[] args = { "2" };
+            Debug.WriteLine(SolveHomeworkProblem.SellApiForHomeWork());
         }
     }
 }

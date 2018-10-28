@@ -46,15 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\CInterFace.cs" />
-    <Compile Include="src\PlaygroundForm.cs">
+    <Compile Include="PlaygroundForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\PlaygroundForm.Designer.cs">
+    <Compile Include="PlaygroundForm.Designer.cs">
       <DependentUpon>PlaygroundForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Program.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\SolveHomeworkProblem.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,6 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SailHeCSharpClassLib\SailHeCSharpClassLib.csproj">
+      <Project>{66e33102-78ba-438e-a18a-f3adfe5e4998}</Project>
+      <Name>SailHeCSharpClassLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
