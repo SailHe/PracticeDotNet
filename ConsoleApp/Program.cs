@@ -20,7 +20,7 @@ namespace LearnDotNet
     enum EnumGender { UNKNOWN, MALE, WOMAN }
 
     // 性别, 出生日期, 班级名称, 联系电话
-    //    [Serializable]
+    [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     class ClassStudent : BaseStudent{
         //按住ctrl+R不动，然后再按E
@@ -28,6 +28,7 @@ namespace LearnDotNet
         private string birthDay;
         private string className;
         private string phone;
+        public ClassStudent() : base("unknown") { }
         public ClassStudent(string name) : base(name){}
         public ClassStudent(string name, EnumGender enumGender, DateTime birthDay, string className, string phone) : this(name)
         {
@@ -139,8 +140,7 @@ namespace LearnDotNet
         {
             byte[] bytTemp = Object2Bytes(obj);
             Console.WriteLine("数组长度：" + bytTemp.Length);
-            T tsB = (T)Bytes2Object(
-                bytTemp, Type.GetType(type.ToString()));
+            T tsB = (T)Bytes2Object(bytTemp, Type.GetType(type.ToString()));
             Console.WriteLine(tsB.ToString());
             Console.ReadKey();
         }
@@ -359,37 +359,6 @@ namespace LearnDotNet
             Convert.ToByte
             Byte[] message = Convert.StructToBytes(student);
         }*/
-        /// <summary>
-        /// 测试结构
-        /// </summary>
-        struct TestStructure
-        {
-            public string A; //变量A
-            public char B;   //变量B
-            public int C;    //变量C
-
-            /// <summary>
-            /// 构造函数
-            /// </summary>
-            /// <param name="paraA"></param>
-            /// <param name="paraB"></param>
-            /// <param name="paraC"></param>
-            public TestStructure(string paraA, char paraB, int paraC)
-            {
-                this.A = paraA;
-                this.B = paraB;
-                this.C = paraC;
-            }
-
-            /// <summary>
-            /// 输出本结构中内容
-            /// </summary>
-            /// <returns></returns>
-            public string DisplayInfo()
-            {
-                return string.Format("A:{0};B:{1};C:{2}", this.A, this.B, this.C);
-            }
-        }
         static void Main(string[] args)
         {
             EnumGender enumGender;
@@ -402,11 +371,9 @@ namespace LearnDotNet
             Console.WriteLine(student);
             Console.WriteLine(student.writeString());
 
-            //ByteConvertHelper.Test(student);
-            var testStructre = new TestStructure();
-            ByteConvertHelperNoneSerializable.Test(testStructre, testStructre.GetType());
+            ByteConvertHelper.Test(student);
             ByteConvertHelperNoneSerializable.Test(student, student.GetType());
-            //solve1_10_17(new Random());
+            
             string fileName = "test.txt";
             string sourcePath = @"F:\Temper\TestFolder";
             string targetPath = @"F:\Temper\TestFolder\SubDir";

@@ -9,7 +9,7 @@ namespace SailHeCSharpClassLib
     using StringUnorderedMapDouble = Dictionary<string, double>;
 
     //学生类 姓名, 学号, 分数统计
-    //[Serializable]
+    [Serializable]
     //Sequential有序，可不连续 @see https://blog.csdn.net/bugDemo/article/details/18036147
     [StructLayout(LayoutKind.Sequential)]
     public class BaseStudent
