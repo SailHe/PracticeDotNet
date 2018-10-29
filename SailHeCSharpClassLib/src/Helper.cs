@@ -6,6 +6,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SailHeCSharpClassLib
 {
+    using Regex = System.Text.RegularExpressions.Regex;
+
     ///  ====== @see https://my.oschina.net/Tsybius2014/blog/352409
     ///  ====== @see https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/generics/
     /// <summary>
@@ -285,5 +287,66 @@ namespace SailHeCSharpClassLib
             return System.Text.RegularExpressions.Regex.IsMatch(str_HtmlTagTwin
                 , @"<([^>]+)>[\s\S]*?<\/\1>");
         }
+
+        /// <summary>
+        /// 使用正则表达式判断是否为日期
+        /// </summary>
+        /// <param name="str" type=string></param>
+        /// <returns name="isDateTime" type=bool></returns>
+        public static bool IsDateTime(string str)
+        {
+            bool isDateTime = false;
+            // yyyy/MM/dd
+            if (Regex.IsMatch(str, "^(?<year>\\d{2,4})/(?<month>\\d{1,2})/(?<day>\\d{1,2})$"))
+                isDateTime = true;
+            // yyyy-MM-dd 
+            else if (Regex.IsMatch(str, "^(?<year>\\d{2,4})-(?<month>\\d{1,2})-(?<day>\\d{1,2})$"))
+                isDateTime = true;
+            // yyyy.MM.dd 
+            else if (Regex.IsMatch(str, "^(?<year>\\d{2,4})[.](?<month>\\d{1,2})[.](?<day>\\d{1,2})$"))
+                isDateTime = true;
+            // yyyy年MM月dd日
+            else if (Regex.IsMatch(str, "^((?<year>\\d{2,4})年)?(?<month>\\d{1,2})月((?<day>\\d{1,2})日)?$"))
+                isDateTime = true;
+            // yyyy年MM月dd日
+            else if (Regex.IsMatch(str, "^((?<year>\\d{2,4})年)?(正|一|二|三|四|五|六|七|八|九|十|十一|十二)月((一|二|三|四|五|六|七|八|九|十){1,3}日)?$"))
+                isDateTime = true;
+
+            // yyyy年MM月dd日
+            else if (Regex.IsMatch(str, "^(零|〇|一|二|三|四|五|六|七|八|九|十){2,4}年((正|一|二|三|四|五|六|七|八|九|十|十一|十二)月((一|二|三|四|五|六|七|八|九|十){1,3}(日)?)?)?$"))
+                isDateTime = true;
+            // yyyy年
+            //else if (Regex.IsMatch(str, "^(?<year>\\d{2,4})年$"))
+            //    isDateTime = true;
+
+            // 农历1
+            else if (Regex.IsMatch(str, "^(甲|乙|丙|丁|戊|己|庚|辛|壬|癸)(子|丑|寅|卯|辰|巳|午|未|申|酉|戌|亥)年((正|一|二|三|四|五|六|七|八|九|十|十一|十二)月((一|二|三|四|五|六|七|八|九|十){1,3}(日)?)?)?$"))
+                isDateTime = true;
+            // 农历2
+            else if (Regex.IsMatch(str, "^((甲|乙|丙|丁|戊|己|庚|辛|壬|癸)(子|丑|寅|卯|辰|巳|午|未|申|酉|戌|亥)年)?(正|一|二|三|四|五|六|七|八|九|十|十一|十二)月初(一|二|三|四|五|六|七|八|九|十)$"))
+                isDateTime = true;
+
+            // XX时XX分XX秒
+            else if (Regex.IsMatch(str, "^(?<hour>\\d{1,2})(时|点)(?<minute>\\d{1,2})分((?<second>\\d{1,2})秒)?$"))
+                isDateTime = true;
+            // XX时XX分XX秒
+            else if (Regex.IsMatch(str, "^((零|一|二|三|四|五|六|七|八|九|十){1,3})(时|点)((零|一|二|三|四|五|六|七|八|九|十){1,3})分(((零|一|二|三|四|五|六|七|八|九|十){1,3})秒)?$"))
+                isDateTime = true;
+            // XX分XX秒
+            else if (Regex.IsMatch(str, "^(?<minute>\\d{1,2})分(?<second>\\d{1,2})秒$"))
+                isDateTime = true;
+            // XX分XX秒
+            else if (Regex.IsMatch(str, "^((零|一|二|三|四|五|六|七|八|九|十){1,3})分((零|一|二|三|四|五|六|七|八|九|十){1,3})秒$"))
+                isDateTime = true;
+
+            // XX时
+            else if (Regex.IsMatch(str, "\\b(?<hour>\\d{1,2})(时|点钟)\\b"))
+                isDateTime = true;
+            else
+                isDateTime = false;
+
+            return isDateTime;
+        }
+
     }
 }

@@ -293,7 +293,7 @@ namespace LearnDotNet
         {
             EnumGender enumGender;
             DateTime birthDay;
-            string className, phone, stuNameBuffer;
+            string className, phone, stuNameBuffer, birthDayBuffer;
             Console.WriteLine("输入学生姓名:");
             stuNameBuffer = Console.ReadLine();
             Console.WriteLine("输入班级姓名:");
@@ -305,14 +305,35 @@ namespace LearnDotNet
                 case "女": enumGender = EnumGender.WOMAN; break;
                 default: enumGender = EnumGender.UNKNOWN; break;
             }
-            //Console.WriteLine("输入生日:");
-            //birthDay = Console.ReadLine();
-            do
+            while(true)
             {
-                Console.WriteLine("输入格式正确的联系方式(电话,手机号):");
+                Console.WriteLine("输入生日:");
+                birthDayBuffer = Console.ReadLine();
+                if (Verify.IsDateTime(birthDayBuffer))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("格式错误!请重输");
+                }
+            }
+            birthDay = DateTime.Parse(birthDayBuffer);
+
+            while (true)
+            {
+                Console.WriteLine("输入联系方式(电话,手机号):");
                 phone = Console.ReadLine();
-            } while (!Verify.IsTelephone(phone) && !Verify.IsHandset(phone));
-            return new StudentInfo(stuNameBuffer, enumGender, DateTime.Now, className, phone);
+                if (Verify.IsTelephone(phone) || Verify.IsHandset(phone))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("格式错误!请重输");
+                }
+            }
+            return new StudentInfo(stuNameBuffer, enumGender, birthDay, className, phone);
         }
         
         static void solve1_10_24()
@@ -350,13 +371,13 @@ namespace LearnDotNet
                 }
                 Console.WriteLine(
                     "Shell提示: \n\r" +
-                    "0 name: 按姓名查询;" +
+                    " 0 name: 按姓名查询;" +
                     " 1 className: 按班级查询;" +
                     " 2: 新增;" +
                     " else: 显示所有;" +
-                    " 回车: 退出"
+                    " 回车: 保存并退出"
                     );
-                
+
             } while ((input = Console.ReadLine()) != string.Empty);
 
             //写入
