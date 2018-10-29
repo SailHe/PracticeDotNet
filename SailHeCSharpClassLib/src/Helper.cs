@@ -159,41 +159,131 @@ namespace SailHeCSharpClassLib
     }
 
 
-    public class VV
+    /// <summary>
+    ///  @see http://www.lixuejiang.me/2016/10/13/%E5%B8%B8%E8%A7%81%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/
+    /// </summary>
+    public class Verify
     {
-        ///1.验证电话号码  正则
+        /// <summary>
+        /// 1.验证电话号码  正则
+        /// </summary>
+        /// <param name="str_telephone"></param>
+        /// <returns></returns>
         public static bool IsTelephone(string str_telephone)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(str_telephone, @"^(\d{3,4}-)?\d{6,8}$");
-        }
-        
-        ///2.验证手机号码  正则
-        public bool IsHandset(string str_handset)
-        {
-            return System.Text.RegularExpressions.Regex.IsMatch(str_handset, @"^[1]+[3,4,5,8]+\d{9}");
-        }
-        
-        ///3.验证身份证号  正则
-        public bool IsIDcard(string str_idcard)
-        {
-            return System.Text.RegularExpressions.Regex.IsMatch(str_idcard, @"(^\d{18}$)|(^\d{15}$)");
+            //@"(0|\+86)?(13[0-9]|15[0-356]|18[025-9])\d{8}"
+            return System.Text.RegularExpressions.Regex.IsMatch(str_telephone
+                , @"^(\d{3,4}-)?\d{6,8}$");
         }
 
-        ///4.验证输入为数字  正则
-        public bool IsNumber(string str_number)
+        /// <summary>
+        /// 2.验证手机号码  正则
+        /// </summary>
+        /// <param name="str_handset"></param>
+        /// <returns></returns>
+        public static bool IsHandset(string str_handset)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(str_number, @"^[0-9]*$");
+            return System.Text.RegularExpressions.Regex.IsMatch(str_handset
+                , @"^[1]+[3,4,5,8]+\d{9}");
         }
-        
-        ///5.验证邮编  正则
-        public bool IsPostalcode(string str_postalcode)
+
+        /// <summary>
+        /// 3.验证身份证号  正则
+        /// </summary>
+        /// <param name="str_idcard"></param>
+        /// <returns></returns>
+        public static  bool IsIDcard(string str_idcard)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(str_postalcode, @"^\d{6}$");
+            return System.Text.RegularExpressions.Regex.IsMatch(str_idcard
+                , @"(^\d{18}$)|(^\d{15}$)");
+        }
+
+        /// <summary>
+        /// 4.验证输入为数字  正则
+        /// </summary>
+        /// <param name="str_number"></param>
+        /// <returns></returns>
+        public static  bool IsNumber(string str_number)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_number
+                , @"^[0-9]*$");
+        }
+
+        /// <summary>
+        /// 5.验证邮编  正则
+        /// </summary>
+        /// <param name="str_postalcode"></param>
+        /// <returns></returns>
+        public static  bool IsPostalcode(string str_postalcode)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_postalcode
+                , @"^\d{6}$");
         }
         ///6.验证邮箱  正则
-        public bool IsEmail(string str_Email)
+        public static  bool IsEmail(string str_Email)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(str_Email, @"\\w{1,}@\\w{1,}\\.\\w{1,}");
+            return System.Text.RegularExpressions.Regex.IsMatch(str_Email
+                , @"\\w{1,}@\\w{1,}\\.\\w{1,}");
+        }
+        /// <summary>
+        /// 7.验证整数  正则
+        /// </summary>
+        /// <param name="str_Integer"></param>
+        /// <returns></returns>
+        public static  bool IsInteger(string str_Integer)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_Integer
+                , @"[0-9]+");
+        }
+        /// <summary>
+        /// 8.验证逗号分隔的整数  正则
+        /// </summary>
+        /// <param name="str_Integer"></param>
+        /// <returns></returns>
+        public static  bool IsIntegerCommaSeparate(string str_Integer)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_Integer
+                , @"\b[0-9]{1,3}(,[0-9]{3})*\b");
+        }
+        /// <summary>
+        /// 9.验证浮点数  正则
+        /// </summary>
+        /// <param name="str_FloatNum"></param>
+        /// <returns></returns>
+        public static  bool IsFloatNumber(string str_FloatNum)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_FloatNum
+                , @"(\+?(\d+|\.\d+|\d+\.\d+)|-?(\d+|\d+\.\d+))");
+        }
+        /// <summary>
+        /// 10.验证[0,255]之间的数字
+        /// </summary>
+        /// <param name="str_NumBet2_255"></param>
+        /// <returns></returns>
+        public static  bool IsNumberBetween2_255(string str_NumBet2_255)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_NumBet2_255
+                , @"^([0-9]|[0-9]{2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])$");
+        }
+        /// <summary>
+        /// 11.验证国际图书标准号
+        /// </summary>
+        /// <param name="str_ISBN"></param>
+        /// <returns></returns>
+        public static  bool IsISBN(string str_ISBN)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_ISBN
+                , @"((ISBN(-13)?:?\s)?97[89][-\s]?[0-9][-\s]?[0-9]{3}[-\s]?[0-9]{5}[-\s]?[0-9]|(ISBN(-10)?:?\s)?[0-9][-\s]?[0-9]{3}[-\s]?[0-9]{5}[-\s]?[0-9x])");
+        }
+        /// <summary>
+        /// 12.验证是否成对的html tag 如 <code> test</code>
+        /// </summary>
+        /// <param name="str_HtmlTagTwin"></param>
+        /// <returns></returns>
+        public static  bool IsHtmlTagTwin(string str_HtmlTagTwin)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_HtmlTagTwin
+                , @"<([^>]+)>[\s\S]*?<\/\1>");
         }
     }
 }

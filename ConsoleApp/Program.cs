@@ -16,15 +16,15 @@ namespace LearnDotNet
     // 性别, 出生日期, 班级名称, 联系电话
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
-    class ClassStudent : BaseStudent{
+    class StudentInfo : BaseStudent{
         //按住ctrl+R不动，然后再按E
         private string gender = EnumGender.UNKNOWN.ToString();
         private string birthDay;
         private string className;
         private string phone;
-        public ClassStudent() : base("unknown") { }
-        public ClassStudent(string name) : base(name){}
-        public ClassStudent(string name, EnumGender enumGender, DateTime birthDay, string className, string phone) : this(name)
+        public StudentInfo() : base("unknown") { }
+        public StudentInfo(string name) : base(name){}
+        public StudentInfo(string name, EnumGender enumGender, DateTime birthDay, string className, string phone) : this(name)
         {
             this.gender = enumGender.ToString();
             this.birthDay = birthDay.ToString();
@@ -43,10 +43,16 @@ namespace LearnDotNet
         {
             return base.ToString() + "; 性别: " + gender + "; 生日: " + birthDay + "; 班级名: " + className + "; 联系电话: " + phone;
         }
-        public string writeString()
+        public string tabString()
         {
-            return getName() + ";" + getSduId().ToString() + ";" + gender + ";" + birthDay + ";" + className + ";" + phone;
+            return getName() + "\t" + getSduId().ToString() + "\t" + gender + "\t\t" + birthDay + "\t" + className + "\t" + phone;
         }
+    }
+
+    class ClassAndGrade
+    {
+        private string name;
+        private string classId;
     }
 
     // .NET Framework控制台程序
@@ -259,34 +265,31 @@ namespace LearnDotNet
             System.Console.ReadKey();
         }
         
+        static void ShowAll<T>(List<T> eleList)
+        {
+            eleList.ForEach(ele => Console.WriteLine(ele));
+        }
+
+
+
         static void generStu()
         {
-            LinkedList<ClassStudent> studentList = new LinkedList<ClassStudent>();
+            LinkedList<StudentInfo> studentList = new LinkedList<StudentInfo>();
             for (int i = 0; i < 10; ++i)
             {
-                ClassStudent student = new ClassStudent("学生" + i.ToString(), EnumGender.UNKNOWN, DateTime.Now, "161", "15258989411");
+                StudentInfo student = new StudentInfo("学生" + i.ToString(), EnumGender.UNKNOWN, DateTime.Now, "161", "15258989411");
                 studentList.AddLast(student);
                 Console.WriteLine(student);
             }
             //ArrayList studentS = new ArrayList(studentList);
-            List<ClassStudent> studentS = new List<ClassStudent>(studentList);
+            List<StudentInfo> studentS = new List<StudentInfo>(studentList);
             //var tempResult = ByteConvertHelper.Test(studentS.ToArray());
             var seriResult = ByteConvertHelper.Object2Bytes(studentS.ToArray());
             FileBinaryConvertHelper.Bytes2File(seriResult, "Student.txt");
             //ByteConvertHelperNoneSerializable.Object2Bytes(studentS.ToArray());
         }
 
-        static void solve1_10_24()
-        {
-            var seriResult = FileBinaryConvertHelper.File2Bytes("Student.txt");
-            List<ClassStudent> studentS
-                = new List<ClassStudent>((ClassStudent[])ByteConvertHelper.Bytes2Object(seriResult));
-            studentS.ForEach(ele => Console.WriteLine(ele));
-            seriResult = ByteConvertHelper.Object2Bytes(studentS.ToArray());
-            FileBinaryConvertHelper.Bytes2File(seriResult, "Student.txt");
-        }
-
-        static ClassStudent readAStudent()
+        static StudentInfo readAStudent()
         {
             EnumGender enumGender;
             DateTime birthDay;
@@ -304,14 +307,66 @@ namespace LearnDotNet
             }
             //Console.WriteLine("输入生日:");
             //birthDay = Console.ReadLine();
-            Console.WriteLine("输入电话:");
-            phone = Console.ReadLine();
-            return new ClassStudent(stuNameBuffer, enumGender, DateTime.Now, className, phone);
+            do
+            {
+                Console.WriteLine("输入格式正确的联系方式(电话,手机号):");
+                phone = Console.ReadLine();
+            } while (!Verify.IsTelephone(phone) && !Verify.IsHandset(phone));
+            return new StudentInfo(stuNameBuffer, enumGender, DateTime.Now, className, phone);
         }
+        
+        static void solve1_10_24()
+        {
+            //generStu();
+            //读取
+            var seriResult = FileBinaryConvertHelper.File2Bytes("Student.txt");
+            List<StudentInfo> studentS
+                = new List<StudentInfo>((StudentInfo[])ByteConvertHelper.Bytes2Object(seriResult));
+            
+            //查询
+            start:
+            string input = "- ";
+            do
+            {
+                
+                Console.Clear();
+                Console.WriteLine("姓名\t学号\t性别\t\t\t生日\t\t班级名\t联系电话");
+                if (input.Length < 2)
+                {
+                    input += " ";
+                }
+                switch (input[0])
+                {
+                    // 按姓名查询
+                    case '0': studentS.FindAll(ele => ele.getName().Contains(input.Substring(2)))
+                            .ForEach(ele => Console.WriteLine(ele.tabString())); break;
+                    // 按班级查询
+                    case '1': studentS.FindAll(ele => ele.ClassName.Contains(input.Substring(2)))
+                            .ForEach(ele => Console.WriteLine(ele.tabString())); break;
+                    // 新增
+                    case '2': studentS.Add(readAStudent()); goto start;
+                    // 显示所有
+                    default: studentS.ForEach(ele => Console.WriteLine(ele.tabString())); break;
+                }
+                Console.WriteLine(
+                    "Shell提示: \n\r" +
+                    "0 name: 按姓名查询;" +
+                    " 1 className: 按班级查询;" +
+                    " 2: 新增;" +
+                    " else: 显示所有;" +
+                    " 回车: 退出"
+                    );
+                
+            } while ((input = Console.ReadLine()) != string.Empty);
 
+            //写入
+            seriResult = ByteConvertHelper.Object2Bytes(studentS.ToArray());
+            FileBinaryConvertHelper.Bytes2File(seriResult, "Student.txt");
+        }
+        
         static void Demo()
         {
-            ClassStudent student = readAStudent();
+            StudentInfo student = readAStudent();
             ByteConvertHelper.Test(student);
             ByteConvertHelperNoneSerializable.Test(student, student.GetType());
             FileBinaryConvertHelper.Test(student);

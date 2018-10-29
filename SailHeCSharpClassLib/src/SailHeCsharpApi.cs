@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 
 /**
-* @see C#API: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/
+* @see C# API: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/
 * @see C# Collections API: https://docs.microsoft.com/zh-cn/dotnet/standard/generics/collections
+* @see C# Tips: https://www.jb51.net/article/74272.htm; https://juejin.im/entry/58ae4348ac502e006c886b80
 * 
 * 一律使用小驼峰
 * 前缀表示类型或泛型: int->n; double->d; unsigned->un; string->s;
