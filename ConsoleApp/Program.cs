@@ -324,7 +324,7 @@ namespace LearnDotNet
             {
                 Console.WriteLine("输入联系方式(电话,手机号):");
                 phone = Console.ReadLine();
-                if (Verify.IsTelephone(phone) || Verify.IsHandset(phone))
+                if (Verify.IsPhoneNumber(phone))
                 {
                     break;
                 }

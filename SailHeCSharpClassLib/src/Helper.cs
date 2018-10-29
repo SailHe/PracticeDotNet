@@ -167,26 +167,45 @@ namespace SailHeCSharpClassLib
     public class Verify
     {
         /// <summary>
-        /// 1.验证电话号码  正则
+        /// 0.验证手机号码   正则
+        /// </summary>
+        /// <param name="str_cellPhoneNum"></param>
+        /// <returns></returns>
+        public static bool IsCellphone(string str_cellPhoneNum)
+        {
+            return Regex.IsMatch(str_cellPhoneNum
+                , @"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$");
+        }
+        /// <summary>
+        /// 1.验证电话号码 ("XXX-XXXXXXX"、"XXXX-XXXXXXXX"、"XXX-XXXXXXX"、"XXX-XXXXXXXX"、"XXXXXXX"和"XXXXXXXX)  正则
         /// </summary>
         /// <param name="str_telephone"></param>
         /// <returns></returns>
         public static bool IsTelephone(string str_telephone)
         {
-            //@"(0|\+86)?(13[0-9]|15[0-356]|18[025-9])\d{8}"
             return System.Text.RegularExpressions.Regex.IsMatch(str_telephone
-                , @"^(\d{3,4}-)?\d{6,8}$");
+                , @"^(\(\d{3,4}-)|\d{3.4}-)?\d{7,8}$");
+        }
+        /// <summary>
+        /// 1.1验证国内电话号码 (0511-4405222、021-87888822)
+        /// </summary>
+        /// <param name="str_telephone"></param>
+        /// <returns></returns>
+        public static bool IsTelephoneInchina(string str_telephone)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(str_telephone
+                , @"\d{3}-\d{8}|\d{4}-\d{7}");
         }
 
         /// <summary>
-        /// 2.验证手机号码  正则
+        /// 2.验证手机号码，3-4位区号，7-8位直播号码，1－4位分机号  正则
         /// </summary>
-        /// <param name="str_handset"></param>
+        /// <param name="str_PhoneNum"></param>
         /// <returns></returns>
-        public static bool IsHandset(string str_handset)
+        public static bool IsPhoneNumber(string str_PhoneNum)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(str_handset
-                , @"^[1]+[3,4,5,8]+\d{9}");
+            return System.Text.RegularExpressions.Regex.IsMatch(str_PhoneNum
+                , @"((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)");
         }
 
         /// <summary>
