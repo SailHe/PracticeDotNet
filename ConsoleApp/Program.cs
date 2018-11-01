@@ -11,6 +11,7 @@ using SqlKata;
 using SqlKata.Compilers;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace LearnDotNet
 {
@@ -348,13 +349,21 @@ namespace LearnDotNet
             var seriResult = FileBinaryConvertHelper.File2Bytes("Student.txt");
             List<StudentInfo> studentS
                 = new List<StudentInfo>((StudentInfo[])ByteConvertHelper.Bytes2Object(seriResult));
-            
-            //查询
-            start:
+            ShellFor_10_24(studentS);
+            //写入
+            seriResult = ByteConvertHelper.Object2Bytes(studentS.ToArray());
+            FileBinaryConvertHelper.Bytes2File(seriResult, "Student.txt");
+        }
+        
+        static void ShellFor_10_24(List<StudentInfo> studentS)
+        {
+
+        //查询
+        start:
             string input = "- ";
             do
             {
-                
+
                 Console.Clear();
                 Console.WriteLine("姓名\t学号\t性别\t\t\t生日\t\t班级名\t联系电话");
                 if (input.Length < 2)
@@ -364,11 +373,13 @@ namespace LearnDotNet
                 switch (input[0])
                 {
                     // 按姓名查询
-                    case '0': studentS.FindAll(ele => ele.getName().Contains(input.Substring(2)))
-                            .ForEach(ele => Console.WriteLine(ele.tabString())); break;
+                    case '0':
+                        studentS.FindAll(ele => ele.getName().Contains(input.Substring(2)))
+                      .ForEach(ele => Console.WriteLine(ele.tabString())); break;
                     // 按班级查询
-                    case '1': studentS.FindAll(ele => ele.ClassName.Contains(input.Substring(2)))
-                            .ForEach(ele => Console.WriteLine(ele.tabString())); break;
+                    case '1':
+                        studentS.FindAll(ele => ele.ClassName.Contains(input.Substring(2)))
+                      .ForEach(ele => Console.WriteLine(ele.tabString())); break;
                     // 新增
                     case '2': studentS.Add(readAStudent()); goto start;
                     // 显示所有
@@ -384,12 +395,8 @@ namespace LearnDotNet
                     );
 
             } while ((input = Console.ReadLine()) != string.Empty);
-
-            //写入
-            seriResult = ByteConvertHelper.Object2Bytes(studentS.ToArray());
-            FileBinaryConvertHelper.Bytes2File(seriResult, "Student.txt");
         }
-        
+
         static void TestSqlServer()
         {
             SqlConnection conn = new SqlConnection();
@@ -416,6 +423,17 @@ namespace LearnDotNet
 
             //4、关闭数据库连接
             conn.Close();
+
+
+            // Create an instance of SQLServer
+            var compiler = new SqlServerCompiler();
+
+            var query = new Query("Users").Where("Id", 1).Where("Status", "Active");
+
+            SqlResult result = compiler.Compile(query);
+
+            string sql = result.Sql;
+            List<object> bindings = result.Bindings; // [ 1, "Active" ]
         }
 
         //需要导入MySql.Data.Dll
@@ -428,33 +446,96 @@ namespace LearnDotNet
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             MySqlDataReader myDataReader = myCommand.ExecuteReader();
-            string bookres = "";
+            string result = "";
             while (myDataReader.Read() == true)
             {
-                bookres += myDataReader["user_id"];
-                bookres += myDataReader["user_username"];
-                bookres += myDataReader["user_password"];
+                result += myDataReader["user_id"];
+                result += myDataReader["user_username"];
+                result += myDataReader["user_password"];
             }
             myDataReader.Close();
             myConnection.Close();
-            Console.WriteLine(bookres);
+            Debug.WriteLine(result);
+        }
+
+        static void showAll(string query, MySqlConnection myConnection)
+        {
+            MySqlCommand myCommand = new MySqlCommand(query, myConnection);
+            myCommand.ExecuteNonQuery();
+            MySqlDataReader myDataReader = myCommand.ExecuteReader();
+            string result = "";
+            while (myDataReader.Read() == true)
+            {
+                result += myDataReader["sid"];
+                result += "\t" + myDataReader["sname"];
+                result += "\t" + myDataReader["ssexy"];
+                result += "\t" + myDataReader["sbdate"];
+                result += "\t" + myDataReader["gid"];
+                result += "\t" + myDataReader["stele"];
+                result += "\n\r";
+            }
+            Debug.WriteLine(result);
+            myDataReader.Close();
+        }
+
+        static List<StudentInfo> calcAll(string query, MySqlConnection myConnection)
+        {
+            List<StudentInfo> studentS = new List<StudentInfo>();
+
+            MySqlCommand myCommand = new MySqlCommand(query, myConnection);
+            myCommand.ExecuteNonQuery();
+            MySqlDataReader myDataReader = myCommand.ExecuteReader();
+            string result = "";
+            while (myDataReader.Read() == true)
+            {
+                
+                result += myDataReader["sid"];
+                result += "\t" + myDataReader["sname"];
+                result += "\t" + myDataReader["ssexy"];
+                result += "\t" + myDataReader["sbdate"];
+                result += "\t" + myDataReader["gid"];
+                result += "\t" + myDataReader["stele"];
+                result += "\n\r";
+                StudentInfo temp = new StudentInfo(
+                    (string)myDataReader["sname"]
+                    , ((string)myDataReader["ssexy"]) == "男" ? EnumGender.MALE : EnumGender.WOMAN
+                    , DateTime.Parse((string)myDataReader["sbdate"])
+                    , "软件161"
+                    , (string)myDataReader["stele"]
+                    );
+                studentS.Add(temp);
+            }
+            myDataReader.Close();
+            return studentS;
+        }
+
+        static void saveAll(MySqlConnection myConnection, List<StudentInfo> studentS)
+        {
+            
+            string insert = "INSERT INTO ustudent(sname, ssexy, sbdate, gid, stele)VALUES('新同学', '男', '1988/10/12', '1', '660780')";
+            string update = "UPDATE ustudent SET -`2sname = '李山',ssexy = '男',sbdate = '1988/10/11',gid = '1',stele = '660780' WHERE sid = '12005001'";
+
+            MySqlCommand myCommand = new MySqlCommand(insert, myConnection);
+            myCommand.ExecuteNonQuery();
+
         }
 
         static void solve1_10_31()
         {
-            TestMySQL();
-            TestSqlServer();
+            //TestMySQL();
+            //TestSqlServer();
+            string query = "select * from ustudent";
+            MySqlConnection myConnection
+                = new MySqlConnection("server=localhost;user id=root;password=001230;database=sail_he");
+            myConnection.Open();
+            List<StudentInfo> studentS = new List<StudentInfo>();
 
-            // Create an instance of SQLServer
-            var compiler = new SqlServerCompiler();
+            studentS = calcAll(query, myConnection);
+            //showAll(query, myConnection);
+            ShellFor_10_24(studentS);
+            saveAll(myConnection, studentS);
 
-            var query = new Query("Users").Where("Id", 1).Where("Status", "Active");
-
-            SqlResult result = compiler.Compile(query);
-
-            string sql = result.Sql;
-            List<object> bindings = result.Bindings; // [ 1, "Active" ]
-            
+            myConnection.Close();
             Console.ReadKey();
         }
 
