@@ -78,6 +78,11 @@ namespace SailHeCSharpClassLib
         public static extern int MessageBox(IntPtr hWnd,
              string text, string caption, int options);
 
+        public static int MessageBox(string text, string title)
+        {
+            return MessageBox(IntPtr.Zero, text, title, 0);
+        }
+
         public static void MainForTest()
         {
             MySystemTime sysTime = new MySystemTime();

@@ -6,6 +6,11 @@ using System.Collections.Generic;
 using SailHeCSharpClassLib;
 using System.Runtime.InteropServices;
 using System.Collections;
+using System.Data.SqlClient;
+using SqlKata;
+using SqlKata.Compilers;
+using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace LearnDotNet
 {
@@ -272,7 +277,7 @@ namespace LearnDotNet
 
 
 
-        static void generStu()
+        static void generateStuAndClass()
         {
             LinkedList<StudentInfo> studentList = new LinkedList<StudentInfo>();
             for (int i = 0; i < 10; ++i)
@@ -338,7 +343,7 @@ namespace LearnDotNet
         
         static void solve1_10_24()
         {
-            //generStu();
+            //generateStuAndClass();
             //读取
             var seriResult = FileBinaryConvertHelper.File2Bytes("Student.txt");
             List<StudentInfo> studentS
@@ -385,6 +390,74 @@ namespace LearnDotNet
             FileBinaryConvertHelper.Bytes2File(seriResult, "Student.txt");
         }
         
+        static void TestSqlServer()
+        {
+            SqlConnection conn = new SqlConnection();
+            //为数据库连接设置连接字符串：
+            string connStr
+                = "Data Source=localhost; User ID=root; Password=01230; Initial Catalog=Sailhe";
+            // myDbIp，数据库连接的IP地址
+            // myUserName，数据库连接的用户名
+            // myPass，数据库连接的密码
+            // myDbName，数据库名
+            /* 打开数据库 */
+            conn.ConnectionString = connStr;
+
+            //3、判断是否连接成功
+
+            if (conn.State == ConnectionState.Open)
+            {
+                Win32API.MessageBox("数据库连接成功！", "Tip");
+            }
+            else
+            {
+                Win32API.MessageBox(conn.State.ToString(), "Tip2");
+            }
+
+            //4、关闭数据库连接
+            conn.Close();
+        }
+
+        //需要导入MySql.Data.Dll
+        //@see https://blog.csdn.net/xiajian2010/article/details/25965109
+        static void TestMySQL()
+        {
+            string query = "select * from sys_user";
+            MySqlConnection myConnection = new MySqlConnection("server=localhost;user id=root;password=001230;database=lost_and_found");
+            MySqlCommand myCommand = new MySqlCommand(query, myConnection);
+            myConnection.Open();
+            myCommand.ExecuteNonQuery();
+            MySqlDataReader myDataReader = myCommand.ExecuteReader();
+            string bookres = "";
+            while (myDataReader.Read() == true)
+            {
+                bookres += myDataReader["user_id"];
+                bookres += myDataReader["user_username"];
+                bookres += myDataReader["user_password"];
+            }
+            myDataReader.Close();
+            myConnection.Close();
+            Console.WriteLine(bookres);
+        }
+
+        static void solve1_10_31()
+        {
+            TestMySQL();
+            TestSqlServer();
+
+            // Create an instance of SQLServer
+            var compiler = new SqlServerCompiler();
+
+            var query = new Query("Users").Where("Id", 1).Where("Status", "Active");
+
+            SqlResult result = compiler.Compile(query);
+
+            string sql = result.Sql;
+            List<object> bindings = result.Bindings; // [ 1, "Active" ]
+            
+            Console.ReadKey();
+        }
+
         static void Demo()
         {
             StudentInfo student = readAStudent();
@@ -411,7 +484,8 @@ namespace LearnDotNet
 
         static void Main(string[] args)
         {
-            solve1_10_24();
+            //solve1_10_24();
+            solve1_10_31();
         }
     }
 }
