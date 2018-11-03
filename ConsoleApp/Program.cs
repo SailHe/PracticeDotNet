@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using SailHeCSharpClassLib;
 using System.Runtime.InteropServices;
-using System.Collections;
 using System.Data.SqlClient;
 using SqlKata;
 using SqlKata.Compilers;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using Cat.Database;
 
 namespace LearnDotNet
 {
@@ -481,7 +481,7 @@ namespace LearnDotNet
         static void TestMySQL()
         {
             string query = "select * from sys_user";
-            MySqlConnection myConnection = new MySqlConnection("server=localhost;user id=root;password=001230;database=lost_and_found");
+            MySqlConnection myConnection = new MySqlConnection("server=localhost;user id=root;password=P*****P;database=lost_and_found");
             MySqlCommand myCommand = new MySqlCommand(query, myConnection);
             myConnection.Open();
             myCommand.ExecuteNonQuery();
@@ -612,7 +612,7 @@ namespace LearnDotNet
             //TestMySQL();
             //TestSqlServer();
             MySqlConnection myConnection
-                = new MySqlConnection("server=localhost;user id=root;password=001230;database=sail_he");
+                = new MySqlConnection("server=localhost;user id=root;password=P*****P;database=sail_he");
             myConnection.Open();
             List<StudentInfo> studentS = new List<StudentInfo>();
             intMapString gidMapGname = null;
@@ -650,8 +650,17 @@ namespace LearnDotNet
             WriteTextFileByStreamWriter(targetPath, "test2.txt", lines);
         }
 
+        static void DbHerperDemo()
+        {
+            //这个DbHelper不支持MySQL
+            DbInsert insert = new DbInsert();
+            insert.Add("user_name", "DbHelperTest");
+            insert.Execute("sys_user");
+        }
+
         static void Main(string[] args)
         {
+            //DbHerperDemo();
             //solve1_10_24();
             solve1_10_31();
         }

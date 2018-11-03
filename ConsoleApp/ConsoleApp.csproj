@@ -52,11 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DbHelper.cs" />
+    <Compile Include="Database\DbInsert.cs" />
+    <Compile Include="Database\DbPager.cs" />
+    <Compile Include="Database\DbUpdate.cs" />
+    <Compile Include="Database\Orm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Database\README.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
