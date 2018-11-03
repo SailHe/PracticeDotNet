@@ -17,6 +17,7 @@ namespace LearnDotNet
 {
     //using Shell = Debug;
     using StringMapInt = Dictionary<string, int>;
+    using intMapString = Dictionary<int, string>;
 
     public enum EnumGender { UNKNOWN, MALE, WOMAN }
 
@@ -513,7 +514,7 @@ namespace LearnDotNet
             myDataReader.Close();
         }
 
-        static List<StudentInfo> calcAll(string query, MySqlConnection myConnection)
+        static List<StudentInfo> calcAll(string query, MySqlConnection myConnection, intMapString gidMapGname)
         {
             List<StudentInfo> studentS = new List<StudentInfo>();
 
@@ -523,7 +524,7 @@ namespace LearnDotNet
             //string result = "";
             while (myDataReader.Read() == true)
             {
-                
+
                 /*result += myDataReader["sid"];
                 result += "\t" + myDataReader["sname"];
                 result += "\t" + myDataReader["ssexy"];
@@ -531,24 +532,26 @@ namespace LearnDotNet
                 result += "\t" + myDataReader["gid"];
                 result += "\t" + myDataReader["stele"];
                 result += "\n\r";*/
+                int gid = int.Parse((string)myDataReader["gid"]);
                 StudentInfo temp = new StudentInfo(
                     (string)myDataReader["sname"]
                     , ((string)myDataReader["ssexy"]) == "男" ? EnumGender.MALE : EnumGender.WOMAN
                     , DateTime.Parse((string)myDataReader["sbdate"])
-                    , "Unknown"
+                    , gidMapGname[gid]
                     , (string)myDataReader["stele"]
                     );
                 temp.setSduId((int)myDataReader["sid"]);
-                temp.ClassId = int.Parse((string)myDataReader["gid"]);
+                temp.ClassId = gid;
                 studentS.Add(temp);
             }
             myDataReader.Close();
             return studentS;
         }
 
-        static StringMapInt calcAllClass(string query, MySqlConnection myConnection)
+        static StringMapInt calcAllClass(string query, MySqlConnection myConnection, out intMapString gidMapGname)
         {
             StringMapInt result = new StringMapInt();
+            gidMapGname = new intMapString();
 
             MySqlCommand myCommand = new MySqlCommand(query, myConnection);
             myCommand.ExecuteNonQuery();
@@ -556,8 +559,10 @@ namespace LearnDotNet
             //string result = "";
             while (myDataReader.Read() == true)
             {
-                result.Add((string)myDataReader["gname"]
-                    , int.Parse((string)myDataReader["gid"]));
+                string gname = (string)myDataReader["gname"];
+                int gid = int.Parse((string)myDataReader["gid"]);
+                gidMapGname.Add(gid, gname);
+                result.Add(gname, gid);
             }
             myDataReader.Close();
             return result;
@@ -606,9 +611,9 @@ namespace LearnDotNet
                 = new MySqlConnection("server=localhost;user id=root;password=001230;database=sail_he");
             myConnection.Open();
             List<StudentInfo> studentS = new List<StudentInfo>();
-
-            studentS = calcAll("select * from ustudent", myConnection);
-            var gredeIdMapName = calcAllClass("select * from ugrade", myConnection);
+            intMapString gidMapGname = null;
+            var gredeIdMapName = calcAllClass("select * from ugrade", myConnection, out gidMapGname);
+            studentS = calcAll("select * from ustudent", myConnection, gidMapGname);
             //showAll(query, myConnection);
             ShellFor_10_24(studentS, gredeIdMapName);
             saveAll(myConnection, studentS);
