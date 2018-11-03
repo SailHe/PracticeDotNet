@@ -16,6 +16,7 @@ using System.Diagnostics;
 namespace LearnDotNet
 {
     //using Shell = Debug;
+    using StringMapInt = Dictionary<string, int>;
 
     public enum EnumGender { UNKNOWN, MALE, WOMAN }
 
@@ -297,15 +298,42 @@ namespace LearnDotNet
             //ByteConvertHelperNoneSerializable.Object2Bytes(studentS.ToArray());
         }
 
-        static StudentInfo readAStudent()
+        static StudentInfo readAStudent(StringMapInt gnameMapGid = null)
         {
             EnumGender enumGender;
             DateTime birthDay;
             string className, phone, stuNameBuffer, birthDayBuffer;
             Console.WriteLine("输入学生姓名:");
             stuNameBuffer = Console.ReadLine();
-            Console.WriteLine("输入班级名:");
-            className = Console.ReadLine();
+            if (gnameMapGid != null)
+            {
+                string allInMap = "";
+                int i = -1;
+                foreach (KeyValuePair<string, int> kv in gnameMapGid)
+                {
+                    allInMap += ++i == 0 ? "" : "; ";
+                    allInMap += kv.Key;// + ": " + kv.Value.ToString("0.") + "号";
+                }
+                while (true)
+                {
+                    Console.WriteLine("输入班级名:");
+                    Console.WriteLine(allInMap);
+                    className = Console.ReadLine();
+                    if (gnameMapGid.ContainsKey(className))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("班级不存在!请重输");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("输入班级名:");
+                className = Console.ReadLine();
+            }
             Console.WriteLine("输入性别: '男' '女' 其余视为'未知'");
             switch (Console.ReadLine())
             {
@@ -357,7 +385,7 @@ namespace LearnDotNet
             FileBinaryConvertHelper.Bytes2File(seriResult, "Student.txt");
         }
         
-        static void ShellFor_10_24(List<StudentInfo> studentS)
+        static void ShellFor_10_24(List<StudentInfo> studentS, StringMapInt gidMapGname = null)
         {
 
         //查询
@@ -384,7 +412,7 @@ namespace LearnDotNet
                       .ForEach(ele => Console.WriteLine(ele.tabString())); break;
                     // 新增
                     case '2': {
-                            var temp = readAStudent();
+                            var temp = readAStudent(gidMapGname);
                             temp.resetSduId();
                             studentS.Add(temp);
                             goto start;
@@ -518,6 +546,23 @@ namespace LearnDotNet
             return studentS;
         }
 
+        static StringMapInt calcAllClass(string query, MySqlConnection myConnection)
+        {
+            StringMapInt result = new StringMapInt();
+
+            MySqlCommand myCommand = new MySqlCommand(query, myConnection);
+            myCommand.ExecuteNonQuery();
+            MySqlDataReader myDataReader = myCommand.ExecuteReader();
+            //string result = "";
+            while (myDataReader.Read() == true)
+            {
+                result.Add((string)myDataReader["gname"]
+                    , int.Parse((string)myDataReader["gid"]));
+            }
+            myDataReader.Close();
+            return result;
+        }
+
         static void saveAll(MySqlConnection myConnection, List<StudentInfo> studentS)
         {
             //string insert = "INSERT INTO ustudent(sname, ssexy, sbdate, gid, stele)VALUES('新同学', '男', '1988/10/12', '1', '660780')";
@@ -557,15 +602,15 @@ namespace LearnDotNet
         {
             //TestMySQL();
             //TestSqlServer();
-            string query = "select * from ustudent";
             MySqlConnection myConnection
                 = new MySqlConnection("server=localhost;user id=root;password=001230;database=sail_he");
             myConnection.Open();
             List<StudentInfo> studentS = new List<StudentInfo>();
 
-            studentS = calcAll(query, myConnection);
+            studentS = calcAll("select * from ustudent", myConnection);
+            var gredeIdMapName = calcAllClass("select * from ugrade", myConnection);
             //showAll(query, myConnection);
-            ShellFor_10_24(studentS);
+            ShellFor_10_24(studentS, gredeIdMapName);
             saveAll(myConnection, studentS);
 
             myConnection.Close();
