@@ -55,7 +55,9 @@ namespace LearnDotNet
         }
         public string tabString()
         {
-            return getName() + "\t" + getSduId() + "\t" + gender + "\t\t" + birthDay + "\t" + className + "\t" + phone;
+            return getName() + "\t"
+                + (getSduId() == null ? "---------" : getSduId())
+                + "\t" + gender + "\t\t" + birthDay + "\t" + className + "\t" + phone;
         }
     }
 
