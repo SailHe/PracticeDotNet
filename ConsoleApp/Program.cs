@@ -26,6 +26,7 @@ namespace LearnDotNet
         //按住ctrl+R不动，然后再按E
         private string gender = EnumGender.UNKNOWN.ToString();
         private string birthDay;
+        private int classId;
         private string className;
         private string phone;
         public StudentInfo() : base("unknown") { }
@@ -43,6 +44,7 @@ namespace LearnDotNet
         public string BirthDay { get => birthDay; set => birthDay = value; }
         public string ClassName { get => className; set => className = value; }
         public string Phone { get => phone; set => phone = value; }
+        public int ClassId { get => classId; set => classId = value; }
 
         override
         public string ToString()
@@ -51,7 +53,7 @@ namespace LearnDotNet
         }
         public string tabString()
         {
-            return getName() + "\t" + getSduId().ToString() + "\t" + gender + "\t\t" + birthDay + "\t" + className + "\t" + phone;
+            return getName() + "\t" + getSduId() + "\t" + gender + "\t\t" + birthDay + "\t" + className + "\t" + phone;
         }
     }
 
@@ -302,7 +304,7 @@ namespace LearnDotNet
             string className, phone, stuNameBuffer, birthDayBuffer;
             Console.WriteLine("输入学生姓名:");
             stuNameBuffer = Console.ReadLine();
-            Console.WriteLine("输入班级姓名:");
+            Console.WriteLine("输入班级名:");
             className = Console.ReadLine();
             Console.WriteLine("输入性别: '男' '女' 其余视为'未知'");
             switch (Console.ReadLine())
@@ -381,7 +383,12 @@ namespace LearnDotNet
                         studentS.FindAll(ele => ele.ClassName.Contains(input.Substring(2)))
                       .ForEach(ele => Console.WriteLine(ele.tabString())); break;
                     // 新增
-                    case '2': studentS.Add(readAStudent()); goto start;
+                    case '2': {
+                            var temp = readAStudent();
+                            temp.resetSduId();
+                            studentS.Add(temp);
+                            goto start;
+                        }
                     // 显示所有
                     default: studentS.ForEach(ele => Console.WriteLine(ele.tabString())); break;
                 }
@@ -485,24 +492,26 @@ namespace LearnDotNet
             MySqlCommand myCommand = new MySqlCommand(query, myConnection);
             myCommand.ExecuteNonQuery();
             MySqlDataReader myDataReader = myCommand.ExecuteReader();
-            string result = "";
+            //string result = "";
             while (myDataReader.Read() == true)
             {
                 
-                result += myDataReader["sid"];
+                /*result += myDataReader["sid"];
                 result += "\t" + myDataReader["sname"];
                 result += "\t" + myDataReader["ssexy"];
                 result += "\t" + myDataReader["sbdate"];
                 result += "\t" + myDataReader["gid"];
                 result += "\t" + myDataReader["stele"];
-                result += "\n\r";
+                result += "\n\r";*/
                 StudentInfo temp = new StudentInfo(
                     (string)myDataReader["sname"]
                     , ((string)myDataReader["ssexy"]) == "男" ? EnumGender.MALE : EnumGender.WOMAN
                     , DateTime.Parse((string)myDataReader["sbdate"])
-                    , "软件161"
+                    , "Unknown"
                     , (string)myDataReader["stele"]
                     );
+                temp.setSduId((int)myDataReader["sid"]);
+                temp.ClassId = int.Parse((string)myDataReader["gid"]);
                 studentS.Add(temp);
             }
             myDataReader.Close();
@@ -511,13 +520,37 @@ namespace LearnDotNet
 
         static void saveAll(MySqlConnection myConnection, List<StudentInfo> studentS)
         {
-            
-            string insert = "INSERT INTO ustudent(sname, ssexy, sbdate, gid, stele)VALUES('新同学', '男', '1988/10/12', '1', '660780')";
-            string update = "UPDATE ustudent SET -`2sname = '李山',ssexy = '男',sbdate = '1988/10/11',gid = '1',stele = '660780' WHERE sid = '12005001'";
-
-            MySqlCommand myCommand = new MySqlCommand(insert, myConnection);
-            myCommand.ExecuteNonQuery();
-
+            //string insert = "INSERT INTO ustudent(sname, ssexy, sbdate, gid, stele)VALUES('新同学', '男', '1988/10/12', '1', '660780')";
+            //string update = "UPDATE ustudent SET -`2sname = '李山',ssexy = '男',sbdate = '1988/10/11',gid = '1',stele = '660780' WHERE sid = '12005001'";
+            studentS.ForEach(ele => {
+                if (ele.getSduId() == null)
+                {
+                    string insert = "INSERT INTO ustudent(sname, ssexy, sbdate, gid, stele)VALUES('"
+                    + ele.getName()
+                    + "', '"
+                    + (ele.Gender == EnumGender.MALE.ToString() ? '男' : '女')
+                    + "', '" + ele.BirthDay
+                    + "', '" + ele.ClassId
+                    + "', '"+ ele.Phone
+                    + "')";
+                    MySqlCommand insertCommand = new MySqlCommand(insert, myConnection);
+                    //Console.ReadKey();
+                    insertCommand.ExecuteNonQuery();
+                }
+                else
+                {
+                    /*string update = "UPDATE ustudent SET -`2sname = '"
+                    + ele.getName()
+                    +"',ssexy = '" + (ele.Gender == EnumGender.MALE.ToString() ? '男' : '女')
+                    + "',sbdate = '" + "', '" + ele.BirthDay
+                    + "',gid = '" + ele.ClassId
+                    +"',stele = '" + ele.Phone
+                    + "' WHERE sid = '" + ele.getSduId()
+                    + "'";
+                    MySqlCommand updateCommand = new MySqlCommand(update, myConnection);
+                    updateCommand.ExecuteNonQuery();*/
+                }
+            });
         }
 
         static void solve1_10_31()

@@ -42,6 +42,15 @@ namespace SailHeCSharpClassLib
         {
             return stuId;
         }
+        //将stuId置为null
+        public void resetSduId()
+        {
+            stuId = null;
+        }
+        public void setSduId(int stuId)
+        {
+            this.stuId = stuId.ToString();
+        }
         public string getName()
         {
             return name;
