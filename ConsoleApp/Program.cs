@@ -372,7 +372,9 @@ namespace LearnDotNet
                     Console.WriteLine("格式错误!请重输");
                 }
             }
-            return new StudentInfo(stuNameBuffer, enumGender, birthDay, className, phone);
+            var result =new StudentInfo(stuNameBuffer, enumGender, birthDay, className, phone);
+            result.ClassId = gnameMapGid[className];
+            return result;
         }
         
         static void solve1_10_24()
