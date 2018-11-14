@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sail_heModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sail_heModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="basic_city">
           <Key>
             <PropertyRef Name="Id" />
@@ -42,10 +42,11 @@
           <Property Name="create_time" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="edit_time" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6013: 表/视图“def.sail_he.ucourse”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
         <EntityType Name="ucourse">
-          <Property Name="cid" Type="varchar" MaxLength="255" />
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cname" Type="varchar" MaxLength="255" />
           <Property Name="credit" Type="varchar" MaxLength="255" />
           <Property Name="pcid" Type="varchar" MaxLength="255" />
@@ -53,29 +54,33 @@
           <Property Name="cattr" Type="varchar" MaxLength="255" />
           <Property Name="cnum" Type="varchar" MaxLength="255" />
           <Property Name="did" Type="varchar" MaxLength="255" />
-        </EntityType>-->
-        <!--生成过程中发现错误:
-警告 6013: 表/视图“def.sail_he.udept”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        </EntityType>
         <EntityType Name="udept">
-          <Property Name="did" Type="varchar" MaxLength="255" />
+          <Key>
+            <PropertyRef Name="dept_id" />
+          </Key>
+          <Property Name="dept_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="acronym" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="dname" Type="varchar" MaxLength="255" />
           <Property Name="daddr" Type="varchar" MaxLength="255" />
           <Property Name="dtele" Type="varchar" MaxLength="255" />
           <Property Name="demail" Type="varchar" MaxLength="255" />
-        </EntityType>-->
-        <!--生成过程中发现错误:
-警告 6013: 表/视图“def.sail_he.ugrade”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        </EntityType>
         <EntityType Name="ugrade">
-          <Property Name="gid" Type="varchar" MaxLength="255" />
+          <Key>
+            <PropertyRef Name="gid" />
+          </Key>
+          <Property Name="gid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="gname" Type="varchar" MaxLength="255" />
           <Property Name="gyear" Type="varchar" MaxLength="255" />
           <Property Name="did" Type="varchar" MaxLength="255" />
           <Property Name="tid" Type="varchar" MaxLength="255" />
-        </EntityType>-->
-        <!--生成过程中发现错误:
-警告 6013: 表/视图“def.sail_he.ujobtable”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        </EntityType>
         <EntityType Name="ujobtable">
-          <Property Name="jid" Type="varchar" MaxLength="255" />
+          <Key>
+            <PropertyRef Name="jid" />
+          </Key>
+          <Property Name="jid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cid" Type="varchar" MaxLength="255" />
           <Property Name="room" Type="varchar" MaxLength="255" />
           <Property Name="tid" Type="varchar" MaxLength="255" />
@@ -83,11 +88,12 @@
           <Property Name="timeseg" Type="varchar" MaxLength="255" />
           <Property Name="gid" Type="varchar" MaxLength="255" />
           <Property Name="term" Type="varchar" MaxLength="255" />
-        </EntityType>-->
-        <!--生成过程中发现错误:
-警告 6013: 表/视图“def.sail_he.usc”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        </EntityType>
         <EntityType Name="usc">
-          <Property Name="scid" Type="varchar" MaxLength="255" />
+          <Key>
+            <PropertyRef Name="scid" />
+          </Key>
+          <Property Name="scid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sid" Type="varchar" MaxLength="255" />
           <Property Name="cid" Type="varchar" MaxLength="255" />
           <Property Name="term" Type="varchar" MaxLength="255" />
@@ -95,7 +101,7 @@
           <Property Name="score2" Type="varchar" MaxLength="255" />
           <Property Name="score3" Type="varchar" MaxLength="255" />
           <Property Name="score" Type="varchar" MaxLength="255" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="ustudent">
           <Key>
             <PropertyRef Name="sid" />
@@ -107,10 +113,11 @@
           <Property Name="gid" Type="varchar" MaxLength="255" />
           <Property Name="stele" Type="varchar" MaxLength="13" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6013: 表/视图“def.sail_he.uteacher”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
         <EntityType Name="uteacher">
-          <Property Name="tid" Type="varchar" MaxLength="255" />
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tname" Type="varchar" MaxLength="255" />
           <Property Name="tsexy" Type="varchar" MaxLength="255" />
           <Property Name="tbdate" Type="varchar" MaxLength="255" />
@@ -121,15 +128,20 @@
           <Property Name="email" Type="varchar" MaxLength="255" />
           <Property Name="msn" Type="varchar" MaxLength="255" />
           <Property Name="did" Type="varchar" MaxLength="255" />
-        </EntityType>-->
+        </EntityType>
         <EntityContainer Name="sail_heModelStoreContainer">
           <EntitySet Name="basic_city" EntityType="Self.basic_city" Schema="sail_he" store:Type="Tables" />
           <EntitySet Name="basic_province" EntityType="Self.basic_province" Schema="sail_he" store:Type="Tables" />
           <EntitySet Name="sys_user" EntityType="Self.sys_user" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="ucourse" EntityType="Self.ucourse" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="udept" EntityType="Self.udept" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="ugrade" EntityType="Self.ugrade" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="ujobtable" EntityType="Self.ujobtable" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="usc" EntityType="Self.usc" Schema="sail_he" store:Type="Tables" />
           <EntitySet Name="ustudent" EntityType="Self.ustudent" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="uteacher" EntityType="Self.uteacher" Schema="sail_he" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sail_heModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -186,7 +198,89 @@
           <EntitySet Name="basic_province" EntityType="Self.basic_province" />
           <EntitySet Name="sys_user" EntityType="Self.sys_user" />
           <EntitySet Name="ustudent" EntityType="Self.ustudent" />
+          <EntitySet Name="ucourse" EntityType="sail_heModel.ucourse" />
+          <EntitySet Name="udept" EntityType="sail_heModel.udept" />
+          <EntitySet Name="ugrade" EntityType="sail_heModel.ugrade" />
+          <EntitySet Name="ujobtable" EntityType="sail_heModel.ujobtable" />
+          <EntitySet Name="usc" EntityType="sail_heModel.usc" />
+          <EntitySet Name="uteacher" EntityType="sail_heModel.uteacher" />
         </EntityContainer>
+        <EntityType Name="ucourse">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="credit" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="pcid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="chour" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cattr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cnum" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="did" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="udept">
+          <Key>
+            <PropertyRef Name="dept_id" />
+          </Key>
+          <Property Name="dept_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="acronym" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="daddr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtele" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="demail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ugrade">
+          <Key>
+            <PropertyRef Name="gid" />
+          </Key>
+          <Property Name="gid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gyear" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="did" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ujobtable">
+          <Key>
+            <PropertyRef Name="jid" />
+          </Key>
+          <Property Name="jid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="room" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="week" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="timeseg" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="term" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="usc">
+          <Key>
+            <PropertyRef Name="scid" />
+          </Key>
+          <Property Name="scid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="term" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="score1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="score2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="score3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="score" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="uteacher">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tsexy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tbdate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tfield" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tprof" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tele" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="qq" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="msn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="did" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -242,6 +336,88 @@
                 <ScalarProperty Name="sbdate" ColumnName="sbdate" />
                 <ScalarProperty Name="gid" ColumnName="gid" />
                 <ScalarProperty Name="stele" ColumnName="stele" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ucourse">
+            <EntityTypeMapping TypeName="sail_heModel.ucourse">
+              <MappingFragment StoreEntitySet="ucourse">
+                <ScalarProperty Name="did" ColumnName="did" />
+                <ScalarProperty Name="cnum" ColumnName="cnum" />
+                <ScalarProperty Name="cattr" ColumnName="cattr" />
+                <ScalarProperty Name="chour" ColumnName="chour" />
+                <ScalarProperty Name="pcid" ColumnName="pcid" />
+                <ScalarProperty Name="credit" ColumnName="credit" />
+                <ScalarProperty Name="cname" ColumnName="cname" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="udept">
+            <EntityTypeMapping TypeName="sail_heModel.udept">
+              <MappingFragment StoreEntitySet="udept">
+                <ScalarProperty Name="demail" ColumnName="demail" />
+                <ScalarProperty Name="dtele" ColumnName="dtele" />
+                <ScalarProperty Name="daddr" ColumnName="daddr" />
+                <ScalarProperty Name="dname" ColumnName="dname" />
+                <ScalarProperty Name="acronym" ColumnName="acronym" />
+                <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ugrade">
+            <EntityTypeMapping TypeName="sail_heModel.ugrade">
+              <MappingFragment StoreEntitySet="ugrade">
+                <ScalarProperty Name="tid" ColumnName="tid" />
+                <ScalarProperty Name="did" ColumnName="did" />
+                <ScalarProperty Name="gyear" ColumnName="gyear" />
+                <ScalarProperty Name="gname" ColumnName="gname" />
+                <ScalarProperty Name="gid" ColumnName="gid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ujobtable">
+            <EntityTypeMapping TypeName="sail_heModel.ujobtable">
+              <MappingFragment StoreEntitySet="ujobtable">
+                <ScalarProperty Name="term" ColumnName="term" />
+                <ScalarProperty Name="gid" ColumnName="gid" />
+                <ScalarProperty Name="timeseg" ColumnName="timeseg" />
+                <ScalarProperty Name="week" ColumnName="week" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
+                <ScalarProperty Name="room" ColumnName="room" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="jid" ColumnName="jid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usc">
+            <EntityTypeMapping TypeName="sail_heModel.usc">
+              <MappingFragment StoreEntitySet="usc">
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="score3" ColumnName="score3" />
+                <ScalarProperty Name="score2" ColumnName="score2" />
+                <ScalarProperty Name="score1" ColumnName="score1" />
+                <ScalarProperty Name="term" ColumnName="term" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="scid" ColumnName="scid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uteacher">
+            <EntityTypeMapping TypeName="sail_heModel.uteacher">
+              <MappingFragment StoreEntitySet="uteacher">
+                <ScalarProperty Name="did" ColumnName="did" />
+                <ScalarProperty Name="msn" ColumnName="msn" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="qq" ColumnName="qq" />
+                <ScalarProperty Name="tele" ColumnName="tele" />
+                <ScalarProperty Name="tprof" ColumnName="tprof" />
+                <ScalarProperty Name="tfield" ColumnName="tfield" />
+                <ScalarProperty Name="tbdate" ColumnName="tbdate" />
+                <ScalarProperty Name="tsexy" ColumnName="tsexy" />
+                <ScalarProperty Name="tname" ColumnName="tname" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
