@@ -76,6 +76,7 @@
     <Compile Include="Database\DbPager.cs" />
     <Compile Include="Database\DbUpdate.cs" />
     <Compile Include="Database\Orm.cs" />
+    <Compile Include="MySQLHerper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
