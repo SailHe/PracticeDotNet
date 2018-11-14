@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
+Source Server         : localhost_3306_sailhe
 Source Server Version : 50717
 Source Host           : localhost:3306
 Source Database       : sail_he
@@ -10,10 +10,48 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-11-03 20:17:47
+Date: 2018-11-14 23:06:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for basic_city
+-- ----------------------------
+DROP TABLE IF EXISTS `basic_city`;
+CREATE TABLE `basic_city` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `CityCode` varchar(255) DEFAULT NULL,
+  `CityName` varchar(255) DEFAULT NULL,
+  `ProvinceCode` varchar(255) DEFAULT NULL,
+  `CityAbbreviation` varchar(255) DEFAULT NULL,
+  `CityLetter` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of basic_city
+-- ----------------------------
+INSERT INTO `basic_city` VALUES ('1', '123', '132', '123', '123', '123');
+INSERT INTO `basic_city` VALUES ('2', '123', '456', '654', '654', '879');
+
+-- ----------------------------
+-- Table structure for basic_province
+-- ----------------------------
+DROP TABLE IF EXISTS `basic_province`;
+CREATE TABLE `basic_province` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ProvinceCode` varchar(255) DEFAULT NULL,
+  `ProvinceName` varchar(255) DEFAULT NULL,
+  `ProvinceAbbreviation` varchar(255) DEFAULT NULL,
+  `ProvinceLetter` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of basic_province
+-- ----------------------------
+INSERT INTO `basic_province` VALUES ('1', '123', '123', '123', '123');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -32,35 +70,36 @@ CREATE TABLE `sys_user` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `edit_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '编辑时间',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('11', '更新于Wed Oct 10 20:19:46 CST 2018', null, null, '56', null, null, null, null, '2018-10-10 20:19:46', '2018-10-10 20:19:46');
+INSERT INTO `sys_user` VALUES ('12', '更新于Thu Nov 08 20:23:41 CST 2018', null, null, '66', null, null, null, null, '2018-11-08 20:23:41', '2018-11-08 20:23:41');
+INSERT INTO `sys_user` VALUES ('13', '更新于Thu Nov 08 20:24:31 CST 2018', null, null, '103', null, null, null, null, '2018-11-08 20:24:31', '2018-11-08 20:24:31');
+INSERT INTO `sys_user` VALUES ('14', '更新于Sat Nov 10 19:04:02 CST 2018', null, null, '43', null, null, null, null, '2018-11-10 19:04:02', '2018-11-10 19:04:02');
 
 -- ----------------------------
 -- Table structure for ucourse
 -- ----------------------------
 DROP TABLE IF EXISTS `ucourse`;
 CREATE TABLE `ucourse` (
-  `cid` varchar(255) DEFAULT NULL,
+  `cid` int(255) NOT NULL AUTO_INCREMENT,
   `cname` varchar(255) DEFAULT NULL,
   `credit` varchar(255) DEFAULT NULL,
   `pcid` varchar(255) DEFAULT NULL,
   `chour` varchar(255) DEFAULT NULL,
   `cattr` varchar(255) DEFAULT NULL,
   `cnum` varchar(255) DEFAULT NULL,
-  `did` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `did` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ucourse
 -- ----------------------------
 INSERT INTO `ucourse` VALUES ('1', '数据库              ', '4', '5', '72', '必修  ', '50', 'CS');
-INSERT INTO `ucourse` VALUES ('10', '统计与审计          ', '5', '9', '90', '必修  ', '90', 'EM');
-INSERT INTO `ucourse` VALUES ('11', '刺绣                ', '1', 'NULL', '18', '选修  ', '50', 'EL');
-INSERT INTO `ucourse` VALUES ('12', '家庭保健            ', '1', 'NULL', '18', '选修  ', '30', 'EL');
 INSERT INTO `ucourse` VALUES ('2', '数学                ', '3', 'NULL', '54', '必修  ', '90', 'SD');
 INSERT INTO `ucourse` VALUES ('3', '信息系统与数据库    ', '3', '1', '54', '必修  ', '50', 'CS');
 INSERT INTO `ucourse` VALUES ('4', '操作系统            ', '4', '6', '72', '必修  ', '50', 'CS');
@@ -69,40 +108,46 @@ INSERT INTO `ucourse` VALUES ('6', '计算机基础          ', '3', 'NULL', '54
 INSERT INTO `ucourse` VALUES ('7', 'C语言               ', '2', '6', '36', '必修  ', '70', 'CS');
 INSERT INTO `ucourse` VALUES ('8', '计算机组成原理      ', '3', 'NULL', '54', '选修  ', '120', 'CS');
 INSERT INTO `ucourse` VALUES ('9', '会计学原理          ', '5', '2', '90', '必修  ', '90', 'EM');
+INSERT INTO `ucourse` VALUES ('10', '统计与审计          ', '5', '9', '90', '必修  ', '90', 'EM');
+INSERT INTO `ucourse` VALUES ('11', '刺绣                ', '1', 'NULL', '18', '选修  ', '50', 'EL');
+INSERT INTO `ucourse` VALUES ('12', '家庭保健            ', '1', 'NULL', '18', '选修  ', '30', 'EL');
 
 -- ----------------------------
 -- Table structure for udept
 -- ----------------------------
 DROP TABLE IF EXISTS `udept`;
 CREATE TABLE `udept` (
-  `did` varchar(255) DEFAULT NULL,
+  `dept_id` int(11) NOT NULL AUTO_INCREMENT,
+  `acronym` varchar(255) NOT NULL COMMENT '缩写',
   `dname` varchar(255) DEFAULT NULL,
   `daddr` varchar(255) DEFAULT NULL,
   `dtele` varchar(255) DEFAULT NULL,
-  `demail` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `demail` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`dept_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of udept
 -- ----------------------------
-INSERT INTO `udept` VALUES ('CS', '计算机科学与技术系', 'SL604', '87678976', 'cs@nit.com');
-INSERT INTO `udept` VALUES ('EL', '外校', 'NULL', '62765678', 'NULL');
-INSERT INTO `udept` VALUES ('EM', '经济管理系', 'SC302', '87464789', 'em@nit.com');
-INSERT INTO `udept` VALUES ('FD', '外语分院', 'SA401', '65656798', 'fd@nit.com');
-INSERT INTO `udept` VALUES ('IT', '信息科学与技术系', 'SL704', '88767864', 'it@nit.com');
-INSERT INTO `udept` VALUES ('SD', '理学院', 'NB309', '67536387', 'sd@nit.com');
+INSERT INTO `udept` VALUES ('1', 'CS', '计算机科学与技术系', 'SL604', '87678976', 'cs@nit.com');
+INSERT INTO `udept` VALUES ('2', 'EL', '外校', 'NULL', '62765678', 'NULL');
+INSERT INTO `udept` VALUES ('3', 'EM', '经济管理系', 'SC302', '87464789', 'em@nit.com');
+INSERT INTO `udept` VALUES ('4', 'FD', '外语分院', 'SA401', '65656798', 'fd@nit.com');
+INSERT INTO `udept` VALUES ('5', 'IT', '信息科学与技术系', 'SL704', '88767864', 'it@nit.com');
+INSERT INTO `udept` VALUES ('6', 'SD', '理学院', 'NB309', '67536387', 'sd@nit.com');
 
 -- ----------------------------
 -- Table structure for ugrade
 -- ----------------------------
 DROP TABLE IF EXISTS `ugrade`;
 CREATE TABLE `ugrade` (
-  `gid` varchar(255) DEFAULT NULL,
+  `gid` int(255) NOT NULL AUTO_INCREMENT,
   `gname` varchar(255) DEFAULT NULL,
   `gyear` varchar(255) DEFAULT NULL,
   `did` varchar(255) DEFAULT NULL,
-  `tid` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `tid` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`gid`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ugrade
@@ -132,15 +177,16 @@ INSERT INTO `ugrade` VALUES ('20', '选修混合', 'NULL', 'NULL', 'NULL');
 -- ----------------------------
 DROP TABLE IF EXISTS `ujobtable`;
 CREATE TABLE `ujobtable` (
-  `jid` varchar(255) DEFAULT NULL,
+  `jid` int(255) NOT NULL AUTO_INCREMENT,
   `cid` varchar(255) DEFAULT NULL,
   `room` varchar(255) DEFAULT NULL,
   `tid` varchar(255) DEFAULT NULL,
   `week` varchar(255) DEFAULT NULL,
   `timeseg` varchar(255) DEFAULT NULL,
   `gid` varchar(255) DEFAULT NULL,
-  `term` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `term` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`jid`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ujobtable
@@ -174,15 +220,16 @@ INSERT INTO `ujobtable` VALUES ('24', '1', 'NB222     ', '2003', '5', '12', '9',
 -- ----------------------------
 DROP TABLE IF EXISTS `usc`;
 CREATE TABLE `usc` (
-  `scid` varchar(255) DEFAULT NULL,
+  `scid` int(255) NOT NULL AUTO_INCREMENT,
   `sid` varchar(255) DEFAULT NULL,
   `cid` varchar(255) DEFAULT NULL,
   `term` varchar(255) DEFAULT NULL,
   `score1` varchar(255) DEFAULT NULL,
   `score2` varchar(255) DEFAULT NULL,
   `score3` varchar(255) DEFAULT NULL,
-  `score` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `score` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`scid`)
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of usc
@@ -289,7 +336,7 @@ CREATE TABLE `ustudent` (
   `gid` varchar(255) DEFAULT NULL,
   `stele` varchar(13) DEFAULT NULL,
   PRIMARY KEY (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=112007019 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=112007021 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ustudent
@@ -334,13 +381,15 @@ INSERT INTO `ustudent` VALUES ('112007011', '刘好', '女', '1987/12/11', '11',
 INSERT INTO `ustudent` VALUES ('112007012', '周成', '男', '1986/6/11', '11', '660791');
 INSERT INTO `ustudent` VALUES ('112007013', '文成', '女', '1987/8/11', '11', '660792');
 INSERT INTO `ustudent` VALUES ('112007018', '新欣欣', '男', '1996/9/9 0:00:00', '20', '15256598365');
+INSERT INTO `ustudent` VALUES ('112007019', '新增加', '女', '1996/8/8 0:00:00', '18', '15259898747');
+INSERT INTO `ustudent` VALUES ('112007020', '呵呵呵', '男', '1996/9/9 0:00:00', '9', '15258989635');
 
 -- ----------------------------
 -- Table structure for uteacher
 -- ----------------------------
 DROP TABLE IF EXISTS `uteacher`;
 CREATE TABLE `uteacher` (
-  `tid` varchar(255) DEFAULT NULL,
+  `tid` int(255) NOT NULL AUTO_INCREMENT,
   `tname` varchar(255) DEFAULT NULL,
   `tsexy` varchar(255) DEFAULT NULL,
   `tbdate` varchar(255) DEFAULT NULL,
@@ -350,8 +399,9 @@ CREATE TABLE `uteacher` (
   `qq` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `msn` varchar(255) DEFAULT NULL,
-  `did` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `did` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`tid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5027 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of uteacher
