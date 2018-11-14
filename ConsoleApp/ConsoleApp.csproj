@@ -104,7 +104,25 @@
     <Compile Include="sys_user.cs">
       <DependentUpon>SailHeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ucourse.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="udept.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ugrade.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ujobtable.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usc.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ustudent.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uteacher.cs">
       <DependentUpon>SailHeModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

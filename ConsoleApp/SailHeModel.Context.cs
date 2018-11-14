@@ -29,5 +29,11 @@ namespace ConsoleApp
         public virtual DbSet<basic_province> basic_province { get; set; }
         public virtual DbSet<sys_user> sys_user { get; set; }
         public virtual DbSet<ustudent> ustudent { get; set; }
+        public virtual DbSet<ucourse> ucourse { get; set; }
+        public virtual DbSet<udept> udept { get; set; }
+        public virtual DbSet<ugrade> ugrade { get; set; }
+        public virtual DbSet<ujobtable> ujobtable { get; set; }
+        public virtual DbSet<usc> usc { get; set; }
+        public virtual DbSet<uteacher> uteacher { get; set; }
     }
 }
