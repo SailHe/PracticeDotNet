@@ -442,7 +442,7 @@ namespace LearnDotNet
             SqlConnection conn = new SqlConnection();
             //为数据库连接设置连接字符串：
             string connStr
-                = "Data Source=localhost; User ID=root; Password=01230; Initial Catalog=Sailhe";
+                = "Data Source=localhost; User ID=sailhe; Password=123456@password; Initial Catalog=Sailhe";
             // myDbIp，数据库连接的IP地址
             // myUserName，数据库连接的用户名
             // myPass，数据库连接的密码
@@ -481,7 +481,7 @@ namespace LearnDotNet
         static void TestMySQL()
         {
             string query = "select * from sys_user";
-            MySqlConnection myConnection = new MySqlConnection("server=localhost;user id=root;password=P*****P;database=lost_and_found");
+            MySqlConnection myConnection = new MySqlConnection("server=localhost;user id=sailhe;password=123456@password;database=lost_and_found");
             MySqlCommand myCommand = new MySqlCommand(query, myConnection);
             myConnection.Open();
             myCommand.ExecuteNonQuery();
@@ -612,7 +612,7 @@ namespace LearnDotNet
             //TestMySQL();
             //TestSqlServer();
             MySqlConnection myConnection
-                = new MySqlConnection("server=localhost;user id=root;password=P*****P;database=sail_he");
+                = new MySqlConnection("server=localhost;user id=sailhe;password=123456@password;database=sail_he");
             myConnection.Open();
             List<StudentInfo> studentS = new List<StudentInfo>();
             intMapString gidMapGname = null;
