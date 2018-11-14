@@ -61,6 +61,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -71,6 +72,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="basic_city.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="basic_province.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\DbHelper.cs" />
     <Compile Include="Database\DbInsert.cs" />
     <Compile Include="Database\DbPager.cs" />
@@ -79,6 +86,27 @@
     <Compile Include="MySQLHerper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SailHeModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SailHeModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SailHeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SailHeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SailHeModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="sys_user.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ustudent.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -86,12 +114,34 @@
     </None>
     <None Include="Database\README.md" />
     <None Include="packages.config" />
+    <EntityDeploy Include="SailHeModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SailHeModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SailHeModel.edmx.diagram">
+      <DependentUpon>SailHeModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SailHeCSharpClassLib\SailHeCSharpClassLib.csproj">
       <Project>{66e33102-78ba-438e-a18a-f3adfe5e4998}</Project>
       <Name>SailHeCSharpClassLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SailHeModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SailHeModel.Context.cs</LastGenOutput>
+      <DependentUpon>SailHeModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="SailHeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SailHeModel.edmx</DependentUpon>
+      <LastGenOutput>SailHeModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
