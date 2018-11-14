@@ -660,6 +660,10 @@ namespace LearnDotNet
 
         static void Main(string[] args)
         {
+            //server=localhost;user id=sailhe;persistsecurityinfo=True;database=sail_he
+            //SailHeModel
+            //
+
             //DbHerperDemo();
             //solve1_10_24();
             solve1_10_31();
