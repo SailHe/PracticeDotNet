@@ -12,6 +12,9 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using Cat.Database;
+using ConsoleApp;
+using System.Linq;
+//using SailHeModel;
 
 namespace LearnDotNet
 {
@@ -500,22 +503,17 @@ namespace LearnDotNet
 
         static void TestMySQLUseEFModel()
         {
-            string query = "select * from sys_user";
-            MySqlConnection myConnection = new MySqlConnection("server=localhost; user id=sailhe; persistsecurityinfo=True; database=sail_he");
-            MySqlCommand myCommand = new MySqlCommand(query, myConnection);
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            MySqlDataReader myDataReader = myCommand.ExecuteReader();
-            string result = "";
-            while (myDataReader.Read() == true)
+            //sail_heEntities context = new sail_heEntities();
+            ///var result = from stuList in context.ustudent select stuList;
+            ///SELECT * FROM dbo.Posts WHERE Author = @p0
+            //var stuList = context.ustudent.SqlQuery("SELECT * FROM usudent WHERE sid = @p0", 12005001);
+            using (var context = new sail_heEntities())
             {
-                result += myDataReader["user_id"];
-                result += myDataReader["user_username"];
-                result += myDataReader["user_password"];
+                //context.ustudent.Where
+                //需要using System.Linq;
+                var stuList = context.ustudent.ToList();
+                Debug.WriteLine(stuList.ToString());
             }
-            myDataReader.Close();
-            myConnection.Close();
-            Debug.WriteLine(result);
         }
 
         static void showAll(string query, MySqlConnection myConnection)
