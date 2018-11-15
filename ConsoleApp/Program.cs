@@ -440,6 +440,95 @@ namespace LearnDotNet
             } while ((input = Console.ReadLine()) != string.Empty);
         }
 
+        static void ShellFor_11_15(List<StudentInfo> studentS, StringMapInt gidMapGname = null)
+        {
+
+        //查询
+        start:
+            string input = "- ";
+            do
+            {
+
+                Console.Clear();
+                Console.WriteLine("姓名\t学号\t性别\t\t\t生日\t\t班级名\t联系电话");
+                if (input.Length < 2)
+                {
+                    input += " ";
+                }
+                switch (input[0])
+                {
+                    // 按姓名查询
+                    case '0':
+                        studentS.FindAll(ele => ele.getName().Contains(input.Substring(2)))
+                      .ForEach(ele => Console.WriteLine(ele.tabString())); break;
+                    // 按班级查询
+                    case '1':
+                        studentS.FindAll(ele => ele.ClassName.Contains(input.Substring(2)))
+                      .ForEach(ele => Console.WriteLine(ele.tabString())); break;
+                    // 新增
+                    case '2':
+                        {
+                            var temp = readAStudent(gidMapGname);
+                            temp.resetSduId();
+                            studentS.Add(temp);
+                            goto start;
+                        }
+                    // 更改
+                    case '3':
+                        {
+                            
+                            string sidBuffer = "";
+                            int index = -1;
+                            while (true)
+                            {
+                                Console.WriteLine("输入需要更改者的学号 直接回车返回:");
+                                sidBuffer = Console.ReadLine();
+                                index = -1;
+                                StudentInfo studentInfo = studentS.Find(ele => {
+                                    ++index;
+                                    return ele.getSduId().Equals(sidBuffer);
+                                });
+                                if (studentInfo != null)
+                                {
+                                    break;
+                                }
+                                else if(sidBuffer == "")
+                                {
+                                    goto start;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("学号不存在!请重输 或回车返回");
+                                }
+                            }
+                            Console.WriteLine("原信息: ");
+                            Console.WriteLine(studentS[index].tabString());
+                            var temp = readAStudent(gidMapGname);
+                            temp.setSduId(int.Parse(studentS[index].getSduId()));
+                            studentS[index] = temp;
+                            goto start;
+                        }
+                    // 按学号查询
+                    case '4':
+                        studentS.FindAll(ele => ele.getSduId().Contains(input.Substring(2)))
+                      .ForEach(ele => Console.WriteLine(ele.tabString())); break;
+                    // 显示所有
+                    default: studentS.ForEach(ele => Console.WriteLine(ele.tabString())); break;
+                }
+                Console.WriteLine(
+                    "Shell提示: \n\r" +
+                    " 0 name: 按姓名查询;" +
+                    " 1 className: 按班级查询;" +
+                    " 2: 新增;" +
+                    " 3: 更改;" +
+                    " 4 学号: 按学号查询;" +
+                    " else: 显示所有;" +
+                    " 回车: 保存并退出"
+                    );
+
+            } while ((input = Console.ReadLine()) != string.Empty);
+        }
+
         static void TestSqlServer()
         {
             SqlConnection conn = new SqlConnection();
@@ -686,7 +775,20 @@ namespace LearnDotNet
                 }
                 else
                 {
-                    // do nothing update
+                    using (var context = new sail_heEntities())
+                    {
+                        int sid = int.Parse(ele.getSduId());
+                        var stuBuffer = context.ustudent.Where(e => e.sid == sid).First();
+                        ustudent temp = stuBuffer;
+                        temp.gid = ele.ClassId.ToString();
+                        temp.sid = int.Parse(ele.getSduId());
+                        temp.sname = ele.getName().ToString();
+                        temp.sbdate = ele.BirthDay.ToString();
+                        temp.ssexy = (ele.Gender == EnumGender.MALE.ToString() ? "男" : "女");
+                        temp.stele = ele.Phone.ToString();
+                        //stuBuffer = temp;
+                        context.SaveChanges();
+                    }
                 }
             });
         }
@@ -718,7 +820,7 @@ namespace LearnDotNet
             var gredeIdMapName = calcAllClass(out gidMapGname);
             studentS = calcAll(gidMapGname);
             //showAll();
-            ShellFor_10_24(studentS, gredeIdMapName);
+            ShellFor_11_15(studentS, gredeIdMapName);
             saveAll(studentS);
             Console.ReadKey();
         }
