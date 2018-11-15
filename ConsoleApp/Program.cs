@@ -498,6 +498,26 @@ namespace LearnDotNet
             Debug.WriteLine(result);
         }
 
+        static void TestMySQLUseEFModel()
+        {
+            string query = "select * from sys_user";
+            MySqlConnection myConnection = new MySqlConnection("server=localhost; user id=sailhe; persistsecurityinfo=True; database=sail_he");
+            MySqlCommand myCommand = new MySqlCommand(query, myConnection);
+            myConnection.Open();
+            myCommand.ExecuteNonQuery();
+            MySqlDataReader myDataReader = myCommand.ExecuteReader();
+            string result = "";
+            while (myDataReader.Read() == true)
+            {
+                result += myDataReader["user_id"];
+                result += myDataReader["user_username"];
+                result += myDataReader["user_password"];
+            }
+            myDataReader.Close();
+            myConnection.Close();
+            Debug.WriteLine(result);
+        }
+
         static void showAll(string query, MySqlConnection myConnection)
         {
             MySqlCommand myCommand = new MySqlCommand(query, myConnection);
@@ -626,6 +646,12 @@ namespace LearnDotNet
             Console.ReadKey();
         }
 
+        static void solve1_11_14()
+        {
+            TestMySQLUseEFModel();
+            Console.ReadKey();
+        }
+
         static void Demo()
         {
             StudentInfo student = readAStudent();
@@ -660,13 +686,16 @@ namespace LearnDotNet
 
         static void Main(string[] args)
         {
-            //server=localhost;user id=sailhe;persistsecurityinfo=True;database=sail_he
+            //OLD: server=localhost;user id=sailhe;password=123456@password;database=lost_and_found
+            //server=localhost; user id=sailhe; persistsecurityinfo=True; database=sail_he
             //SailHeModel
-            //
+            //server=localhost; user id=sailhe; persistsecurityinfo=True; database=sail_he
 
             //DbHerperDemo();
             //solve1_10_24();
-            solve1_10_31();
+            //貌似使用EF模型后就不允许使用之前这种连接方式了
+            //solve1_10_31();
+            solve1_11_14();
         }
     }
 }
