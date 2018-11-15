@@ -590,6 +590,47 @@ namespace LearnDotNet
             return result;
         }
 
+        static StringMapInt calcAllClass(out intMapString gidMapGname)
+        {
+            StringMapInt result = new StringMapInt();
+            intMapString gidMapGnameBuffer = new intMapString();
+            using (var context = new sail_heEntities())
+            {
+                var ugradeList = context.ugrade.ToList();
+                ugradeList.ForEach(ele => {
+                    string gname = ele.gname;
+                    gidMapGnameBuffer.Add(ele.gid, ele.gname);
+                    result.Add(gname, ele.gid);
+                });
+            }
+            gidMapGname = gidMapGnameBuffer;
+            return result;
+        }
+
+        static List<StudentInfo> calcAll(intMapString gidMapGname)
+        {
+            List<StudentInfo> studentS = new List<StudentInfo>();
+
+            StringMapInt result = new StringMapInt();
+            using (var context = new sail_heEntities())
+            {
+                var resultList = context.ustudent.ToList();
+                resultList.ForEach(ele => {
+                    StudentInfo temp = new StudentInfo(
+                    ele.sname
+                    , (ele.ssexy) == "男" ? EnumGender.MALE : EnumGender.WOMAN
+                    , DateTime.Parse(ele.sbdate)
+                    , gidMapGname[int.Parse(ele.gid)]
+                    , ele.stele
+                    );
+                    temp.setSduId(ele.sid);
+                    temp.ClassId = int.Parse(ele.gid);
+                    studentS.Add(temp);
+                });
+            }
+            return studentS;
+        }
+
         static void saveAll(MySqlConnection myConnection, List<StudentInfo> studentS)
         {
             //string insert = "INSERT INTO ustudent(sname, ssexy, sbdate, gid, stele)VALUES('新同学', '男', '1988/10/12', '1', '660780')";
@@ -625,6 +666,31 @@ namespace LearnDotNet
             });
         }
 
+        static void saveAll(List<StudentInfo> studentS)
+        {
+            studentS.ForEach(ele => {
+                if (ele.getSduId() == null)
+                {
+                    using (var context = new sail_heEntities())
+                    {
+                        ustudent temp = new ustudent();
+                        temp.gid = ele.ClassId.ToString();
+                        //temp.sid = int.Parse(ele.getSduId());
+                        temp.sname = ele.getName().ToString();
+                        temp.sbdate = ele.BirthDay.ToString();
+                        temp.ssexy = (ele.Gender == EnumGender.MALE.ToString() ? "男" : "女");
+                        temp.stele = ele.Phone.ToString();
+                        context.ustudent.Add(temp);
+                        context.SaveChanges();
+                    }
+                }
+                else
+                {
+                    // do nothing update
+                }
+            });
+        }
+
         static void solve1_10_31()
         {
             //TestMySQL();
@@ -646,7 +712,14 @@ namespace LearnDotNet
 
         static void solve1_11_14()
         {
-            TestMySQLUseEFModel();
+            //TestMySQLUseEFModel();
+            List<StudentInfo> studentS = new List<StudentInfo>();
+            intMapString gidMapGname = null;
+            var gredeIdMapName = calcAllClass(out gidMapGname);
+            studentS = calcAll(gidMapGname);
+            //showAll();
+            ShellFor_10_24(studentS, gredeIdMapName);
+            saveAll(studentS);
             Console.ReadKey();
         }
 
