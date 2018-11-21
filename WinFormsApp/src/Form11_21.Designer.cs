@@ -45,6 +45,7 @@
             this.label_nameSearch = new System.Windows.Forms.Label();
             this.label_grade = new System.Windows.Forms.Label();
             this.listBox_main = new System.Windows.Forms.ListBox();
+            this.button_delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainTextBox
@@ -65,7 +66,7 @@
             // 
             // button_nameSearch
             // 
-            this.button_nameSearch.BackColor = System.Drawing.Color.Red;
+            this.button_nameSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button_nameSearch.Location = new System.Drawing.Point(797, 28);
             this.button_nameSearch.Name = "button_nameSearch";
             this.button_nameSearch.Size = new System.Drawing.Size(95, 23);
@@ -86,7 +87,7 @@
             // 
             // button_save
             // 
-            this.button_save.Location = new System.Drawing.Point(1162, 697);
+            this.button_save.Location = new System.Drawing.Point(1089, 696);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(121, 31);
             this.button_save.TabIndex = 4;
@@ -193,11 +194,22 @@
             this.listBox_main.TabIndex = 16;
             this.listBox_main.SelectedIndexChanged += new System.EventHandler(this.listBox_main_SelectedIndexChanged);
             // 
+            // button_delete
+            // 
+            this.button_delete.Location = new System.Drawing.Point(1245, 696);
+            this.button_delete.Name = "button_delete";
+            this.button_delete.Size = new System.Drawing.Size(110, 32);
+            this.button_delete.TabIndex = 17;
+            this.button_delete.Text = "删除";
+            this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
+            // 
             // Form11_21
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1400, 788);
+            this.Controls.Add(this.button_delete);
             this.Controls.Add(this.listBox_main);
             this.Controls.Add(this.label_grade);
             this.Controls.Add(this.label_nameSearch);
@@ -241,5 +253,6 @@
         private System.Windows.Forms.Label label_nameSearch;
         private System.Windows.Forms.Label label_grade;
         private System.Windows.Forms.ListBox listBox_main;
+        private System.Windows.Forms.Button button_delete;
     }
 }

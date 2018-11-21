@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+//using System.Data.Linq;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,6 +13,7 @@ using System.Windows.Forms;
 
 //using LearnDotNet;
 
+//@see  https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.controls.listbox?view=netframework-4.6.1
 namespace WinFormsApp.src
 {
     using StringMapInt = Dictionary<string, int>;
@@ -19,7 +21,10 @@ namespace WinFormsApp.src
 
     public partial class Form11_21 : Form
     {
-        
+        private List<StudentInfo> studentS;
+        private StringMapInt gnameMapGid;
+        private intMapString gidMapGname;
+
         public Form11_21()
         {
             InitializeComponent();
@@ -184,6 +189,7 @@ namespace WinFormsApp.src
             return result;
         }
 
+        // https://docs.microsoft.com/zh-cn/dotnet/framework/data/adonet/sql/linq/how-to-delete-rows-from-the-database
         // https://docs.microsoft.com/zh-cn/dotnet/framework/data/adonet/
         void ShellFor_11_21(List<StudentInfo> studentS, StringMapInt gnameMapGid = null)
         {
@@ -358,11 +364,51 @@ namespace WinFormsApp.src
             TipsWriteLine("保存成功!");
         }
 
+        // @see search "EF模型增删改查"
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+            //lqRecCustTransDataContext
+            sail_heEntities db = new sail_heEntities();
 
+            ustudent delete = new ustudent();
+            delete.sid = int.Parse(studentS[listBox_main.SelectedIndex].getStuId());
+            db.Entry(delete).State = System.Data.Entity.EntityState.Deleted;
+            studentS.RemoveAt(listBox_main.SelectedIndex);
+            Clear();
+            studentS.ForEach(ele => WriteLine(ele.tabString()));
+            db.SaveChanges();
+            /*
+            var q = (from c in db.ustudent
+                     where c.sid == tb_UserInf.CreateUser && c.AutoId == iAid
+                     select c).First();
+            db.ustudent.DeleteOnSubmit(q);
+            db.ustudent.delete
 
-        private List<StudentInfo> studentS;
-        private StringMapInt gnameMapGid;
-        private intMapString gidMapGname;
+            var q2 = db.ustudent.First(c => c.AutoId == iAid && c.CreateUser == tb_UserInf.CreateUser);
+            db.ustudent.DeleteOnSubmit(q2);
+
+            @see https://docs.microsoft.com/zh-cn/dotnet/framework/data/adonet/sql/linq/how-to-delete-rows-from-the-database
+            // Query the database for the rows to be deleted.
+            var deleteOrderDetails =
+                from details in db.ustudent
+                where details.sid == 11000
+                select details;
+
+            foreach (var detail in deleteOrderDetails)
+            {
+                db.ustudent.DeleteOnSubmit(detail);
+            }
+
+            try
+            {
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }*/
+        }
     }
 
 
