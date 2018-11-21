@@ -90,9 +90,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SailHeModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="src\Form11_21.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="src\Form11_21.cs" />
     <Compile Include="src\Form11_21.Designer.cs">
       <DependentUpon>Form11_21.cs</DependentUpon>
     </Compile>
