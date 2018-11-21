@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sail_heModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="basic_city">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityCode" Type="varchar" MaxLength="255" />
+          <Property Name="CityName" Type="varchar" MaxLength="255" />
+          <Property Name="ProvinceCode" Type="varchar" MaxLength="255" />
+          <Property Name="CityAbbreviation" Type="varchar" MaxLength="255" />
+          <Property Name="CityLetter" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="basic_province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinceCode" Type="varchar" MaxLength="255" />
+          <Property Name="ProvinceName" Type="varchar" MaxLength="255" />
+          <Property Name="ProvinceAbbreviation" Type="varchar" MaxLength="255" />
+          <Property Name="ProvinceLetter" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sys_user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="255" />
+          <Property Name="user_realname" Type="varchar" MaxLength="255" />
+          <Property Name="user_nickname" Type="varchar" MaxLength="255" />
+          <Property Name="user_age" Type="varchar" MaxLength="255" />
+          <Property Name="user_passworld" Type="varchar" MaxLength="255" />
+          <Property Name="user_sex" Type="tinyint" />
+          <Property Name="user_role" Type="tinyint" />
+          <Property Name="user_contact_way" Type="varchar" MaxLength="255" />
+          <Property Name="create_time" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="edit_time" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ucourse">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cname" Type="varchar" MaxLength="255" />
+          <Property Name="credit" Type="varchar" MaxLength="255" />
+          <Property Name="pcid" Type="varchar" MaxLength="255" />
+          <Property Name="chour" Type="varchar" MaxLength="255" />
+          <Property Name="cattr" Type="varchar" MaxLength="255" />
+          <Property Name="cnum" Type="varchar" MaxLength="255" />
+          <Property Name="did" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="udept">
+          <Key>
+            <PropertyRef Name="dept_id" />
+          </Key>
+          <Property Name="dept_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="acronym" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="dname" Type="varchar" MaxLength="255" />
+          <Property Name="daddr" Type="varchar" MaxLength="255" />
+          <Property Name="dtele" Type="varchar" MaxLength="255" />
+          <Property Name="demail" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ugrade">
+          <Key>
+            <PropertyRef Name="gid" />
+          </Key>
+          <Property Name="gid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gname" Type="varchar" MaxLength="255" />
+          <Property Name="gyear" Type="varchar" MaxLength="255" />
+          <Property Name="did" Type="varchar" MaxLength="255" />
+          <Property Name="tid" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ujobtable">
+          <Key>
+            <PropertyRef Name="jid" />
+          </Key>
+          <Property Name="jid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cid" Type="varchar" MaxLength="255" />
+          <Property Name="room" Type="varchar" MaxLength="255" />
+          <Property Name="tid" Type="varchar" MaxLength="255" />
+          <Property Name="week" Type="varchar" MaxLength="255" />
+          <Property Name="timeseg" Type="varchar" MaxLength="255" />
+          <Property Name="gid" Type="varchar" MaxLength="255" />
+          <Property Name="term" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="usc">
+          <Key>
+            <PropertyRef Name="scid" />
+          </Key>
+          <Property Name="scid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sid" Type="varchar" MaxLength="255" />
+          <Property Name="cid" Type="varchar" MaxLength="255" />
+          <Property Name="term" Type="varchar" MaxLength="255" />
+          <Property Name="score1" Type="varchar" MaxLength="255" />
+          <Property Name="score2" Type="varchar" MaxLength="255" />
+          <Property Name="score3" Type="varchar" MaxLength="255" />
+          <Property Name="score" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ustudent">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sname" Type="varchar" MaxLength="255" />
+          <Property Name="ssexy" Type="varchar" MaxLength="3" />
+          <Property Name="sbdate" Type="varchar" MaxLength="255" />
+          <Property Name="gid" Type="varchar" MaxLength="255" />
+          <Property Name="stele" Type="varchar" MaxLength="13" />
+        </EntityType>
+        <EntityType Name="uteacher">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tname" Type="varchar" MaxLength="255" />
+          <Property Name="tsexy" Type="varchar" MaxLength="255" />
+          <Property Name="tbdate" Type="varchar" MaxLength="255" />
+          <Property Name="tfield" Type="varchar" MaxLength="255" />
+          <Property Name="tprof" Type="varchar" MaxLength="255" />
+          <Property Name="tele" Type="varchar" MaxLength="255" />
+          <Property Name="qq" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="msn" Type="varchar" MaxLength="255" />
+          <Property Name="did" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="sail_heModelStoreContainer">
+          <EntitySet Name="basic_city" EntityType="Self.basic_city" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="basic_province" EntityType="Self.basic_province" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="sys_user" EntityType="Self.sys_user" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="ucourse" EntityType="Self.ucourse" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="udept" EntityType="Self.udept" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="ugrade" EntityType="Self.ugrade" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="ujobtable" EntityType="Self.ujobtable" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="usc" EntityType="Self.usc" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="ustudent" EntityType="Self.ustudent" Schema="sail_he" store:Type="Tables" />
+          <EntitySet Name="uteacher" EntityType="Self.uteacher" Schema="sail_he" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sail_heModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="basic_city">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProvinceCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CityAbbreviation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CityLetter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="basic_province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProvinceName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProvinceAbbreviation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProvinceLetter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sys_user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_realname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_nickname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_age" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_passworld" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_sex" Type="SByte" />
+          <Property Name="user_role" Type="SByte" />
+          <Property Name="user_contact_way" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="create_time" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="edit_time" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="ucourse">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="credit" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="pcid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="chour" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cattr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cnum" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="did" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="udept">
+          <Key>
+            <PropertyRef Name="dept_id" />
+          </Key>
+          <Property Name="dept_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="acronym" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="daddr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dtele" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="demail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ugrade">
+          <Key>
+            <PropertyRef Name="gid" />
+          </Key>
+          <Property Name="gid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gyear" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="did" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ujobtable">
+          <Key>
+            <PropertyRef Name="jid" />
+          </Key>
+          <Property Name="jid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="room" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="week" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="timeseg" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="term" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="usc">
+          <Key>
+            <PropertyRef Name="scid" />
+          </Key>
+          <Property Name="scid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="term" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="score1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="score2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="score3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="score" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ustudent">
+          <Key>
+            <PropertyRef Name="sid" />
+          </Key>
+          <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ssexy" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sbdate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="stele" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="uteacher">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tsexy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tbdate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tfield" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tprof" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tele" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="qq" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="msn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="did" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="sail_heEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="basic_city" EntityType="Self.basic_city" />
+          <EntitySet Name="basic_province" EntityType="Self.basic_province" />
+          <EntitySet Name="sys_user" EntityType="Self.sys_user" />
+          <EntitySet Name="ucourse" EntityType="Self.ucourse" />
+          <EntitySet Name="udept" EntityType="Self.udept" />
+          <EntitySet Name="ugrade" EntityType="Self.ugrade" />
+          <EntitySet Name="ujobtable" EntityType="Self.ujobtable" />
+          <EntitySet Name="usc" EntityType="Self.usc" />
+          <EntitySet Name="ustudent" EntityType="Self.ustudent" />
+          <EntitySet Name="uteacher" EntityType="Self.uteacher" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sail_heModelStoreContainer" CdmEntityContainer="sail_heEntities">
+          <EntitySetMapping Name="basic_city">
+            <EntityTypeMapping TypeName="sail_heModel.basic_city">
+              <MappingFragment StoreEntitySet="basic_city">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="ProvinceCode" ColumnName="ProvinceCode" />
+                <ScalarProperty Name="CityAbbreviation" ColumnName="CityAbbreviation" />
+                <ScalarProperty Name="CityLetter" ColumnName="CityLetter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="basic_province">
+            <EntityTypeMapping TypeName="sail_heModel.basic_province">
+              <MappingFragment StoreEntitySet="basic_province">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProvinceCode" ColumnName="ProvinceCode" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="ProvinceAbbreviation" ColumnName="ProvinceAbbreviation" />
+                <ScalarProperty Name="ProvinceLetter" ColumnName="ProvinceLetter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_user">
+            <EntityTypeMapping TypeName="sail_heModel.sys_user">
+              <MappingFragment StoreEntitySet="sys_user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_realname" ColumnName="user_realname" />
+                <ScalarProperty Name="user_nickname" ColumnName="user_nickname" />
+                <ScalarProperty Name="user_age" ColumnName="user_age" />
+                <ScalarProperty Name="user_passworld" ColumnName="user_passworld" />
+                <ScalarProperty Name="user_sex" ColumnName="user_sex" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+                <ScalarProperty Name="user_contact_way" ColumnName="user_contact_way" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="edit_time" ColumnName="edit_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ucourse">
+            <EntityTypeMapping TypeName="sail_heModel.ucourse">
+              <MappingFragment StoreEntitySet="ucourse">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cname" ColumnName="cname" />
+                <ScalarProperty Name="credit" ColumnName="credit" />
+                <ScalarProperty Name="pcid" ColumnName="pcid" />
+                <ScalarProperty Name="chour" ColumnName="chour" />
+                <ScalarProperty Name="cattr" ColumnName="cattr" />
+                <ScalarProperty Name="cnum" ColumnName="cnum" />
+                <ScalarProperty Name="did" ColumnName="did" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="udept">
+            <EntityTypeMapping TypeName="sail_heModel.udept">
+              <MappingFragment StoreEntitySet="udept">
+                <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+                <ScalarProperty Name="acronym" ColumnName="acronym" />
+                <ScalarProperty Name="dname" ColumnName="dname" />
+                <ScalarProperty Name="daddr" ColumnName="daddr" />
+                <ScalarProperty Name="dtele" ColumnName="dtele" />
+                <ScalarProperty Name="demail" ColumnName="demail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ugrade">
+            <EntityTypeMapping TypeName="sail_heModel.ugrade">
+              <MappingFragment StoreEntitySet="ugrade">
+                <ScalarProperty Name="gid" ColumnName="gid" />
+                <ScalarProperty Name="gname" ColumnName="gname" />
+                <ScalarProperty Name="gyear" ColumnName="gyear" />
+                <ScalarProperty Name="did" ColumnName="did" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ujobtable">
+            <EntityTypeMapping TypeName="sail_heModel.ujobtable">
+              <MappingFragment StoreEntitySet="ujobtable">
+                <ScalarProperty Name="jid" ColumnName="jid" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="room" ColumnName="room" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
+                <ScalarProperty Name="week" ColumnName="week" />
+                <ScalarProperty Name="timeseg" ColumnName="timeseg" />
+                <ScalarProperty Name="gid" ColumnName="gid" />
+                <ScalarProperty Name="term" ColumnName="term" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usc">
+            <EntityTypeMapping TypeName="sail_heModel.usc">
+              <MappingFragment StoreEntitySet="usc">
+                <ScalarProperty Name="scid" ColumnName="scid" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="term" ColumnName="term" />
+                <ScalarProperty Name="score1" ColumnName="score1" />
+                <ScalarProperty Name="score2" ColumnName="score2" />
+                <ScalarProperty Name="score3" ColumnName="score3" />
+                <ScalarProperty Name="score" ColumnName="score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ustudent">
+            <EntityTypeMapping TypeName="sail_heModel.ustudent">
+              <MappingFragment StoreEntitySet="ustudent">
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="sname" ColumnName="sname" />
+                <ScalarProperty Name="ssexy" ColumnName="ssexy" />
+                <ScalarProperty Name="sbdate" ColumnName="sbdate" />
+                <ScalarProperty Name="gid" ColumnName="gid" />
+                <ScalarProperty Name="stele" ColumnName="stele" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uteacher">
+            <EntityTypeMapping TypeName="sail_heModel.uteacher">
+              <MappingFragment StoreEntitySet="uteacher">
+                <ScalarProperty Name="tid" ColumnName="tid" />
+                <ScalarProperty Name="tname" ColumnName="tname" />
+                <ScalarProperty Name="tsexy" ColumnName="tsexy" />
+                <ScalarProperty Name="tbdate" ColumnName="tbdate" />
+                <ScalarProperty Name="tfield" ColumnName="tfield" />
+                <ScalarProperty Name="tprof" ColumnName="tprof" />
+                <ScalarProperty Name="tele" ColumnName="tele" />
+                <ScalarProperty Name="qq" ColumnName="qq" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="msn" ColumnName="msn" />
+                <ScalarProperty Name="did" ColumnName="did" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
