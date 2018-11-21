@@ -92,6 +92,7 @@
             this.button_save.TabIndex = 4;
             this.button_save.Text = "保存";
             this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
             // textBox_stuNum
             // 
