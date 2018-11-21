@@ -38,7 +38,7 @@ namespace SailHeCSharpClassLib
             return STU_COUNT;
         }
 
-        public string getSduId()
+        public string getStuId()
         {
             return stuId;
         }

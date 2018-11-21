@@ -59,7 +59,7 @@ namespace LearnDotNet
         public string tabString()
         {
             return getName() + "\t"
-                + (getSduId() == null ? "---------" : getSduId())
+                + (getStuId() == null ? "---------" : getStuId())
                 + "\t" + gender + "\t\t" + birthDay + "\t" + className + "\t" + phone;
         }
     }
@@ -486,7 +486,7 @@ namespace LearnDotNet
                                 index = -1;
                                 StudentInfo studentInfo = studentS.Find(ele => {
                                     ++index;
-                                    return ele.getSduId().Equals(sidBuffer);
+                                    return ele.getStuId().Equals(sidBuffer);
                                 });
                                 if (studentInfo != null)
                                 {
@@ -504,13 +504,13 @@ namespace LearnDotNet
                             Console.WriteLine("原信息: ");
                             Console.WriteLine(studentS[index].tabString());
                             var temp = readAStudent(gidMapGname);
-                            temp.setSduId(int.Parse(studentS[index].getSduId()));
+                            temp.setSduId(int.Parse(studentS[index].getStuId()));
                             studentS[index] = temp;
                             goto start;
                         }
                     // 按学号查询
                     case '4':
-                        studentS.FindAll(ele => ele.getSduId().Contains(input.Substring(2)))
+                        studentS.FindAll(ele => ele.getStuId().Contains(input.Substring(2)))
                       .ForEach(ele => Console.WriteLine(ele.tabString())); break;
                     // 显示所有
                     default: studentS.ForEach(ele => Console.WriteLine(ele.tabString())); break;
@@ -725,7 +725,7 @@ namespace LearnDotNet
             //string insert = "INSERT INTO ustudent(sname, ssexy, sbdate, gid, stele)VALUES('新同学', '男', '1988/10/12', '1', '660780')";
             //string update = "UPDATE ustudent SET -`2sname = '李山',ssexy = '男',sbdate = '1988/10/11',gid = '1',stele = '660780' WHERE sid = '12005001'";
             studentS.ForEach(ele => {
-                if (ele.getSduId() == null)
+                if (ele.getStuId() == null)
                 {
                     string insert = "INSERT INTO ustudent(sname, ssexy, sbdate, gid, stele)VALUES('"
                     + ele.getName()
@@ -747,7 +747,7 @@ namespace LearnDotNet
                     + "',sbdate = '" + "', '" + ele.BirthDay
                     + "',gid = '" + ele.ClassId
                     +"',stele = '" + ele.Phone
-                    + "' WHERE sid = '" + ele.getSduId()
+                    + "' WHERE sid = '" + ele.getStuId()
                     + "'";
                     MySqlCommand updateCommand = new MySqlCommand(update, myConnection);
                     updateCommand.ExecuteNonQuery();*/
@@ -758,13 +758,13 @@ namespace LearnDotNet
         static void saveAll(List<StudentInfo> studentS)
         {
             studentS.ForEach(ele => {
-                if (ele.getSduId() == null)
+                if (ele.getStuId() == null)
                 {
                     using (var context = new sail_heEntities())
                     {
                         ustudent temp = new ustudent();
                         temp.gid = ele.ClassId.ToString();
-                        //temp.sid = int.Parse(ele.getSduId());
+                        //temp.sid = int.Parse(ele.getStuId());
                         temp.sname = ele.getName().ToString();
                         temp.sbdate = ele.BirthDay.ToString();
                         temp.ssexy = (ele.Gender == EnumGender.MALE.ToString() ? "男" : "女");
@@ -777,11 +777,11 @@ namespace LearnDotNet
                 {
                     using (var context = new sail_heEntities())
                     {
-                        int sid = int.Parse(ele.getSduId());
+                        int sid = int.Parse(ele.getStuId());
                         var stuBuffer = context.ustudent.Where(e => e.sid == sid).First();
                         ustudent temp = stuBuffer;
                         temp.gid = ele.ClassId.ToString();
-                        temp.sid = int.Parse(ele.getSduId());
+                        temp.sid = int.Parse(ele.getStuId());
                         temp.sname = ele.getName().ToString();
                         temp.sbdate = ele.BirthDay.ToString();
                         temp.ssexy = (ele.Gender == EnumGender.MALE.ToString() ? "男" : "女");

@@ -222,7 +222,7 @@ namespace WinFormsApp.src
                                 index = -1;
                                 StudentInfo studentInfo = studentS.Find(ele => {
                                     ++index;
-                                    return ele.getSduId().Equals(sidBuffer);
+                                    return ele.getStuId().Equals(sidBuffer);
                                 });
                                 if (studentInfo != null)
                                 {
@@ -240,13 +240,13 @@ namespace WinFormsApp.src
                             WriteLine("原信息: ");
                             WriteLine(studentS[index].tabString());
                             var temp = readAStudent(gidMapGname);
-                            temp.setSduId(int.Parse(studentS[index].getSduId()));
+                            temp.setSduId(int.Parse(studentS[index].getStuId()));
                             studentS[index] = temp;
                             goto start;
                         }
                     // 按学号查询
                     case '4':
-                        studentS.FindAll(ele => ele.getSduId().Contains(input.Substring(2)))
+                        studentS.FindAll(ele => ele.getStuId().Contains(input.Substring(2)))
                       .ForEach(ele => WriteLine(ele.tabString())); break;
                     // 显示所有
                     default: studentS.ForEach(ele => WriteLine(ele.tabString())); break;
@@ -268,13 +268,13 @@ namespace WinFormsApp.src
         void saveAll(List<StudentInfo> studentS)
         {
             studentS.ForEach(ele => {
-                if (ele.getSduId() == null)
+                if (ele.getStuId() == null)
                 {
                     using (var context = new sail_heEntities())
                     {
                         ustudent temp = new ustudent();
                         temp.gid = ele.ClassId.ToString();
-                        //temp.sid = int.Parse(ele.getSduId());
+                        //temp.sid = int.Parse(ele.getStuId());
                         temp.sname = ele.getName().ToString();
                         temp.sbdate = ele.BirthDay.ToString();
                         temp.ssexy = (ele.Gender == EnumGender.MALE.ToString() ? "男" : "女");
@@ -287,11 +287,11 @@ namespace WinFormsApp.src
                 {
                     using (var context = new sail_heEntities())
                     {
-                        int sid = int.Parse(ele.getSduId());
+                        int sid = int.Parse(ele.getStuId());
                         var stuBuffer = context.ustudent.Where(e => e.sid == sid).First();
                         ustudent temp = stuBuffer;
                         temp.gid = ele.ClassId.ToString();
-                        temp.sid = int.Parse(ele.getSduId());
+                        temp.sid = int.Parse(ele.getStuId());
                         temp.sname = ele.getName().ToString();
                         temp.sbdate = ele.BirthDay.ToString();
                         temp.ssexy = (ele.Gender == EnumGender.MALE.ToString() ? "男" : "女");
@@ -309,6 +309,24 @@ namespace WinFormsApp.src
         }
 
         private List<StudentInfo> studentS;
+
+        private void button_nameSearch_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void listBox_main_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //string
+            object temp = listBox_main.SelectedItems[0];
+            StudentInfo seItem = studentS[(sender as ListBox).SelectedIndex - 1] as StudentInfo;
+            mainTextBox.AppendText(seItem.ToString() + "\r\n");
+            textBox_name.Text = seItem.getName();
+            textBox_grade.Text = seItem.ClassName;
+            textBox_birthDay.Text = seItem.BirthDay;
+            textBox_stuNum.Text = seItem.getStuId();
+            textBox_sex.Text = seItem.Gender;
+        }
     }
 
 
@@ -350,7 +368,7 @@ namespace WinFormsApp.src
         public string tabString()
         {
             return getName() + "\t"
-                + (getSduId() == null ? "---------" : getSduId())
+                + (getStuId() == null ? "---------" : getStuId())
                 + "\t" + gender + "\t\t" + birthDay + "\t" + className + "\t" + phone;
         }
         
