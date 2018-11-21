@@ -866,6 +866,7 @@ namespace LearnDotNet
 
             //DbHerperDemo();
             //solve1_10_24();
+            // 官方教程: @see https://docs.microsoft.com/zh-cn/ef/core/saving/basic
             //貌似使用EF模型后就不允许使用之前这种连接方式了
             //solve1_10_31();
             solve1_11_14();

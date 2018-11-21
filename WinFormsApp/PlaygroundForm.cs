@@ -60,7 +60,7 @@ namespace WinFormsApp
 
         private void button_to_10_24_Click(object sender, EventArgs e)
         {
-            new Form10_24().Show();
+            new Form11_21().Show();
         }
 
         private void rhsNum_TextChanged(object sender, EventArgs e)

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace WinFormsApp.src
 {
-    public partial class Form10_24 : Form
+    public partial class Form11_21 : Form
     {
-        public Form10_24()
+        public Form11_21()
         {
             InitializeComponent();
+        }
+
+        private void button_add_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
