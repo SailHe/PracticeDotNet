@@ -90,6 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConsoleApp\ConsoleApp.csproj">
+      <Project>{6b560a96-127b-4e48-8af3-8d8176d6e50e}</Project>
+      <Name>ConsoleApp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SailHeCSharpClassLib\SailHeCSharpClassLib.csproj">
       <Project>{66e33102-78ba-438e-a18a-f3adfe5e4998}</Project>
       <Name>SailHeCSharpClassLib</Name>

@@ -27,7 +27,7 @@ namespace LearnDotNet
     // 性别, 出生日期, 班级名称, 联系电话
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
-    class StudentInfo : BaseStudent{
+    public class StudentInfo : BaseStudent{
         //按住ctrl+R不动，然后再按E
         private string gender = EnumGender.UNKNOWN.ToString();
         private string birthDay;
@@ -71,7 +71,7 @@ namespace LearnDotNet
     }
 
     // .NET Framework控制台程序
-    class Program
+    public class Program
     {
 
         static void CreateFile(string pathString, string fileName)
@@ -679,7 +679,7 @@ namespace LearnDotNet
             return result;
         }
 
-        static StringMapInt calcAllClass(out intMapString gidMapGname)
+        public static StringMapInt calcAllClass(out intMapString gidMapGname)
         {
             StringMapInt result = new StringMapInt();
             intMapString gidMapGnameBuffer = new intMapString();
@@ -696,7 +696,7 @@ namespace LearnDotNet
             return result;
         }
 
-        static List<StudentInfo> calcAll(intMapString gidMapGname)
+        public static List<StudentInfo> calcAll(intMapString gidMapGname)
         {
             List<StudentInfo> studentS = new List<StudentInfo>();
 
