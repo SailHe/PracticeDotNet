@@ -58,7 +58,7 @@ namespace WinFormsApp
             lhsBigNumHasSet = true;
         }
 
-        private void button_to_10_24_Click(object sender, EventArgs e)
+        private void button_to_11_21_Click(object sender, EventArgs e)
         {
             new Form11_21().Show();
         }

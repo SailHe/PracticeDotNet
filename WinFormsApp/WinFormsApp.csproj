@@ -54,11 +54,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Form10_24.cs">
+    <Compile Include="src\Form11_21.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Form10_24.Designer.cs">
-      <DependentUpon>Form10_24.cs</DependentUpon>
+    <Compile Include="src\Form11_21.Designer.cs">
+      <DependentUpon>Form11_21.cs</DependentUpon>
     </Compile>
     <Compile Include="src\SolveHomeworkProblem.cs" />
     <EmbeddedResource Include="PlaygroundForm.resx">
@@ -73,8 +73,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="src\Form10_24.resx">
-      <DependentUpon>Form10_24.cs</DependentUpon>
+    <EmbeddedResource Include="src\Form11_21.resx">
+      <DependentUpon>Form11_21.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

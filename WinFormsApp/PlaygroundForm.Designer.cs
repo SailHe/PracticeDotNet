@@ -34,7 +34,7 @@
             this.bigNumSum_textBox = new System.Windows.Forms.TextBox();
             this.bigNumRadix_textBox = new System.Windows.Forms.TextBox();
             this.APItestButton = new System.Windows.Forms.Button();
-            this.button_to_10_24 = new System.Windows.Forms.Button();
+            this.button_to_11_21 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bigNumPlushbutton
@@ -88,22 +88,22 @@
             this.APItestButton.UseVisualStyleBackColor = true;
             this.APItestButton.Click += new System.EventHandler(this.APItestButton_Click);
             // 
-            // button_to_10_24
+            // button_to_11_21
             // 
-            this.button_to_10_24.Location = new System.Drawing.Point(13, 158);
-            this.button_to_10_24.Name = "button_to_10_24";
-            this.button_to_10_24.Size = new System.Drawing.Size(122, 23);
-            this.button_to_10_24.TabIndex = 7;
-            this.button_to_10_24.Text = "10-24 作业";
-            this.button_to_10_24.UseVisualStyleBackColor = true;
-            this.button_to_10_24.Click += new System.EventHandler(this.button_to_10_24_Click);
+            this.button_to_11_21.Location = new System.Drawing.Point(13, 158);
+            this.button_to_11_21.Name = "button_to_11_21";
+            this.button_to_11_21.Size = new System.Drawing.Size(122, 23);
+            this.button_to_11_21.TabIndex = 7;
+            this.button_to_11_21.Text = "11-21 作业";
+            this.button_to_11_21.UseVisualStyleBackColor = true;
+            this.button_to_11_21.Click += new System.EventHandler(this.button_to_11_21_Click);
             // 
             // PlaygroundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 450);
-            this.Controls.Add(this.button_to_10_24);
+            this.Controls.Add(this.button_to_11_21);
             this.Controls.Add(this.APItestButton);
             this.Controls.Add(this.bigNumRadix_textBox);
             this.Controls.Add(this.bigNumSum_textBox);
@@ -125,7 +125,7 @@
         private System.Windows.Forms.TextBox bigNumSum_textBox;
         private System.Windows.Forms.TextBox bigNumRadix_textBox;
         private System.Windows.Forms.Button APItestButton;
-        private System.Windows.Forms.Button button_to_10_24;
+        private System.Windows.Forms.Button button_to_11_21;
     }
 }
 

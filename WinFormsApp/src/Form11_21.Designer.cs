@@ -74,9 +74,9 @@
             // 
             // button_add
             // 
-            this.button_add.Location = new System.Drawing.Point(456, 654);
+            this.button_add.Location = new System.Drawing.Point(456, 646);
             this.button_add.Name = "button_add";
-            this.button_add.Size = new System.Drawing.Size(75, 23);
+            this.button_add.Size = new System.Drawing.Size(113, 31);
             this.button_add.TabIndex = 3;
             this.button_add.Text = "增加成员";
             this.button_add.UseVisualStyleBackColor = true;
@@ -84,9 +84,9 @@
             // 
             // button_save
             // 
-            this.button_save.Location = new System.Drawing.Point(677, 654);
+            this.button_save.Location = new System.Drawing.Point(677, 646);
             this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(75, 23);
+            this.button_save.Size = new System.Drawing.Size(121, 31);
             this.button_save.TabIndex = 4;
             this.button_save.Text = "保存";
             this.button_save.UseVisualStyleBackColor = true;
