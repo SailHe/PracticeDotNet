@@ -184,6 +184,7 @@ namespace WinFormsApp.src
             return result;
         }
 
+        // https://docs.microsoft.com/zh-cn/dotnet/framework/data/adonet/
         void ShellFor_11_21(List<StudentInfo> studentS, StringMapInt gnameMapGid = null)
         {
 
@@ -356,6 +357,7 @@ namespace WinFormsApp.src
             saveAll(studentS);
             TipsWriteLine("保存成功!");
         }
+
 
 
         private List<StudentInfo> studentS;
