@@ -44,19 +44,20 @@
             this.label_birthDay = new System.Windows.Forms.Label();
             this.label_nameSearch = new System.Windows.Forms.Label();
             this.label_grade = new System.Windows.Forms.Label();
+            this.listBox_main = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // mainTextBox
             // 
-            this.mainTextBox.Location = new System.Drawing.Point(96, 78);
+            this.mainTextBox.Location = new System.Drawing.Point(23, 15);
             this.mainTextBox.Multiline = true;
             this.mainTextBox.Name = "mainTextBox";
-            this.mainTextBox.Size = new System.Drawing.Size(1052, 394);
+            this.mainTextBox.Size = new System.Drawing.Size(173, 721);
             this.mainTextBox.TabIndex = 0;
             // 
             // textBox_nameSearch
             // 
-            this.textBox_nameSearch.Location = new System.Drawing.Point(504, 26);
+            this.textBox_nameSearch.Location = new System.Drawing.Point(615, 29);
             this.textBox_nameSearch.Name = "textBox_nameSearch";
             this.textBox_nameSearch.Size = new System.Drawing.Size(175, 25);
             this.textBox_nameSearch.TabIndex = 1;
@@ -65,7 +66,7 @@
             // button_nameSearch
             // 
             this.button_nameSearch.BackColor = System.Drawing.Color.Red;
-            this.button_nameSearch.Location = new System.Drawing.Point(795, 26);
+            this.button_nameSearch.Location = new System.Drawing.Point(919, 28);
             this.button_nameSearch.Name = "button_nameSearch";
             this.button_nameSearch.Size = new System.Drawing.Size(95, 23);
             this.button_nameSearch.TabIndex = 2;
@@ -74,7 +75,7 @@
             // 
             // button_add
             // 
-            this.button_add.Location = new System.Drawing.Point(456, 646);
+            this.button_add.Location = new System.Drawing.Point(641, 668);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(113, 31);
             this.button_add.TabIndex = 3;
@@ -84,7 +85,7 @@
             // 
             // button_save
             // 
-            this.button_save.Location = new System.Drawing.Point(677, 646);
+            this.button_save.Location = new System.Drawing.Point(862, 668);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(121, 31);
             this.button_save.TabIndex = 4;
@@ -93,35 +94,35 @@
             // 
             // textBox_stuNum
             // 
-            this.textBox_stuNum.Location = new System.Drawing.Point(392, 524);
+            this.textBox_stuNum.Location = new System.Drawing.Point(577, 546);
             this.textBox_stuNum.Name = "textBox_stuNum";
             this.textBox_stuNum.Size = new System.Drawing.Size(139, 25);
             this.textBox_stuNum.TabIndex = 5;
             // 
             // textBox_name
             // 
-            this.textBox_name.Location = new System.Drawing.Point(559, 524);
+            this.textBox_name.Location = new System.Drawing.Point(744, 546);
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(141, 25);
             this.textBox_name.TabIndex = 6;
             // 
             // textBox_sex
             // 
-            this.textBox_sex.Location = new System.Drawing.Point(729, 524);
+            this.textBox_sex.Location = new System.Drawing.Point(914, 546);
             this.textBox_sex.Name = "textBox_sex";
             this.textBox_sex.Size = new System.Drawing.Size(141, 25);
             this.textBox_sex.TabIndex = 7;
             // 
             // textBox_birthDay
             // 
-            this.textBox_birthDay.Location = new System.Drawing.Point(392, 599);
+            this.textBox_birthDay.Location = new System.Drawing.Point(577, 621);
             this.textBox_birthDay.Name = "textBox_birthDay";
             this.textBox_birthDay.Size = new System.Drawing.Size(247, 25);
             this.textBox_birthDay.TabIndex = 8;
             // 
             // textBox_grade
             // 
-            this.textBox_grade.Location = new System.Drawing.Point(645, 599);
+            this.textBox_grade.Location = new System.Drawing.Point(830, 621);
             this.textBox_grade.Name = "textBox_grade";
             this.textBox_grade.Size = new System.Drawing.Size(225, 25);
             this.textBox_grade.TabIndex = 9;
@@ -129,7 +130,7 @@
             // label_stuNum
             // 
             this.label_stuNum.AutoSize = true;
-            this.label_stuNum.Location = new System.Drawing.Point(414, 506);
+            this.label_stuNum.Location = new System.Drawing.Point(599, 528);
             this.label_stuNum.Name = "label_stuNum";
             this.label_stuNum.Size = new System.Drawing.Size(37, 15);
             this.label_stuNum.TabIndex = 10;
@@ -138,7 +139,7 @@
             // label_name
             // 
             this.label_name.AutoSize = true;
-            this.label_name.Location = new System.Drawing.Point(601, 506);
+            this.label_name.Location = new System.Drawing.Point(786, 528);
             this.label_name.Name = "label_name";
             this.label_name.Size = new System.Drawing.Size(37, 15);
             this.label_name.TabIndex = 11;
@@ -147,7 +148,7 @@
             // label_sex
             // 
             this.label_sex.AutoSize = true;
-            this.label_sex.Location = new System.Drawing.Point(792, 506);
+            this.label_sex.Location = new System.Drawing.Point(977, 528);
             this.label_sex.Name = "label_sex";
             this.label_sex.Size = new System.Drawing.Size(37, 15);
             this.label_sex.TabIndex = 12;
@@ -156,7 +157,7 @@
             // label_birthDay
             // 
             this.label_birthDay.AutoSize = true;
-            this.label_birthDay.Location = new System.Drawing.Point(466, 578);
+            this.label_birthDay.Location = new System.Drawing.Point(651, 600);
             this.label_birthDay.Name = "label_birthDay";
             this.label_birthDay.Size = new System.Drawing.Size(67, 15);
             this.label_birthDay.TabIndex = 13;
@@ -165,7 +166,7 @@
             // label_nameSearch
             // 
             this.label_nameSearch.AutoSize = true;
-            this.label_nameSearch.Location = new System.Drawing.Point(556, 9);
+            this.label_nameSearch.Location = new System.Drawing.Point(679, 9);
             this.label_nameSearch.Name = "label_nameSearch";
             this.label_nameSearch.Size = new System.Drawing.Size(37, 15);
             this.label_nameSearch.TabIndex = 14;
@@ -174,17 +175,27 @@
             // label_grade
             // 
             this.label_grade.AutoSize = true;
-            this.label_grade.Location = new System.Drawing.Point(690, 578);
+            this.label_grade.Location = new System.Drawing.Point(875, 600);
             this.label_grade.Name = "label_grade";
             this.label_grade.Size = new System.Drawing.Size(37, 15);
             this.label_grade.TabIndex = 15;
             this.label_grade.Text = "班级";
             // 
+            // listBox_main
+            // 
+            this.listBox_main.FormattingEnabled = true;
+            this.listBox_main.ItemHeight = 15;
+            this.listBox_main.Location = new System.Drawing.Point(272, 75);
+            this.listBox_main.Name = "listBox_main";
+            this.listBox_main.Size = new System.Drawing.Size(1081, 424);
+            this.listBox_main.TabIndex = 16;
+            // 
             // Form11_21
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1246, 707);
+            this.ClientSize = new System.Drawing.Size(1400, 788);
+            this.Controls.Add(this.listBox_main);
             this.Controls.Add(this.label_grade);
             this.Controls.Add(this.label_nameSearch);
             this.Controls.Add(this.label_birthDay);
@@ -226,5 +237,6 @@
         private System.Windows.Forms.Label label_birthDay;
         private System.Windows.Forms.Label label_nameSearch;
         private System.Windows.Forms.Label label_grade;
+        private System.Windows.Forms.ListBox listBox_main;
     }
 }
