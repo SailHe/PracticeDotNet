@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.stuSignNameTextBox = new System.Windows.Forms.TextBox();
+            this.stuSignIdTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -45,10 +45,10 @@
             // 
             // stuSignNameTextBox
             // 
-            this.stuSignNameTextBox.Location = new System.Drawing.Point(342, 224);
-            this.stuSignNameTextBox.Name = "stuSignNameTextBox";
-            this.stuSignNameTextBox.Size = new System.Drawing.Size(228, 25);
-            this.stuSignNameTextBox.TabIndex = 1;
+            this.stuSignIdTextBox.Location = new System.Drawing.Point(342, 224);
+            this.stuSignIdTextBox.Name = "stuSignNameTextBox";
+            this.stuSignIdTextBox.Size = new System.Drawing.Size(228, 25);
+            this.stuSignIdTextBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -65,7 +65,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 540);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.stuSignNameTextBox);
+            this.Controls.Add(this.stuSignIdTextBox);
             this.Controls.Add(this.button1);
             this.Name = "SinInForm";
             this.Text = "SinInForm";
@@ -78,7 +78,7 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox stuSignNameTextBox;
+        private System.Windows.Forms.TextBox stuSignIdTextBox;
         private System.Windows.Forms.Label label1;
     }
 }
