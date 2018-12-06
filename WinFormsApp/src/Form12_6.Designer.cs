@@ -46,16 +46,18 @@
             this.button_nameSearch = new System.Windows.Forms.Button();
             this.textBox_nameSearch = new System.Windows.Forms.TextBox();
             this.mainTextBox = new System.Windows.Forms.TextBox();
+            this.editButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_delete
             // 
-            this.button_delete.Location = new System.Drawing.Point(1265, 686);
+            this.button_delete.Location = new System.Drawing.Point(1300, 744);
             this.button_delete.Name = "button_delete";
             this.button_delete.Size = new System.Drawing.Size(110, 32);
             this.button_delete.TabIndex = 35;
             this.button_delete.Text = "删除";
             this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
             // listBox_main
             // 
@@ -158,21 +160,23 @@
             // 
             // button_save
             // 
-            this.button_save.Location = new System.Drawing.Point(1109, 686);
+            this.button_save.Location = new System.Drawing.Point(1289, 687);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(121, 31);
             this.button_save.TabIndex = 22;
             this.button_save.Text = "保存";
             this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
             // button_add
             // 
-            this.button_add.Location = new System.Drawing.Point(961, 687);
+            this.button_add.Location = new System.Drawing.Point(1003, 687);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(113, 31);
             this.button_add.TabIndex = 21;
-            this.button_add.Text = "增加成员";
+            this.button_add.Text = "增加";
             this.button_add.UseVisualStyleBackColor = true;
+            this.button_add.Click += new System.EventHandler(this.button_add_Click);
             // 
             // button_nameSearch
             // 
@@ -200,11 +204,22 @@
             this.mainTextBox.Size = new System.Drawing.Size(804, 179);
             this.mainTextBox.TabIndex = 18;
             // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(1150, 687);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(113, 31);
+            this.editButton.TabIndex = 36;
+            this.editButton.Text = "编辑";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.button_edit_Click);
+            // 
             // Form12_6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1437, 788);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.button_delete);
             this.Controls.Add(this.listBox_main);
             this.Controls.Add(this.label_grade);
@@ -250,5 +265,6 @@
         private System.Windows.Forms.Button button_nameSearch;
         private System.Windows.Forms.TextBox textBox_nameSearch;
         private System.Windows.Forms.TextBox mainTextBox;
+        private System.Windows.Forms.Button editButton;
     }
 }

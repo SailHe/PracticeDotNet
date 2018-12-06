@@ -35,7 +35,7 @@ namespace WinFormsApp.src
             public string 出生日期 { get; set; }
             public string 班级 { get; set; }
             public string 电话 { get; set; }
-            public double 成绩 { get; set; }
+            public string 成绩 { get; set; }
 
             override
             public string ToString()
@@ -43,7 +43,11 @@ namespace WinFormsApp.src
                 // StudentInfo;
                 return 姓名 + "\t"
                 + (学号 == null ? "---------" : 学号.ToString())
-                + "\t" + 性别 + "\t\t" + 出生日期 + "\t" + 班级 + "\t" + 电话;
+                + "\t" + 性别
+                + "\t\t" + 出生日期 
+                + "\t" + 班级
+                + "\t" + 电话
+                + "\t" + 成绩;
             }
         }
 
@@ -52,10 +56,15 @@ namespace WinFormsApp.src
         public Form12_6()
         {
             InitializeComponent();
-            
+
+            initMainListBox();
+        }
+
+        private void initMainListBox()
+        {
             string sql = "SELECT stu.sid AS 学号, stu.sname AS 姓名, stu.ssexy AS 性别" +
                 ", stu.sbdate AS 出生日期, ug.gname AS 班级, stu.stele AS 电话" +
-                ", sc.score1 AS 成绩 FROM ustudent stu INNER JOIN ugrade ug USING(gid) JOIN usc sc USING(sid)";
+                ", sc.score1 AS 成绩 FROM ustudent stu INNER JOIN ugrade ug USING(gid) LEFT JOIN usc sc USING(sid)";
 
             DbRawSqlQuery<StuScoreDTO> results = PlaygroundForm.dbContext.Database.SqlQuery<StuScoreDTO>(
                     sql, new MySqlParameter("@sid", 32006005)
@@ -87,6 +96,24 @@ namespace WinFormsApp.src
                 textBox_stuNum.Text = seItem.学号;
                 textBox_sex.Text = seItem.性别;
             }
+        }
+
+        /// <summary>
+        /// Shell输出换行
+        /// </summary>
+        /// <param name="msg"></param>
+        void TipsWriteLine(string msg)
+        {
+            mainTextBox.AppendText(msg + "\r\n");
+        }
+
+        /// <summary>
+        /// 清空mainTextBox
+        /// </summary>
+        void Clear()
+        {
+            listBox_main.Items.Clear();
+            mainTextBox.Text = "";
         }
 
         void LINKQSample1()
@@ -153,6 +180,30 @@ namespace WinFormsApp.src
                 Console.WriteLine(r.ToString());
             }
         }
-        
+
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+            ustudent delete = new ustudent();
+            delete.sid = int.Parse(textBox_stuNum.Text);
+            PlaygroundForm.dbContext.Entry(delete).State = System.Data.Entity.EntityState.Deleted;
+        }
+
+        private void button_edit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            Clear();
+            PlaygroundForm.dbContext.SaveChanges();
+            initMainListBox();
+            TipsWriteLine("已保存所有更改 并重载!");
+        }
+
+        private void button_add_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
