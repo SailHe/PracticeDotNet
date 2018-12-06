@@ -12,6 +12,8 @@ namespace WinFormsApp.src
 {
     public partial class SinInForm : Form
     {
+        public bool CloseFlag { get; internal set; }
+
         public SinInForm()
         {
             InitializeComponent();
@@ -24,7 +26,9 @@ namespace WinFormsApp.src
 
         private void signButton_Click(object sender, EventArgs e)
         {
-            new Form11_21().Show();
+            // new Form11_21().Show();
+            this.CloseFlag = true;
+            this.Close();
         }
     }
 }

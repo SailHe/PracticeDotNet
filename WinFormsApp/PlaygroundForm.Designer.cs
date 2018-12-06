@@ -35,6 +35,7 @@
             this.bigNumRadix_textBox = new System.Windows.Forms.TextBox();
             this.APItestButton = new System.Windows.Forms.Button();
             this.button_to_11_21 = new System.Windows.Forms.Button();
+            this.button_to_12_6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bigNumPlushbutton
@@ -98,11 +99,22 @@
             this.button_to_11_21.UseVisualStyleBackColor = true;
             this.button_to_11_21.Click += new System.EventHandler(this.button_to_11_21_Click);
             // 
+            // button_to_12_6
+            // 
+            this.button_to_12_6.Location = new System.Drawing.Point(179, 158);
+            this.button_to_12_6.Name = "button_to_12_6";
+            this.button_to_12_6.Size = new System.Drawing.Size(122, 23);
+            this.button_to_12_6.TabIndex = 8;
+            this.button_to_12_6.Text = "12-6 作业";
+            this.button_to_12_6.UseVisualStyleBackColor = true;
+            this.button_to_12_6.Click += new System.EventHandler(this.button_to_12_6_Click);
+            // 
             // PlaygroundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 450);
+            this.Controls.Add(this.button_to_12_6);
             this.Controls.Add(this.button_to_11_21);
             this.Controls.Add(this.APItestButton);
             this.Controls.Add(this.bigNumRadix_textBox);
@@ -126,6 +138,7 @@
         private System.Windows.Forms.TextBox bigNumRadix_textBox;
         private System.Windows.Forms.Button APItestButton;
         private System.Windows.Forms.Button button_to_11_21;
+        private System.Windows.Forms.Button button_to_12_6;
     }
 }
 
