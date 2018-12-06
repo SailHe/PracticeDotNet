@@ -65,6 +65,7 @@
             // 
             this.signPswTextBox.Location = new System.Drawing.Point(342, 272);
             this.signPswTextBox.Name = "signPswTextBox";
+            this.signPswTextBox.PasswordChar = '*';
             this.signPswTextBox.Size = new System.Drawing.Size(228, 25);
             this.signPswTextBox.TabIndex = 3;
             // 

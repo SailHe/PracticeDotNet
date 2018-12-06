@@ -41,7 +41,7 @@
             this.textBox_sex = new System.Windows.Forms.TextBox();
             this.textBox_name = new System.Windows.Forms.TextBox();
             this.textBox_stuNum = new System.Windows.Forms.TextBox();
-            this.button_save = new System.Windows.Forms.Button();
+            this.button_submit = new System.Windows.Forms.Button();
             this.button_add = new System.Windows.Forms.Button();
             this.button_nameSearch = new System.Windows.Forms.Button();
             this.textBox_nameSearch = new System.Windows.Forms.TextBox();
@@ -153,20 +153,22 @@
             // 
             // textBox_stuNum
             // 
+            this.textBox_stuNum.Enabled = false;
             this.textBox_stuNum.Location = new System.Drawing.Point(897, 565);
             this.textBox_stuNum.Name = "textBox_stuNum";
+            this.textBox_stuNum.ReadOnly = true;
             this.textBox_stuNum.Size = new System.Drawing.Size(139, 25);
             this.textBox_stuNum.TabIndex = 23;
             // 
-            // button_save
+            // button_submit
             // 
-            this.button_save.Location = new System.Drawing.Point(1289, 687);
-            this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(121, 31);
-            this.button_save.TabIndex = 22;
-            this.button_save.Text = "保存";
-            this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            this.button_submit.Location = new System.Drawing.Point(1289, 687);
+            this.button_submit.Name = "button_submit";
+            this.button_submit.Size = new System.Drawing.Size(121, 31);
+            this.button_submit.TabIndex = 22;
+            this.button_submit.Text = "提交";
+            this.button_submit.UseVisualStyleBackColor = true;
+            this.button_submit.Click += new System.EventHandler(this.button_submit_Click);
             // 
             // button_add
             // 
@@ -233,7 +235,7 @@
             this.Controls.Add(this.textBox_sex);
             this.Controls.Add(this.textBox_name);
             this.Controls.Add(this.textBox_stuNum);
-            this.Controls.Add(this.button_save);
+            this.Controls.Add(this.button_submit);
             this.Controls.Add(this.button_add);
             this.Controls.Add(this.button_nameSearch);
             this.Controls.Add(this.textBox_nameSearch);
@@ -260,7 +262,7 @@
         private System.Windows.Forms.TextBox textBox_sex;
         private System.Windows.Forms.TextBox textBox_name;
         private System.Windows.Forms.TextBox textBox_stuNum;
-        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Button button_submit;
         private System.Windows.Forms.Button button_add;
         private System.Windows.Forms.Button button_nameSearch;
         private System.Windows.Forms.TextBox textBox_nameSearch;
