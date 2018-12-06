@@ -211,7 +211,16 @@ namespace WinFormsApp.src
             {
                 // donothing
             }
-            
+
+            if(textBox_sex.Text != "男" && textBox_sex.Text != "女")
+            {
+                TipsWriteLine("性别只能输男和女啦!");
+            }
+            else
+            {
+                // donothing
+            }
+
             if (Verify.IsDateTime(birthDayBuffer))
             {
                 //break;
@@ -253,14 +262,22 @@ namespace WinFormsApp.src
 
         private void button_delete_Click(object sender, EventArgs e)
         {
-            ustudent delete = new ustudent();
-            delete.sid = int.Parse(textBox_stuNum.Text);
-            try
+            if (MessageBox.Show("您当真要删除当前选项吗？", "真香警告", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                PlaygroundForm.dbContext.Entry(delete).State = System.Data.Entity.EntityState.Deleted;
+                ustudent delete = new ustudent();
+                delete.sid = int.Parse(textBox_stuNum.Text);
+                try
+                {
+                    PlaygroundForm.dbContext.Entry(delete).State = System.Data.Entity.EntityState.Deleted;
+                }
+                catch
+                {
+                    MessageBox.Show("不要对同一个实体 同时进行编辑或者删除操作! 请先提交!");
+                }
             }
-            catch {
-                MessageBox.Show("不要对同一个实体 同时进行编辑或者删除操作! 请先提交!");
+            else
+            {
+                TipsWriteLine("真香~");
             }
         }
 
