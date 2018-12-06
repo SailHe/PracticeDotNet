@@ -53,6 +53,7 @@ namespace WinFormsApp.src
         }
 
         private int stuCount = 0;
+        private List<StuScoreDTO> buffertList = null;
 
         public Form12_6()
         {
@@ -70,8 +71,8 @@ namespace WinFormsApp.src
             DbRawSqlQuery<StuScoreDTO> results = PlaygroundForm.dbContext.Database.SqlQuery<StuScoreDTO>(
                     sql, new MySqlParameter("@sid", 32006005)
                 );
-            var resultList = results.ToList<StuScoreDTO>();
-            stuCount = resultList.Count;
+            buffertList = results.ToList<StuScoreDTO>();
+            stuCount = buffertList.Count;
             foreach (var r in results)
             {
                 // 显示时会调用ToString方法
@@ -322,6 +323,18 @@ namespace WinFormsApp.src
             PlaygroundForm.dbContext.SaveChanges();
             initMainListBox();
             TipsWriteLine("已提交所有更改 并重载!");
+        }
+
+        private void button_nameSearch_Click(object sender, EventArgs e)
+        {
+            Clear();
+            foreach(var r in buffertList)
+            {
+                if (r.姓名.Contains(textBox_nameSearch.Text))
+                {
+                    listBox_main.Items.Add(r);
+                }                
+            }
         }
     }
 }

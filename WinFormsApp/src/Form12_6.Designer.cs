@@ -189,6 +189,7 @@
             this.button_nameSearch.TabIndex = 20;
             this.button_nameSearch.Text = "按姓名搜索";
             this.button_nameSearch.UseVisualStyleBackColor = false;
+            this.button_nameSearch.Click += new System.EventHandler(this.button_nameSearch_Click);
             // 
             // textBox_nameSearch
             // 
@@ -196,7 +197,6 @@
             this.textBox_nameSearch.Name = "textBox_nameSearch";
             this.textBox_nameSearch.Size = new System.Drawing.Size(175, 25);
             this.textBox_nameSearch.TabIndex = 19;
-            this.textBox_nameSearch.Text = "输入姓名";
             // 
             // mainTextBox
             // 
