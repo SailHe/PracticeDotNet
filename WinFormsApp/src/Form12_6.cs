@@ -26,6 +26,7 @@ namespace WinFormsApp.src
 
         class StuScoreDTO
         {
+            // 妈哒(mada) ! 中文编程!
             public string sname { get; set; }
             public int sid { get; set; }
             public string 姓名 { get; set; }
@@ -43,32 +44,49 @@ namespace WinFormsApp.src
                 return 姓名 + "\t"
                 + (学号 == null ? "---------" : 学号.ToString())
                 + "\t" + 性别 + "\t\t" + 出生日期 + "\t" + 班级 + "\t" + 电话;
-
             }
         }
+
+        private int stuCount = 0;
 
         public Form12_6()
         {
             InitializeComponent();
             
-            // 需添加 System.Data.Linq 程序集引用 @see https://social.msdn.microsoft.com/Forums/zh-TW/16be9e61-651b-4f08-b718-906ba6223446/linq252141998121040systemdatalinqmapping?forum=238s
-            // var db = new System.Data.Linq.DataContext(@"./LearnDB_Data.MDF");
-            // IEnumerable<ustudent> results = db.ExecuteQuery<ustudent>(@"SELECT * FROM ustudent");
-            
             string sql = "SELECT stu.sid AS 学号, stu.sname AS 姓名, stu.ssexy AS 性别" +
                 ", stu.sbdate AS 出生日期, ug.gname AS 班级, stu.stele AS 电话" +
                 ", sc.score1 AS 成绩 FROM ustudent stu INNER JOIN ugrade ug USING(gid) JOIN usc sc USING(sid)";
+
             DbRawSqlQuery<StuScoreDTO> results = PlaygroundForm.dbContext.Database.SqlQuery<StuScoreDTO>(
                     sql, new MySqlParameter("@sid", 32006005)
                 );
             var resultList = results.ToList<StuScoreDTO>();
-
+            stuCount = resultList.Count;
             foreach (var r in results)
             {
                 // 显示时会调用ToString方法
                 listBox_main.Items.Add(r);
             }
-            
+        }
+
+        private void listBox_main_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            object temp = listBox_main.SelectedItems[0];
+            mainTextBox.AppendText(temp.ToString() + "\r\n");
+            int index = (sender as ListBox).SelectedIndex;
+            if (index >= stuCount || index < 0)
+            {
+                // do nothing
+            }
+            else
+            {
+                StuScoreDTO seItem = temp as StuScoreDTO;
+                textBox_name.Text = seItem.姓名;
+                textBox_grade.Text = seItem.班级;
+                textBox_birthDay.Text = seItem.出生日期;
+                textBox_stuNum.Text = seItem.学号;
+                textBox_sex.Text = seItem.性别;
+            }
         }
 
         void LINKQSample1()
@@ -85,6 +103,11 @@ namespace WinFormsApp.src
             {
                 Console.WriteLine(r.sname);
             }
+
+            // 官网的蜜汁版本
+            // 需添加 System.Data.Linq 程序集引用 @see https://social.msdn.microsoft.com/Forums/zh-TW/16be9e61-651b-4f08-b718-906ba6223446/linq252141998121040systemdatalinqmapping?forum=238s
+            // var db = new System.Data.Linq.DataContext(@"./LearnDB_Data.MDF");
+            // IEnumerable<ustudent> results = db.ExecuteQuery<ustudent>(@"SELECT * FROM ustudent");
         }
         /**
          * EF提供一组方法用来执行原生的SQL.
@@ -130,6 +153,6 @@ namespace WinFormsApp.src
                 Console.WriteLine(r.ToString());
             }
         }
-
+        
     }
 }

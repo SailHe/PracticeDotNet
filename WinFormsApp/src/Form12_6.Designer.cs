@@ -65,6 +65,7 @@
             this.listBox_main.Name = "listBox_main";
             this.listBox_main.Size = new System.Drawing.Size(1252, 469);
             this.listBox_main.TabIndex = 34;
+            this.listBox_main.SelectedIndexChanged += new System.EventHandler(this.listBox_main_SelectedIndexChanged);
             // 
             // label_grade
             // 
