@@ -19,6 +19,7 @@ namespace WinFormsApp.src
         private List<StudentInfo> studentS;
         private StringMapInt gnameMapGid;
         private intMapString gidMapGname;
+        private sail_heEntities dbContext = new sail_heEntities();
 
         public bool CloseFlag { get; internal set; }
 
@@ -77,14 +78,25 @@ namespace WinFormsApp.src
         private void signButton_Click(object sender, EventArgs e)
         {
             // new Form11_21().Show();
-            if (studentS.Find(ele => ele.getStuId() == stuSignIdTextBox.Text) != null)
+            // var user = new sys_user();
+            // user.user_name = "tester";
+            // var temp = dbContext.sys_user.Find(user);
+            var stu = studentS.Find(ele => ele.getStuId() == stuSignIdTextBox.Text);
+            if (stu != null)
             {
-                 this.CloseFlag = true;
-                 this.Close();
+                if (stu.getStuId() == signPswTextBox.Text)
+                {
+                    this.CloseFlag = true;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("密码错误！密码就是学号");
+                }
             }
             else
             {
-                MessageBox.Show("学号或密码错误！");
+                MessageBox.Show("学号错误！");
             }
             
         }
