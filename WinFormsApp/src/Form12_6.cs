@@ -24,6 +24,29 @@ namespace WinFormsApp.src
             public int sid { get; set; }
         }
 
+        class StuScoreDTO
+        {
+            public string sname { get; set; }
+            public int sid { get; set; }
+            public string 姓名 { get; set; }
+            public string 学号 { get; set; }
+            public string 性别 { get; set; }
+            public string 出生日期 { get; set; }
+            public string 班级 { get; set; }
+            public string 电话 { get; set; }
+            public double 成绩 { get; set; }
+
+            override
+            public string ToString()
+            {
+                // StudentInfo;
+                return 姓名 + "\t"
+                + (学号 == null ? "---------" : 学号.ToString())
+                + "\t" + 性别 + "\t\t" + 出生日期 + "\t" + 班级 + "\t" + 电话;
+
+            }
+        }
+
         public Form12_6()
         {
             InitializeComponent();
@@ -35,24 +58,24 @@ namespace WinFormsApp.src
             string sql = "SELECT stu.sid AS 学号, stu.sname AS 姓名, stu.ssexy AS 性别" +
                 ", stu.sbdate AS 出生日期, ug.gname AS 班级, stu.stele AS 电话" +
                 ", sc.score1 AS 成绩 FROM ustudent stu INNER JOIN ugrade ug USING(gid) JOIN usc sc USING(sid)";
-            // 自定义类型需要geter和seter
-            DbRawSqlQuery<StuDTO> results = PlaygroundForm.dbContext.Database.SqlQuery<StuDTO>(
-                    "SELECT sname, sid FROM ustudent WHERE sid = @sid", new MySqlParameter("@sid", 32006005)
+            DbRawSqlQuery<StuScoreDTO> results = PlaygroundForm.dbContext.Database.SqlQuery<StuScoreDTO>(
+                    sql, new MySqlParameter("@sid", 32006005)
                 );
-            var temp = results.ToList<StuDTO>();
-            // 若包涵多个元素 会抛异常 详参API
-            // var temp1 = results.SingleOrDefault();
+            var resultList = results.ToList<StuScoreDTO>();
 
             foreach (var r in results)
             {
-                Console.WriteLine(r.ToString());
+                // 显示时会调用ToString方法
+                listBox_main.Items.Add(r);
             }
-            new LINQEF.LINQExam().queryScoreWithFunc("12005001");
-            listBox_main.Items.Add("ssss");
+            
         }
 
         void LINKQSample1()
         {
+            // lambda表达式版
+            new LINQEF.LINQExam().queryScoreWithFunc("12005001");
+
             IQueryable<ustudent> custQuery =
             from row in PlaygroundForm.dbContext.ustudent
             where row.sid == 32006005
