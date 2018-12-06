@@ -125,6 +125,7 @@
             // 
             // textBox_grade
             // 
+            this.textBox_grade.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.textBox_grade.Location = new System.Drawing.Point(1150, 640);
             this.textBox_grade.Name = "textBox_grade";
             this.textBox_grade.Size = new System.Drawing.Size(225, 25);
@@ -132,6 +133,7 @@
             // 
             // textBox_birthDay
             // 
+            this.textBox_birthDay.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.textBox_birthDay.Location = new System.Drawing.Point(897, 640);
             this.textBox_birthDay.Name = "textBox_birthDay";
             this.textBox_birthDay.Size = new System.Drawing.Size(247, 25);
@@ -139,6 +141,7 @@
             // 
             // textBox_sex
             // 
+            this.textBox_sex.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.textBox_sex.Location = new System.Drawing.Point(1234, 565);
             this.textBox_sex.Name = "textBox_sex";
             this.textBox_sex.Size = new System.Drawing.Size(141, 25);
@@ -146,6 +149,7 @@
             // 
             // textBox_name
             // 
+            this.textBox_name.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.textBox_name.Location = new System.Drawing.Point(1064, 565);
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(141, 25);
@@ -193,6 +197,7 @@
             // 
             // textBox_nameSearch
             // 
+            this.textBox_nameSearch.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.textBox_nameSearch.Location = new System.Drawing.Point(513, 19);
             this.textBox_nameSearch.Name = "textBox_nameSearch";
             this.textBox_nameSearch.Size = new System.Drawing.Size(175, 25);

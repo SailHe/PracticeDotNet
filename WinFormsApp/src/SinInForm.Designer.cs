@@ -47,6 +47,7 @@
             // 
             // stuSignIdTextBox
             // 
+            this.stuSignIdTextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.stuSignIdTextBox.Location = new System.Drawing.Point(342, 224);
             this.stuSignIdTextBox.Name = "stuSignIdTextBox";
             this.stuSignIdTextBox.Size = new System.Drawing.Size(228, 25);
@@ -63,6 +64,7 @@
             // 
             // signPswTextBox
             // 
+            this.signPswTextBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.signPswTextBox.Location = new System.Drawing.Point(342, 272);
             this.signPswTextBox.Name = "signPswTextBox";
             this.signPswTextBox.PasswordChar = '*';
