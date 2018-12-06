@@ -90,7 +90,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SailHeModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="src\Form11_21.cs" />
+    <Compile Include="src\Form11_21.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\Form11_21.Designer.cs">
       <DependentUpon>Form11_21.cs</DependentUpon>
     </Compile>
@@ -99,6 +101,12 @@
     </Compile>
     <Compile Include="src\Form_DatatableDemo.Designer.cs">
       <DependentUpon>Form_DatatableDemo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\SinInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\SinInForm.Designer.cs">
+      <DependentUpon>SinInForm.cs</DependentUpon>
     </Compile>
     <Compile Include="src\SolveHomeworkProblem.cs" />
     <Compile Include="sys_user.cs">
@@ -139,6 +147,9 @@
     </Compile>
     <EmbeddedResource Include="src\Form11_21.resx">
       <DependentUpon>Form11_21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\SinInForm.resx">
+      <DependentUpon>SinInForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
