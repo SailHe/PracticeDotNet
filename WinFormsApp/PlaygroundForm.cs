@@ -19,6 +19,8 @@ namespace WinFormsApp
     {
         private bool lhsBigNumHasSet = false, rhsBigNumHasSet = false;
 
+        public static sail_heEntities dbContext = new sail_heEntities();
+
         public PlaygroundForm()
         {
             InitializeComponent();
@@ -70,7 +72,8 @@ namespace WinFormsApp
             if (lg.CloseFlag)
             {
                 //Application.Run(new StudentInfo());
-                new Form11_21().Show();
+                // new Form11_21().Show();
+                new Form12_6().Show();
             }
         }
 
