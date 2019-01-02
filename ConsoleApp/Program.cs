@@ -64,11 +64,11 @@ namespace LearnDotNet
         }
     }
 
-    class ClassAndGrade
-    {
-        private string name;
-        private string classId;
-    }
+    //class ClassAndGrade
+    //{
+    //    private string name;
+    //    private string classId;
+    //}
 
     // .NET Framework控制台程序
     public class Program

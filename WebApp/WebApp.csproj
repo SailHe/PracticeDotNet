@@ -148,7 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="App_Start\App_Pages\Categories.aspx" />
     <Content Include="App_Start\App_Pages\crudWebForm.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -221,13 +220,6 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\App_Pages\Categories.aspx.cs">
-      <DependentUpon>Categories.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Start\App_Pages\Categories.aspx.designer.cs">
-      <DependentUpon>Categories.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\App_Pages\CRUDController.cs" />
     <Compile Include="App_Start\App_Pages\crudWebForm.aspx.cs">
       <DependentUpon>crudWebForm.aspx</DependentUpon>

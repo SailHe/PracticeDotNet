@@ -83,7 +83,7 @@ namespace WebApp.App_Start.App_Pages
         //四个按钮的方法，增删改查
         protected void BtnAdd_Click(object sender, EventArgs e)
         {
-            sql = "insert into sys_user(user_name,user_age) values('" + nameTextBox.Text.ToString().Trim() + "','" + ageTextBox.Text.ToString().Trim() + "')";
+            sql = "insert into sys_user(user_name, user_age) values('" + nameTextBox.Text.ToString().Trim() + "','" + ageTextBox.Text.ToString().Trim() + "')";
             execute(sql);
             Response.Write("<script>console.log('添加成功');</script>");
         }
@@ -98,17 +98,21 @@ namespace WebApp.App_Start.App_Pages
         
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            sql = "update  sys_user set user_age='" + ageTextBox.Text.ToString().Trim() + "' where user_name='" + nameTextBox.Text.ToString().Trim() + "'";
+            sql = "update sys_user set user_age='" + ageTextBox.Text.ToString().Trim() + "' where user_name='" + nameTextBox.Text.ToString().Trim() + "'";
             execute(sql);
             Response.Write("<script>console.log('更新成功');</script>");
         }
         
         protected void BtnSelect_Click(object sender, EventArgs e)
         {
-            sql = "select * from sys_user where user_name='" + nameTextBox.Text.ToString().Trim() + "'";
+            sql = "select user_name, user_age from sys_user where user_name='" + nameTextBox.Text.ToString().Trim() + "'";
             load(sql);
             Response.Write("<script>console.log('查询成功');</script>");
         }
 
+        protected void ageTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -263,7 +263,7 @@
           <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_realname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_nickname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="user_age" Type="String" Unicode="false" FixedLength="false" MaxLength="255" />
+          <Property Name="user_age" Type="Int32" />
           <Property Name="user_passworld" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_sex" Type="SByte" />
           <Property Name="user_role" Type="SByte" />

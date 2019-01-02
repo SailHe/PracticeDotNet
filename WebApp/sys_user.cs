@@ -18,7 +18,7 @@ namespace WebApp
         public string user_name { get; set; }
         public string user_realname { get; set; }
         public string user_nickname { get; set; }
-        public string user_age { get; set; }
+        public Nullable<int> user_age { get; set; }
         public string user_passworld { get; set; }
         public Nullable<sbyte> user_sex { get; set; }
         public Nullable<sbyte> user_role { get; set; }

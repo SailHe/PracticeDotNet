@@ -13,6 +13,15 @@ namespace WebApp.App_Start.App_Pages {
     public partial class crudWebForm {
         
         /// <summary>
+        /// usernameLabel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label usernameLabel;
+        
+        /// <summary>
         /// nameTextBox 控件。
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace WebApp.App_Start.App_Pages {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nameTextBox;
+        
+        /// <summary>
+        /// userageLabel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label userageLabel;
         
         /// <summary>
         /// ageTextBox 控件。

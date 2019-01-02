@@ -15,9 +15,11 @@ namespace WebApp
             routes.EnableFriendlyUrls(settings);
 
             // @see https://docs.microsoft.com/en-us/previous-versions/cc668201(v=vs.140)
-            routes.MapPageRoute("",
-            "Category/{action}/{categoryName}",
-            "~/categoriespage.aspx");
+            routes.MapPageRoute(
+                "",
+                "userCrud/",//{action}/{categoryName}
+                "~/App_Start/App_Pages/crudWebForm.aspx"
+            );
         }
     }
 }
