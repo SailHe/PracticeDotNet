@@ -7,7 +7,77 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="SailHeModel.Context.tt" />
+    <None Remove="SailHeModel.tt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="SailHeModel.Context.tt">
+      <DependentUpon>SailHeModel.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </Content>
+    <Content Include="SailHeModel.tt">
+      <DependentUpon>SailHeModel.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SailHeCSharpClassLib\SailHeCSharpClassLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="basic_city.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="basic_province.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="SailHeModel.Context.cs">
+      <DependentUpon>SailHeModel.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="SailHeModel.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="SailHeModel.Designer.cs">
+      <DependentUpon>SailHeModel.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="sys_user.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ucourse.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="udept.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ugrade.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ujobtable.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="usc.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ustudent.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="uteacher.cs">
+      <DependentUpon>SailHeModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="SailHeModel.edmx.diagram">
+      <DependentUpon>SailHeModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
 
 </Project>
