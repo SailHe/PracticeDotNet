@@ -25,7 +25,6 @@ namespace WebApp
         public string user_contact_way { get; set; }
         public System.DateTime create_time { get; set; }
         public System.DateTime edit_time { get; set; }
-        public string id { get; set; }
         public string email { get; set; }
         public string head_portrait { get; set; }
         public string mobile_no { get; set; }

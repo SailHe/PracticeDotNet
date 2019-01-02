@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sail_heModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sail_heModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="basic_city">
           <Key>
             <PropertyRef Name="Id" />
@@ -74,14 +74,13 @@
           <Property Name="user_name" Type="varchar" MaxLength="255" />
           <Property Name="user_realname" Type="varchar" MaxLength="255" />
           <Property Name="user_nickname" Type="varchar" MaxLength="255" />
-          <Property Name="user_age" Type="varchar" MaxLength="255" />
+          <Property Name="user_age" Type="int" />
           <Property Name="user_passworld" Type="varchar" MaxLength="255" />
           <Property Name="user_sex" Type="tinyint" />
           <Property Name="user_role" Type="tinyint" />
           <Property Name="user_contact_way" Type="varchar" MaxLength="255" />
           <Property Name="create_time" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="edit_time" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="255" />
           <Property Name="head_portrait" Type="varchar" MaxLength="255" />
           <Property Name="mobile_no" Type="varchar" MaxLength="255" />
@@ -191,8 +190,7 @@
           <EntitySet Name="ustudent" EntityType="Self.ustudent" Schema="sail_he" store:Type="Tables" />
           <EntitySet Name="uteacher" EntityType="Self.uteacher" Schema="sail_he" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sail_heModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -265,14 +263,13 @@
           <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_realname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_nickname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="user_age" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_age" Type="String" Unicode="false" FixedLength="false" MaxLength="255" />
           <Property Name="user_passworld" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_sex" Type="SByte" />
           <Property Name="user_role" Type="SByte" />
           <Property Name="user_contact_way" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="create_time" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="edit_time" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="head_portrait" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="mobile_no" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -466,7 +463,6 @@
                 <ScalarProperty Name="user_contact_way" ColumnName="user_contact_way" />
                 <ScalarProperty Name="create_time" ColumnName="create_time" />
                 <ScalarProperty Name="edit_time" ColumnName="edit_time" />
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="head_portrait" ColumnName="head_portrait" />
                 <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
