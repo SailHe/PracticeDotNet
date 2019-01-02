@@ -18,12 +18,20 @@ namespace ConsoleApp
         public string user_name { get; set; }
         public string user_realname { get; set; }
         public string user_nickname { get; set; }
-        public string user_age { get; set; }
+        public Nullable<int> user_age { get; set; }
         public string user_passworld { get; set; }
         public Nullable<sbyte> user_sex { get; set; }
         public Nullable<sbyte> user_role { get; set; }
         public string user_contact_way { get; set; }
         public System.DateTime create_time { get; set; }
         public System.DateTime edit_time { get; set; }
+        public string email { get; set; }
+        public string head_portrait { get; set; }
+        public string mobile_no { get; set; }
+        public string password { get; set; }
+        public string region { get; set; }
+        public Nullable<System.DateTime> register_time { get; set; }
+        public Nullable<int> user_type { get; set; }
+        public Nullable<int> validity { get; set; }
     }
 }

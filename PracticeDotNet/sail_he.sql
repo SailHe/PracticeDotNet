@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-11-14 23:06:23
+Date: 2019-01-02 20:12:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,6 +54,53 @@ CREATE TABLE `basic_province` (
 INSERT INTO `basic_province` VALUES ('1', '123', '123', '123', '123');
 
 -- ----------------------------
+-- Table structure for sys_enterprise
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_enterprise`;
+CREATE TABLE `sys_enterprise` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `annual_value` int(11) DEFAULT NULL,
+  `city_code` varchar(255) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `city_name` varchar(255) DEFAULT NULL,
+  `county_code` varchar(255) DEFAULT NULL,
+  `county_id` int(11) DEFAULT NULL,
+  `county_name` varchar(255) DEFAULT NULL,
+  `detail_address` varchar(255) DEFAULT NULL,
+  `economy_name` varchar(255) DEFAULT NULL,
+  `economy_type` int(11) DEFAULT NULL,
+  `employee_number` int(11) DEFAULT NULL,
+  `enterprise_name` varchar(255) DEFAULT NULL,
+  `establish_time` date DEFAULT NULL,
+  `factory_area` double DEFAULT NULL,
+  `gmt_create` datetime DEFAULT NULL,
+  `gmt_modified` datetime DEFAULT NULL,
+  `industry_name` varchar(255) DEFAULT NULL,
+  `industry_type` int(11) DEFAULT NULL,
+  `is_delete` int(11) DEFAULT NULL,
+  `latitude` int(11) DEFAULT NULL,
+  `legal_person` varchar(255) DEFAULT NULL,
+  `longitude` int(11) DEFAULT NULL,
+  `main_industry` varchar(255) DEFAULT NULL,
+  `operat_product` varchar(255) DEFAULT NULL,
+  `pluralistic_management` varchar(255) DEFAULT NULL,
+  `province_code` varchar(255) DEFAULT NULL,
+  `province_id` int(11) DEFAULT NULL,
+  `province_name` varchar(255) DEFAULT NULL,
+  `safe_charge` varchar(255) DEFAULT NULL,
+  `safe_management` varchar(255) DEFAULT NULL,
+  `street_code` varchar(255) DEFAULT NULL,
+  `street_id` int(11) DEFAULT NULL,
+  `street_name` varchar(255) DEFAULT NULL,
+  `village_code` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_enterprise
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
@@ -62,23 +109,34 @@ CREATE TABLE `sys_user` (
   `user_name` varchar(255) DEFAULT NULL COMMENT '用户名',
   `user_realname` varchar(255) DEFAULT NULL COMMENT '真实姓名',
   `user_nickname` varchar(255) DEFAULT NULL COMMENT '昵称',
-  `user_age` varchar(255) DEFAULT NULL COMMENT '年龄',
+  `user_age` int(255) DEFAULT NULL COMMENT '年龄',
   `user_passworld` varchar(255) DEFAULT NULL COMMENT '密码',
   `user_sex` tinyint(4) DEFAULT NULL COMMENT '性别',
   `user_role` tinyint(4) DEFAULT NULL COMMENT '角色(用于权限分配)',
   `user_contact_way` varchar(255) DEFAULT NULL COMMENT '联系方式',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `edit_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '编辑时间',
+  `email` varchar(255) DEFAULT NULL,
+  `head_portrait` varchar(255) DEFAULT NULL,
+  `mobile_no` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `region` varchar(255) DEFAULT NULL,
+  `register_time` datetime DEFAULT NULL,
+  `user_type` int(11) DEFAULT NULL,
+  `validity` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('11', '更新于Wed Oct 10 20:19:46 CST 2018', null, null, '56', null, null, null, null, '2018-10-10 20:19:46', '2018-10-10 20:19:46');
-INSERT INTO `sys_user` VALUES ('12', '更新于Thu Nov 08 20:23:41 CST 2018', null, null, '66', null, null, null, null, '2018-11-08 20:23:41', '2018-11-08 20:23:41');
-INSERT INTO `sys_user` VALUES ('13', '更新于Thu Nov 08 20:24:31 CST 2018', null, null, '103', null, null, null, null, '2018-11-08 20:24:31', '2018-11-08 20:24:31');
-INSERT INTO `sys_user` VALUES ('14', '更新于Sat Nov 10 19:04:02 CST 2018', null, null, '43', null, null, null, null, '2018-11-10 19:04:02', '2018-11-10 19:04:02');
+INSERT INTO `sys_user` VALUES ('11', '更新于Wed Oct 10 20:19:46 CST 2018', null, null, '56', null, null, null, null, '2018-10-10 20:19:46', '2018-10-10 20:19:46', null, null, null, null, null, null, null, null);
+INSERT INTO `sys_user` VALUES ('12', '更新于Thu Nov 08 20:23:41 CST 2018', null, null, '66', null, null, null, null, '2018-11-08 20:23:41', '2018-11-08 20:23:41', null, null, null, null, null, null, null, null);
+INSERT INTO `sys_user` VALUES ('13', '更新于Thu Nov 08 20:24:31 CST 2018', null, null, '101', null, null, null, null, '2019-01-02 19:54:04', '2019-01-02 19:54:04', null, null, null, null, null, null, null, null);
+INSERT INTO `sys_user` VALUES ('14', 'testter', null, null, '43', '123', null, null, null, '2018-12-06 09:07:17', '2018-12-06 09:07:17', null, null, null, null, null, null, null, null);
+INSERT INTO `sys_user` VALUES ('15', '2019-01-02:19:16', null, null, '66', null, null, null, null, '2019-01-02 19:27:19', '2019-01-02 19:27:19', null, null, null, null, null, null, null, null);
+INSERT INTO `sys_user` VALUES ('19', '2019-1-2 19:57', null, null, '102', null, null, null, null, '2019-01-02 19:57:57', '2019-01-02 19:57:57', null, null, null, null, null, null, null, null);
+INSERT INTO `sys_user` VALUES ('20', '2019-1-2 19:57', null, null, '102', null, null, null, null, '2019-01-02 19:57:57', '2019-01-02 19:57:57', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for ucourse
@@ -336,53 +394,51 @@ CREATE TABLE `ustudent` (
   `gid` varchar(255) DEFAULT NULL,
   `stele` varchar(13) DEFAULT NULL,
   PRIMARY KEY (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=112007021 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=112007019 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ustudent
 -- ----------------------------
-INSERT INTO `ustudent` VALUES ('12005001', '李山', '男', '1988/10/11', '1', '660780');
-INSERT INTO `ustudent` VALUES ('12005002', '张飞', '男', '1987/10/11', '1', '660781');
-INSERT INTO `ustudent` VALUES ('12005003', '李玉和', '女', '1989/10/11', '1', '660782');
-INSERT INTO `ustudent` VALUES ('12005004', '王一飞', '女', '1990/10/11', '1', '660783');
-INSERT INTO `ustudent` VALUES ('12006001', '韦宝', '男', '1988/10/11', '1', '660780');
-INSERT INTO `ustudent` VALUES ('12006002', '李飞', '男', '1987/10/11', '1', '660781');
-INSERT INTO `ustudent` VALUES ('12006003', '冯玉', '女', '1989/10/11', '1', '660782');
-INSERT INTO `ustudent` VALUES ('12006004', '马观', '女', '1990/10/11', '1', '660783');
-INSERT INTO `ustudent` VALUES ('12007001', '李知', '男', '1988/10/11', '1', '660780');
-INSERT INTO `ustudent` VALUES ('12007002', '吴飞', '男', '1987/10/11', '1', '660781');
-INSERT INTO `ustudent` VALUES ('12007003', '李凡', '女', '1989/10/11', '1', '660782');
-INSERT INTO `ustudent` VALUES ('12007004', '王一飞', '女', '1990/10/11', '1', '660783');
-INSERT INTO `ustudent` VALUES ('32005005', '徐红', '女', '1988/1/11', '3', '660784');
-INSERT INTO `ustudent` VALUES ('32005006', '刘和', '男', '1988/12/11', '3', '660785');
-INSERT INTO `ustudent` VALUES ('32005007', '刘山', '男', '1989/10/1', '3', '660786');
-INSERT INTO `ustudent` VALUES ('32006005', '徐一红', '女', '1988/1/11', '3', '660784');
-INSERT INTO `ustudent` VALUES ('32006006', '刘一和', '男', '1988/12/11', '3', '660785');
-INSERT INTO `ustudent` VALUES ('32006007', '马西', '男', '1989/10/1', '3', '660786');
-INSERT INTO `ustudent` VALUES ('32007005', '王红', '女', '1988/1/11', '3', '660784');
-INSERT INTO `ustudent` VALUES ('32007006', '王一红', '男', '1988/12/11', '3', '660785');
-INSERT INTO `ustudent` VALUES ('32007007', '丁西', '男', '1989/10/1', '3', '660786');
-INSERT INTO `ustudent` VALUES ('82005008', '刘去山', '女', '1990/1/11', '8', '660787');
-INSERT INTO `ustudent` VALUES ('82005009', '白云飞', '女', '1992/10/11', '8', '660788');
-INSERT INTO `ustudent` VALUES ('82006008', '刘问计', '女', '1990/1/11', '8', '660787');
-INSERT INTO `ustudent` VALUES ('82006009', '白问礼', '女', '1992/10/11', '8', '660788');
-INSERT INTO `ustudent` VALUES ('82007008', '刘红丽', '女', '1990/1/11', '8', '660787');
-INSERT INTO `ustudent` VALUES ('82007009', '沈学云', '女', '1992/10/11', '8', '660788');
-INSERT INTO `ustudent` VALUES ('92005010', '白云 ', '女', '1988/11/11', '8', '660789');
-INSERT INTO `ustudent` VALUES ('92006010', '白云', '女', '1988/12/11', '9', '660788');
-INSERT INTO `ustudent` VALUES ('92007010', '李风', '女', '1988/11/11', '9', '660789');
-INSERT INTO `ustudent` VALUES ('112005011', '李红', '女', '1987/12/11', '11', '660790');
-INSERT INTO `ustudent` VALUES ('112005012', '周磊', '男', '1986/6/11', '11', '660791');
-INSERT INTO `ustudent` VALUES ('112005013', '冯圭', '女', '1987/8/11', '11', '660792');
-INSERT INTO `ustudent` VALUES ('112006011', '李玉红', '女', '1987/12/11', '11', '660790');
-INSERT INTO `ustudent` VALUES ('112006012', '冯磊', '男', '1996/6/11', '11', '660791');
-INSERT INTO `ustudent` VALUES ('112006013', '冯由', '女', '1997/8/11', '11', '660792');
-INSERT INTO `ustudent` VALUES ('112007011', '刘好', '女', '1987/12/11', '11', '660790');
-INSERT INTO `ustudent` VALUES ('112007012', '周成', '男', '1986/6/11', '11', '660791');
-INSERT INTO `ustudent` VALUES ('112007013', '文成', '女', '1987/8/11', '11', '660792');
+INSERT INTO `ustudent` VALUES ('12005001', '李山', '男', '1988/10/11 0:00:00', '1', '660780');
+INSERT INTO `ustudent` VALUES ('12005002', '张飞', '男', '1987/10/11 0:00:00', '1', '660781');
+INSERT INTO `ustudent` VALUES ('12005003', '李玉和', '女', '1989/10/11 0:00:00', '1', '660782');
+INSERT INTO `ustudent` VALUES ('12005004', '王一飞', '女', '1990/10/11 0:00:00', '1', '660783');
+INSERT INTO `ustudent` VALUES ('12006001', '韦宝', '男', '1988/10/11 0:00:00', '1', '660780');
+INSERT INTO `ustudent` VALUES ('12006002', '李飞', '男', '1987/10/11 0:00:00', '1', '660781');
+INSERT INTO `ustudent` VALUES ('12006003', '冯玉', '女', '1989/10/11 0:00:00', '1', '660782');
+INSERT INTO `ustudent` VALUES ('12006004', '马观', '女', '1990/10/11 0:00:00', '1', '660783');
+INSERT INTO `ustudent` VALUES ('12007001', '李知', '男', '1988/10/11 0:00:00', '1', '660780');
+INSERT INTO `ustudent` VALUES ('12007002', '吴飞', '男', '1987/10/11 0:00:00', '1', '660781');
+INSERT INTO `ustudent` VALUES ('12007003', '李凡', '女', '1989/10/11 0:00:00', '1', '660782');
+INSERT INTO `ustudent` VALUES ('12007004', '王2飞', '女', '1990年10月11日', '1', '15258989595');
+INSERT INTO `ustudent` VALUES ('32005005', '徐红', '女', '1988/1/11 0:00:00', '3', '660784');
+INSERT INTO `ustudent` VALUES ('32005006', '刘和', '男', '1988/12/11 0:00:00', '3', '660785');
+INSERT INTO `ustudent` VALUES ('32005007', '刘山', '男', '1989/10/1 0:00:00', '3', '660786');
+INSERT INTO `ustudent` VALUES ('32006005', '徐一红', '女', '1988/1/11 0:00:00', '3', '660784');
+INSERT INTO `ustudent` VALUES ('32006006', '刘一和', '男', '1988/12/11 0:00:00', '3', '660785');
+INSERT INTO `ustudent` VALUES ('32006007', '马西', '男', '1989/10/1 0:00:00', '3', '660786');
+INSERT INTO `ustudent` VALUES ('32007005', '王红', '女', '1988/1/11 0:00:00', '3', '660784');
+INSERT INTO `ustudent` VALUES ('32007006', '王一红', '男', '1988/12/11 0:00:00', '3', '660785');
+INSERT INTO `ustudent` VALUES ('32007007', '丁西', '男', '1989/10/1 0:00:00', '3', '660786');
+INSERT INTO `ustudent` VALUES ('82005008', '刘去山', '女', '1990/1/11 0:00:00', '8', '660787');
+INSERT INTO `ustudent` VALUES ('82005009', '白云飞', '女', '1992/10/11 0:00:00', '8', '660788');
+INSERT INTO `ustudent` VALUES ('82006008', '刘问计', '女', '1990/1/11 0:00:00', '8', '660787');
+INSERT INTO `ustudent` VALUES ('82006009', '白问礼', '女', '1992/10/11 0:00:00', '8', '660788');
+INSERT INTO `ustudent` VALUES ('82007008', '刘红丽', '女', '1990/1/11 0:00:00', '8', '660787');
+INSERT INTO `ustudent` VALUES ('82007009', '沈学云', '女', '1992/10/11 0:00:00', '8', '660788');
+INSERT INTO `ustudent` VALUES ('92005010', '白云 ', '女', '1988/11/11 0:00:00', '8', '660789');
+INSERT INTO `ustudent` VALUES ('92006010', '白云', '女', '1988/12/11 0:00:00', '9', '660788');
+INSERT INTO `ustudent` VALUES ('92007010', '李风', '女', '1988/11/11 0:00:00', '9', '660789');
+INSERT INTO `ustudent` VALUES ('112005011', '李红', '女', '1987/12/11 0:00:00', '11', '660790');
+INSERT INTO `ustudent` VALUES ('112005012', '周磊', '男', '1986/6/11 0:00:00', '11', '660791');
+INSERT INTO `ustudent` VALUES ('112005013', '冯圭', '女', '1987/8/11 0:00:00', '11', '660792');
+INSERT INTO `ustudent` VALUES ('112006011', '李玉红', '女', '1987/12/11 0:00:00', '11', '660790');
+INSERT INTO `ustudent` VALUES ('112006012', '冯磊', '男', '1996/6/11 0:00:00', '11', '660791');
+INSERT INTO `ustudent` VALUES ('112006013', '冯由', '女', '1997/8/11 0:00:00', '11', '660792');
+INSERT INTO `ustudent` VALUES ('112007011', '刘好', '女', '1987/12/11 0:00:00', '11', '660790');
+INSERT INTO `ustudent` VALUES ('112007012', '周成', '男', '1986/6/11 0:00:00', '11', '660791');
+INSERT INTO `ustudent` VALUES ('112007013', '文成', '女', '1987/8/11 0:00:00', '11', '660792');
 INSERT INTO `ustudent` VALUES ('112007018', '新欣欣', '男', '1996/9/9 0:00:00', '20', '15256598365');
-INSERT INTO `ustudent` VALUES ('112007019', '新增加', '女', '1996/8/8 0:00:00', '18', '15259898747');
-INSERT INTO `ustudent` VALUES ('112007020', '呵呵呵', '男', '1996/9/9 0:00:00', '9', '15258989635');
 
 -- ----------------------------
 -- Table structure for uteacher

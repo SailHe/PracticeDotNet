@@ -34,13 +34,21 @@
           <Property Name="user_name" Type="varchar" MaxLength="255" />
           <Property Name="user_realname" Type="varchar" MaxLength="255" />
           <Property Name="user_nickname" Type="varchar" MaxLength="255" />
-          <Property Name="user_age" Type="varchar" MaxLength="255" />
+          <Property Name="user_age" Type="int" />
           <Property Name="user_passworld" Type="varchar" MaxLength="255" />
           <Property Name="user_sex" Type="tinyint" />
           <Property Name="user_role" Type="tinyint" />
           <Property Name="user_contact_way" Type="varchar" MaxLength="255" />
           <Property Name="create_time" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="edit_time" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="head_portrait" Type="varchar" MaxLength="255" />
+          <Property Name="mobile_no" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="region" Type="varchar" MaxLength="255" />
+          <Property Name="register_time" Type="datetime" Precision="0" />
+          <Property Name="user_type" Type="int" />
+          <Property Name="validity" Type="int" />
         </EntityType>
         <EntityType Name="ucourse">
           <Key>
@@ -174,13 +182,21 @@
           <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_realname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_nickname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="user_age" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_age" Type="Int32" />
           <Property Name="user_passworld" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="user_sex" Type="SByte" />
           <Property Name="user_role" Type="SByte" />
           <Property Name="user_contact_way" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="create_time" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="edit_time" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="head_portrait" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="mobile_no" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="region" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="register_time" Type="DateTime" />
+          <Property Name="user_type" Type="Int32" />
+          <Property Name="validity" Type="Int32" />
         </EntityType>
         <EntityType Name="ustudent">
           <Key>
@@ -313,6 +329,14 @@
           <EntitySetMapping Name="sys_user">
             <EntityTypeMapping TypeName="sail_heModel.sys_user">
               <MappingFragment StoreEntitySet="sys_user">
+                <ScalarProperty Name="validity" ColumnName="validity" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+                <ScalarProperty Name="register_time" ColumnName="register_time" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+                <ScalarProperty Name="head_portrait" ColumnName="head_portrait" />
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
                 <ScalarProperty Name="user_realname" ColumnName="user_realname" />
