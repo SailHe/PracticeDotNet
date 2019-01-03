@@ -86,6 +86,7 @@ namespace WebApp.App_Start.App_Pages
             sql = "insert into sys_user(user_name, user_age) values('" + nameTextBox.Text.ToString().Trim() + "','" + ageTextBox.Text.ToString().Trim() + "')";
             execute(sql);
             Response.Write("<script>console.log('添加成功');</script>");
+            getData();
         }
 
         protected void BtnDel_Click(object sender, EventArgs e)
@@ -94,6 +95,7 @@ namespace WebApp.App_Start.App_Pages
             execute(sql);
             load();
             Response.Write("<script>console.log('删除成功');</script>");
+            getData();
         }
         
         protected void BtnUpdate_Click(object sender, EventArgs e)
@@ -101,6 +103,7 @@ namespace WebApp.App_Start.App_Pages
             sql = "update sys_user set user_age='" + ageTextBox.Text.ToString().Trim() + "' where user_name='" + nameTextBox.Text.ToString().Trim() + "'";
             execute(sql);
             Response.Write("<script>console.log('更新成功');</script>");
+            getData();
         }
         
         protected void BtnSelect_Click(object sender, EventArgs e)
@@ -120,7 +123,7 @@ namespace WebApp.App_Start.App_Pages
 
         }
 
-        protected void queryButton_Click(object sender, EventArgs e)
+        void getData()
         {
             openDatabase();
             sql = "select * from sys_user where user_name like '%" + queryTextBox.Text.ToString().Trim() + "%'";
@@ -137,6 +140,11 @@ namespace WebApp.App_Start.App_Pages
             GridView1.DataBind();
             conn.Clone();
             Response.Write("<script>console.log('查询成功');</script>");
+        }
+
+        protected void queryButton_Click(object sender, EventArgs e)
+        {
+            getData();
         }
     }
 }
