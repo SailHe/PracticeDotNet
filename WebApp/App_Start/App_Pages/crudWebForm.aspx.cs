@@ -114,5 +114,29 @@ namespace WebApp.App_Start.App_Pages
         {
 
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void queryButton_Click(object sender, EventArgs e)
+        {
+            openDatabase();
+            sql = "select * from sys_user where user_name like '%" + queryTextBox.Text.ToString().Trim() + "%'";
+            cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            //while (dr.Read())
+            //{
+            //    nameTextBox.Text = (String)dr[1].ToString().Trim();
+            //    ageTextBox.Text = (String)dr[4].ToString().Trim();
+            //}
+            // 不能先read
+            GridView1.DataSource = dr;
+            GridView1.DataSourceID = "";
+            GridView1.DataBind();
+            conn.Clone();
+            Response.Write("<script>console.log('查询成功');</script>");
+        }
     }
 }
